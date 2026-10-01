@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>D&D Soundboard</title>
+</head>
+
+<body>
+
+    <!-- ==========================================
+         CABECERA
+    =========================================== -->
+
+    <header class="cabecera">
+
+        <h1 class="titulo">
+            D&D Soundboard
+        </h1>
+
+        <p>
+            Panel de sonidos para el Dungeon Master
+        </p>
+
+    </header>
+
+
+    <!-- ==========================================
+         REPRODUCTOR
+    =========================================== -->
+
+    <section class="panel reproductor">
+
+        <h2>🎵 Reproductor</h2>
+
+        <div class="reproductor-contenido">
+
+            <h3 id="cancion-actual">
+                Ninguna canción seleccionada
+            </h3>
+
+            <div class="barra-progreso">
+
+                <input
+                    type="range"
+                    id="progreso-musica"
+                    min="0"
+                    max="100"
+                    value="0">
+
+            </div>
+
+            <div class="controles-musica">
+
+                <button id="anterior-musica">
+                    ⏮️
+                </button>
+
+                <button id="reproducir-musica">
+                    ▶️
+                </button>
+
+                <button id="siguiente-musica">
+                    ⏭️
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         PLAYLISTS
+    =========================================== -->
+
+    <section class="panel playlists">
+
+        <h2>🎵 Playlists</h2>
+
+        <div class="botones-playlist">
+
+            <button class="boton-playlist">
+                🌲 Exploración
+            </button>
+
+            <button class="boton-playlist">
+                ⚔️ Combate
+            </button>
+
+            <button class="boton-playlist">
+                🏰 Mazmorras
+            </button>
+
+            <button class="boton-playlist">
+                🍺 Tabernas
+            </button>
+
+            <button class="boton-playlist">
+                👻 Terror
+            </button>
+
+            <button class="boton-playlist">
+                ✨ Fantasía
+            </button>
+
+            <button class="boton-playlist">
+                👑 Jefes
+            </button>
+
+        </div>
+
+        <div id="lista-playlist" class="lista-playlist">
+
+            <p>
+                Selecciona una playlist
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         AMBIENTES
+    =========================================== -->
+
+    <section class="panel ambientes">
+
+        <h2>🌍 Ambientes</h2>
+
+        <div class="botones-ambientes">
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="bosque">
+
+                🌲 Bosque
+
+            </button>
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="taberna">
+
+                🍺 Taberna
+
+            </button>
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="mazmorra">
+
+                🏰 Mazmorra
+
+            </button>
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="ciudad">
+
+                🏙️ Ciudad
+
+            </button>
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="costa">
+
+                🌊 Costa
+
+            </button>
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="montaña">
+
+                🏔️ Montaña
+
+            </button>
+
+            <button
+                class="boton-ambiente"
+                data-ambiente="batalla">
+
+                ⚔️ Campo de batalla
+
+            </button>
+
+        </div>
+
+
+        <!--
+            Aquí JavaScript mostrará los subambientes
+            del ambiente seleccionado.
+        -->
+
+        <div
+            id="submenu-ambiente"
+            class="submenu-ambiente">
+
+            <p>
+                Selecciona un ambiente
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         CAPAS AMBIENTALES
+    =========================================== -->
+
+    <section class="panel capas">
+
+    <h2>🌦️ Capas</h2>
+
+    <div class="botones-capas">
+
+        <button class="boton-capa" data-capa="clima">
+            🌧️ Clima
+        </button>
+
+        <button class="boton-capa" data-capa="naturaleza">
+            🌿 Naturaleza
+        </button>
+
+        <button class="boton-capa" data-capa="animales">
+            🐺 Animales
+        </button>
+
+        <button class="boton-capa" data-capa="entorno">
+            🔥 Entorno
+        </button>
+
+    </div>
+
+    <div id="submenu-capas" class="submenu-capas">
+
+        <p>Selecciona una capa</p>
+
+    </div>
+
+</section>
+
+
+   <!-- ==========================================
+     EFECTOS
+========================================== -->
+
+<section class="panel efectos">
+
+    <h2>⚔️ Efectos</h2>
+
+    <div class="botones-efectos">
+
+        <button class="boton-efecto" data-efecto="combate">
+            ⚔️ Combate
+        </button>
+
+        <button class="boton-efecto" data-efecto="magia">
+            ✨ Magia
+        </button>
+
+    </div>
+
+    <div id="submenu-efectos" class="submenu-efectos">
+
+        <p>Selecciona un tipo de efecto</p>
+
+    </div>
+
+</section>
+
+
+    <!-- ==========================================
+         MEZCLADOR
+    =========================================== -->
+
+    <section class="panel">
+
+    <h2>
+        🎚️ Mezclador
+    </h2>
+
+    <div class="mezclador">
+
+        <!-- MÚSICA -->
+
+        <div class="canal">
+
+            <label for="volumen-musica-mezclador">
+                🎵 Música
+            </label>
+
+            <input
+                type="range"
+                id="volumen-musica-mezclador"
+                min="0"
+                max="100"
+                value="40">
+
+        </div>
+
+
+        <!-- AMBIENTE -->
+
+        <div class="canal">
+
+            <label for="volumen-ambiente">
+                🌍 Ambiente
+            </label>
+
+            <input
+                type="range"
+                id="volumen-ambiente"
+                min="0"
+                max="100"
+                value="70">
+
+        </div>
+
+
+        <!-- CLIMA -->
+
+        <div class="canal">
+
+            <label for="volumen-clima">
+                🌦️ Clima
+            </label>
+
+            <input
+                type="range"
+                id="volumen-clima"
+                min="0"
+                max="100"
+                value="50">
+
+        </div>
+
+        <!-- y después Naturaleza, Animales, Entorno,
+             Combate y Magia -->
+            <!-- AMBIENTE -->
+
+            <div class="canal">
+
+                <label for="volumen-ambiente">
+
+                    🌍 Ambiente
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-ambiente"
+                    min="0"
+                    max="100"
+                    value="70">
+
+            </div>
+
+
+            <!-- CLIMA -->
+
+            <div class="canal">
+
+                <label for="volumen-clima">
+
+                    🌦️ Clima
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-clima"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- NATURALEZA -->
+
+            <div class="canal">
+
+                <label for="volumen-naturaleza">
+
+                    🌿 Naturaleza
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-naturaleza"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- ANIMALES -->
+
+            <div class="canal">
+
+                <label for="volumen-animales">
+
+                    🐺 Animales
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-animales"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- ENTORNO -->
+
+            <div class="canal">
+
+                <label for="volumen-entorno">
+
+                    🔥 Entorno
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-entorno"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- COMBATE -->
+
+            <div class="canal">
+
+                <label for="volumen-combate">
+
+                    ⚔️ Combate
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-combate"
+                    min="0"
+                    max="100"
+                    value="70">
+
+            </div>
+
+
+            <!-- MAGIA -->
+
+            <div class="canal">
+
+                <label for="volumen-magia">
+
+                    ✨ Magia
+
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-magia"
+                    min="0"
+                    max="100"
+                    value="70">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
