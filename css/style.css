@@ -670,6 +670,248 @@ button {
 }
 
 
+/* ==========================================
+   BOTÓN "CAMBIAR" Y SONIDO FIJADO
+========================================== */
+
+/* Un sonido final = botón + "Cambiar" en una misma fila */
+.botones-submenu:has(.celda) {
+    grid-template-columns:
+        repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.celda {
+    display: flex;
+}
+
+.celda .boton-submenu {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.boton-cambiar {
+    padding: 0 12px;
+
+    background: var(--relleno);
+
+    border: 1px solid var(--linea);
+
+    border-left: 0;
+
+    border-radius: 0 2px 2px 0;
+
+    color: var(--papel-suave);
+
+    font-size: 0.85rem;
+
+    cursor: pointer;
+}
+
+.boton-cambiar:hover {
+    background: rgba(255, 236, 200, 0.12);
+
+    color: var(--papel);
+}
+
+/* Sonido elegido a mano: un cuadradito dorado en la esquina */
+.boton-submenu.fijado {
+    position: relative;
+}
+
+.boton-submenu.fijado::after {
+    content: "";
+
+    position: absolute;
+
+    top: 6px;
+
+    right: 6px;
+
+    width: 6px;
+
+    height: 6px;
+
+    background: var(--laton);
+}
+
+
+/* ==========================================
+   SELECTOR DE SONIDO
+========================================== */
+
+.selector {
+    width: min(640px, calc(100% - 24px));
+
+    max-height: 85vh;
+
+    padding: 22px;
+
+    background: var(--tinta);
+
+    border: 1px solid var(--linea);
+
+    border-radius: 3px;
+
+    color: var(--papel);
+}
+
+.selector::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.selector h2 {
+    margin: 0 0 6px;
+
+    font-family: var(--titulos);
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.selector p {
+    margin: 0 0 14px;
+
+    color: var(--papel-suave);
+
+    font-style: italic;
+}
+
+.selector-form {
+    display: flex;
+
+    gap: 8px;
+}
+
+.selector-form input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 8px 10px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border: 1px solid var(--linea);
+
+    border-radius: 2px;
+
+    color: var(--papel);
+
+    font: inherit;
+}
+
+.selector-form button {
+    padding: 8px 16px;
+
+    background: rgba(224, 123, 46, 0.22);
+
+    border: 1px solid var(--brasa);
+
+    border-radius: 2px;
+
+    cursor: pointer;
+}
+
+.selector p.selector-estado {
+    margin: 12px 0 6px;
+
+    font-size: 0.9rem;
+}
+
+.selector-lista {
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+    max-height: 45vh;
+
+    overflow-y: auto;
+}
+
+.fila-resultado {
+    display: grid;
+
+    grid-template-columns: 1fr auto auto;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid var(--linea);
+}
+
+.fila-resultado span {
+    display: grid;
+
+    min-width: 0;
+}
+
+.fila-resultado strong,
+.fila-resultado small {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.fila-resultado small {
+    color: var(--papel-suave);
+}
+
+.boton-escuchar,
+.boton-usar {
+    padding: 6px 12px;
+
+    background: var(--relleno);
+
+    border: 1px solid var(--linea);
+
+    border-radius: 2px;
+
+    cursor: pointer;
+}
+
+.boton-usar {
+    border-color: var(--brasa);
+}
+
+.boton-usar:disabled {
+    border-color: var(--linea);
+
+    color: var(--papel-suave);
+
+    cursor: default;
+}
+
+.boton-escuchar:hover,
+.boton-usar:not(:disabled):hover {
+    background: rgba(255, 236, 200, 0.12);
+}
+
+.selector-pie {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 14px;
+}
+
+.selector-pie .boton-volver {
+    margin: 0;
+}
+
+.selector-pie [hidden] {
+    display: none;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
 
     * {

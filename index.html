@@ -551,6 +551,45 @@
 
 
     <!-- ==========================================
+         SELECTOR DE SONIDO
+    =========================================== -->
+
+    <dialog id="selector-sonido" class="selector" aria-labelledby="selector-titulo">
+
+        <h2 id="selector-titulo"></h2>
+
+        <p>
+            Escucha los resultados y elige el que quieras para este botón.
+        </p>
+
+        <form id="selector-form" class="selector-form">
+
+            <input type="text" id="selector-busqueda" aria-label="Buscar en Freesound" maxlength="60">
+
+            <button type="submit">Buscar</button>
+
+        </form>
+
+        <p id="selector-estado" class="selector-estado"></p>
+
+        <ul id="selector-lista" class="selector-lista"></ul>
+
+        <div class="selector-pie">
+
+            <button type="button" id="selector-aleatorio" class="boton-volver" hidden>
+                Volver al sonido aleatorio
+            </button>
+
+            <button type="button" id="selector-cerrar" class="boton-volver">
+                Cerrar
+            </button>
+
+        </div>
+
+    </dialog>
+
+
+    <!-- ==========================================
          JAVASCRIPT
     =========================================== -->
 

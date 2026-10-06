@@ -170,7 +170,7 @@ const capas = {
 
                     brisa: {
                         nombre: "Brisa",
-                        busqueda: "breeze"
+                        busqueda: "gentle wind"
                     },
 
                     normal: {
@@ -385,7 +385,7 @@ const capas = {
 
                     aveRapaz: {
                         nombre: "Ave rapaz",
-                        busqueda: "hawk"
+                        busqueda: "hawk screech"
                     }
 
                 }
@@ -422,7 +422,7 @@ const capas = {
 
                     oso: {
                         nombre: "Oso",
-                        busqueda: "bear growl"
+                        busqueda: "grizzly growl"
                     },
 
                     jabali: {
@@ -462,7 +462,7 @@ const capas = {
 
                     hoguera: {
                         nombre: "Hoguera",
-                        busqueda: "campfire"
+                        busqueda: "campfire crackling"
                     },
 
                     fuegoPequeno: {
@@ -540,7 +540,7 @@ const capas = {
 
                     pesadas: {
                         nombre: "Cadenas pesadas",
-                        busqueda: "heavy chains"
+                        busqueda: "chains dragging"
                     }
 
                 }
@@ -767,7 +767,7 @@ const efectos = {
 
                     cristal: {
                         nombre: "Cristal mágico",
-                        busqueda: "magic crystal"
+                        busqueda: "magic chime"
                     }
 
                 }
@@ -785,12 +785,12 @@ const efectos = {
 
                     rayo: {
                         nombre: "Rayo",
-                        busqueda: "lightning strike"
+                        busqueda: "lightning crack"
                     },
 
                     trueno_magico: {
                         nombre: "Trueno mágico",
-                        busqueda: "thunder spell"
+                        busqueda: "lightning spell"
                     }
 
                 }
@@ -803,7 +803,7 @@ const efectos = {
 
                     viento_magico: {
                         nombre: "Viento mágico",
-                        busqueda: "magic wind"
+                        busqueda: "wind spell"
                     },
 
                     rafaga: {
@@ -821,7 +821,7 @@ const efectos = {
 
                     agua: {
                         nombre: "Agua mágica",
-                        busqueda: "water magic"
+                        busqueda: "water spell"
                     },
 
                     oleada: {
@@ -1543,7 +1543,23 @@ function mostrarMenu(tipo, ruta) {
             }
         );
 
-        contenedor.appendChild(boton);
+        // Los sonidos finales llevan un botón para elegir su sonido
+        if (opcion.opciones || opcion.idPropio) {
+
+            contenedor.appendChild(boton);
+
+        } else {
+
+            contenedor.appendChild(
+                crearCeldaConSelector(
+                    tipo,
+                    rutaOpcion,
+                    opcion,
+                    boton
+                )
+            );
+
+        }
 
     });
 
@@ -1622,32 +1638,61 @@ botonesEfecto.forEach(function(boton) {
 // BUSCAR EN FREESOUND (con resultados guardados)
 // ==========================================
 
-// Para cada tipo hay dos filtros: primero se prueba el estricto
-// (valoración 4 o más y licencia CC0) y, si no hay nada,
-// el relajado (solo la duración).
-const filtrosFreesound = {
-
-    // Capas: sonidos largos para poner en bucle
-    capa: [
-        encodeURIComponent(
-            "duration:[30 TO 600] avg_rating:[4 TO *] license:\"Creative Commons 0\""
-        ),
-        encodeURIComponent(
-            "duration:[30 TO 600]"
-        )
-    ],
-
-    // Efectos: sonidos cortos que suenan una vez
-    efecto: [
-        encodeURIComponent(
-            "duration:[0 TO 10] avg_rating:[4 TO *] license:\"Creative Commons 0\""
-        ),
-        encodeURIComponent(
-            "duration:[0 TO 10]"
-        )
-    ]
-
+// Duración según el tipo: las capas son sonidos largos para
+// poner en bucle y los efectos son cortos y suenan una vez.
+const duraciones = {
+    capa: "duration:[30 TO 600]",
+    efecto: "duration:[0 TO 10]"
 };
+
+// Etiquetas que casi siempre son música o sonidos sintéticos
+// y no encajan en una partida de rol.
+const etiquetasExcluidas =
+    "-tag:music -tag:synth -tag:electronic -tag:electro -tag:beat -tag:vocal";
+
+// Con "-tag:" delante, Freesound deja fuera lo que lleve esa etiqueta.
+const calidadMinima =
+    "avg_rating:[3.5 TO *] num_ratings:[3 TO *]";
+
+
+// Filtros de más a menos exigentes. Se prueba el primero y, si no
+// da ningún resultado, el siguiente, para que un botón nunca se
+// quede sin sonido.
+function filtrosPara(busqueda, tipo) {
+
+    // Cada palabra de la búsqueda tiene que estar en el nombre
+    // o en las etiquetas del sonido: "wolf howl" ya no devuelve
+    // casas encantadas ni perros de trineo.
+    // Se quitan los símbolos para que no rompan el filtro de Freesound
+    const palabras =
+        busqueda
+            .replace(/[^\p{L}\p{N}\s]/gu, " ")
+            .split(/\s+/)
+            .filter(Boolean)
+            .map(function(palabra) {
+
+                return "(tag:" + palabra + " OR name:" + palabra + ")";
+
+            }).join(" ");
+
+    const duracion =
+        duraciones[tipo];
+
+    return [
+
+        // 1. Bien valorado, sin música y con las palabras exactas
+        [duracion, calidadMinima, palabras, etiquetasExcluidas]
+            .join(" "),
+
+        // 2. Bien valorado y sin música, con cualquier coincidencia
+        [duracion, calidadMinima, etiquetasExcluidas].join(" "),
+
+        // 3. Solo la duración
+        duracion
+
+    ];
+
+}
 
 
 // Resultados de cada búsqueda ya hecha (clave: tipo + búsqueda).
@@ -1655,15 +1700,15 @@ const filtrosFreesound = {
 const resultadosGuardados = {};
 
 
-function pedirAFreesound(busqueda, filtro) {
+function pedirAFreesound(busqueda, filtro, cantidad) {
 
     return fetch(
         "https://freesound.org/apiv2/search/?query="
         + encodeURIComponent(busqueda)
-        + "&fields=id,name,previews"
+        + "&fields=id,name,previews,duration,avg_rating"
         + "&filter="
-        + filtro
-        + "&page_size=5",
+        + encodeURIComponent(filtro)
+        + "&page_size=" + cantidad,
         {
             headers: {
                 "Authorization":
@@ -1698,6 +1743,40 @@ function pedirAFreesound(busqueda, filtro) {
 }
 
 
+// Prueba cada filtro en orden hasta que uno dé resultados
+function buscarConRespaldo(busqueda, tipo, cantidad) {
+
+    const filtros =
+        filtrosPara(busqueda, tipo);
+
+    function probar(posicion) {
+
+        return pedirAFreesound(
+            busqueda,
+            filtros[posicion],
+            cantidad
+        )
+
+        .then(function(resultados) {
+
+            if (
+                resultados.length > 0 ||
+                posicion === filtros.length - 1
+            ) {
+                return resultados;
+            }
+
+            return probar(posicion + 1);
+
+        });
+
+    }
+
+    return probar(0);
+
+}
+
+
 function buscarEnFreesound(busqueda, tipo) {
 
     const clave =
@@ -1726,21 +1805,7 @@ function buscarEnFreesound(busqueda, tipo) {
     }
 
 
-    const filtros =
-        filtrosFreesound[tipo];
-
-    return pedirAFreesound(busqueda, filtros[0])
-
-    .then(function(resultados) {
-
-        if (resultados.length > 0) {
-            return resultados;
-        }
-
-        // Nada con el filtro estricto: probar el relajado
-        return pedirAFreesound(busqueda, filtros[1]);
-
-    })
+    return buscarConRespaldo(busqueda, tipo, 10)
 
     .then(function(resultados) {
 
@@ -1754,16 +1819,22 @@ function buscarEnFreesound(busqueda, tipo) {
 }
 
 
-// Un sonido subido por el usuario tiene "url": se usa tal cual,
-// con la misma forma que devuelve Freesound.
+// Un sonido subido por el usuario o fijado en el selector se usa
+// tal cual, con la misma forma que devuelve Freesound.
 // Si no, se busca en Freesound.
 function obtenerResultados(opcion, tipo) {
 
-    if (opcion.url) {
+    // Subido por el usuario ("url") o fijado en el selector ("elegido")
+    const fijado =
+        opcion.url
+            ? { nombre: opcion.nombre, url: opcion.url }
+            : opcion.elegido;
+
+    if (fijado) {
 
         return Promise.resolve([{
-            name: opcion.nombre,
-            previews: { "preview-hq-mp3": opcion.url }
+            name: fijado.nombre,
+            previews: { "preview-hq-mp3": fijado.url }
         }]);
 
     }
@@ -3041,6 +3112,484 @@ if (window.indexedDB) {
     );
 
 }
+
+
+// ==========================================
+// SELECTOR DE SONIDO (elegir el sonido de un botón)
+// ==========================================
+// Cada botón de capa o efecto busca en Freesound y elige uno al
+// azar. Con "Cambiar" se ven los resultados, se escuchan y se
+// fija el que se quiera: ese botón sonará siempre igual.
+// La elección se guarda en este navegador (localStorage).
+
+const CLAVE_ELECCIONES = "dnd-soundboard-elecciones";
+
+const selector =
+    document.getElementById("selector-sonido");
+
+const selectorTitulo =
+    document.getElementById("selector-titulo");
+
+const selectorForm =
+    document.getElementById("selector-form");
+
+const selectorBusqueda =
+    document.getElementById("selector-busqueda");
+
+const selectorEstado =
+    document.getElementById("selector-estado");
+
+const selectorLista =
+    document.getElementById("selector-lista");
+
+const selectorAleatorio =
+    document.getElementById("selector-aleatorio");
+
+const selectorCerrar =
+    document.getElementById("selector-cerrar");
+
+// Audio de la vista previa (uno solo: al escuchar otro, se corta)
+const vistaPrevia = new Audio();
+
+vistaPrevia.volume = 0.7;
+
+// Botón de capa o efecto que se está editando
+let selectorActual = null;
+
+// Para ignorar búsquedas antiguas si se lanza otra enseguida
+let numeroBusquedaSelector = 0;
+
+
+// ==========================================
+// ELECCIONES GUARDADAS
+// ==========================================
+
+function leerElecciones() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(CLAVE_ELECCIONES)
+        ) || {};
+
+    } catch (error) {
+
+        return {};
+
+    }
+
+}
+
+
+function guardarElecciones(elecciones) {
+
+    try {
+
+        localStorage.setItem(
+            CLAVE_ELECCIONES,
+            JSON.stringify(elecciones)
+        );
+
+    } catch (error) {
+
+        mostrarAviso(
+            "No se pudo guardar la elección en el navegador"
+        );
+
+    }
+
+}
+
+
+// Marca (o desmarca) el botón según tenga un sonido fijado
+function marcarFijado(boton, opcion) {
+
+    boton.classList.toggle("fijado", !!opcion.elegido);
+
+    boton.title =
+        opcion.elegido
+            ? "Sonido fijado: " + opcion.elegido.nombre
+            : "";
+
+}
+
+
+function fijarSonido(selectorInfo, resultado) {
+
+    const opcion = selectorInfo.opcion;
+
+    opcion.elegido = {
+        nombre: resultado.name,
+        url: resultado.previews["preview-hq-mp3"]
+    };
+
+    const elecciones = leerElecciones();
+
+    elecciones[selectorInfo.ruta] = opcion.elegido;
+
+    guardarElecciones(elecciones);
+
+    marcarFijado(selectorInfo.boton, opcion);
+
+}
+
+
+function quitarFijado(selectorInfo) {
+
+    delete selectorInfo.opcion.elegido;
+
+    const elecciones = leerElecciones();
+
+    delete elecciones[selectorInfo.ruta];
+
+    guardarElecciones(elecciones);
+
+    marcarFijado(selectorInfo.boton, selectorInfo.opcion);
+
+}
+
+
+// Al cargar la página: devolver cada elección a su botón
+function aplicarEleccionesGuardadas() {
+
+    const elecciones = leerElecciones();
+
+    Object.keys(elecciones).forEach(function(ruta) {
+
+        const partes = ruta.split("/");
+
+        try {
+
+            const opcion =
+                obtenerNivel(datosDe(partes[0]), partes.slice(1));
+
+            if (opcion && !opcion.opciones) {
+
+                opcion.elegido = elecciones[ruta];
+
+            }
+
+        } catch (error) {
+
+            // El botón ya no existe: se ignora esa elección
+            console.log("Elección ignorada:", ruta);
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// BOTÓN "CAMBIAR" JUNTO A CADA SONIDO
+// ==========================================
+
+function crearCeldaConSelector(tipo, rutaOpcion, opcion, boton) {
+
+    const celda = document.createElement("div");
+
+    celda.className = "celda";
+
+    const cambiar = document.createElement("button");
+
+    cambiar.type = "button";
+
+    cambiar.className = "boton-cambiar";
+
+    cambiar.textContent = "Cambiar";
+
+    cambiar.title = "Elegir qué sonido usa este botón";
+
+    cambiar.addEventListener("click", function() {
+
+        abrirSelector({
+            tipo: tipo,
+            ruta: tipo + "/" + rutaOpcion.join("/"),
+            opcion: opcion,
+            boton: boton
+        });
+
+    });
+
+    marcarFijado(boton, opcion);
+
+    celda.appendChild(boton);
+
+    celda.appendChild(cambiar);
+
+    return celda;
+
+}
+
+
+// ==========================================
+// VENTANA DEL SELECTOR
+// ==========================================
+
+function abrirSelector(info) {
+
+    selectorActual = info;
+
+    selectorTitulo.textContent = info.opcion.nombre;
+
+    selectorBusqueda.value = info.opcion.busqueda;
+
+    selectorAleatorio.hidden = !info.opcion.elegido;
+
+    selector.showModal();
+
+    buscarEnSelector();
+
+}
+
+
+function buscarEnSelector() {
+
+    const texto = selectorBusqueda.value.trim();
+
+    if (!texto || !selectorActual) {
+        return;
+    }
+
+    const numero = ++numeroBusquedaSelector;
+
+    selectorLista.innerHTML = "";
+
+    selectorEstado.textContent = "Buscando...";
+
+    if (typeof FREESOUND_API_KEY === "undefined") {
+
+        selectorEstado.textContent =
+            "Falta config.js con la clave de Freesound";
+
+        return;
+    }
+
+
+    buscarConRespaldo(texto, selectorActual.tipo, 15)
+
+    .then(function(resultados) {
+
+        // Se lanzó otra búsqueda o se cerró la ventana
+        if (numero !== numeroBusquedaSelector) {
+            return;
+        }
+
+        if (resultados.length === 0) {
+
+            selectorEstado.textContent =
+                "No hay resultados. Prueba con otras palabras (en inglés)";
+
+            return;
+        }
+
+        selectorEstado.textContent =
+            resultados.length + " resultados";
+
+        resultados.forEach(mostrarResultadoSelector);
+
+    })
+
+    .catch(function(error) {
+
+        if (numero !== numeroBusquedaSelector) {
+            return;
+        }
+
+        selectorEstado.textContent =
+            "No se pudo conectar con Freesound (" +
+            error.message + ")";
+
+    });
+
+}
+
+
+function mostrarResultadoSelector(resultado) {
+
+    const url = resultado.previews["preview-hq-mp3"];
+
+    const elegido =
+        selectorActual.opcion.elegido &&
+        selectorActual.opcion.elegido.url === url;
+
+
+    const fila = document.createElement("li");
+
+    fila.className = "fila-resultado";
+
+
+    const texto = document.createElement("span");
+
+    const nombre = document.createElement("strong");
+
+    nombre.textContent = resultado.name;
+
+    const datos = document.createElement("small");
+
+    datos.textContent =
+        Math.round(resultado.duration) + " s" +
+        " · valoración " +
+        (resultado.avg_rating || 0).toFixed(1);
+
+    texto.appendChild(nombre);
+
+    texto.appendChild(datos);
+
+
+    const escuchar = document.createElement("button");
+
+    escuchar.type = "button";
+
+    escuchar.className = "boton-escuchar";
+
+    escuchar.textContent = "Escuchar";
+
+    escuchar.addEventListener("click", function() {
+
+        escucharVistaPrevia(url, escuchar);
+
+    });
+
+
+    const usar = document.createElement("button");
+
+    usar.type = "button";
+
+    usar.className = "boton-usar";
+
+    usar.textContent = elegido ? "Elegido" : "Usar este";
+
+    usar.disabled = elegido;
+
+    usar.addEventListener("click", function() {
+
+        fijarSonido(selectorActual, resultado);
+
+        mostrarAviso(
+            "Sonido fijado en " + selectorActual.opcion.nombre
+        );
+
+        selector.close();
+
+    });
+
+
+    fila.appendChild(texto);
+
+    fila.appendChild(escuchar);
+
+    fila.appendChild(usar);
+
+    selectorLista.appendChild(fila);
+
+}
+
+
+// Escuchar / parar la vista previa de un resultado
+function escucharVistaPrevia(url, boton) {
+
+    const sonabaEste =
+        !vistaPrevia.paused && vistaPrevia.src === url;
+
+    restablecerBotonesEscuchar();
+
+    if (sonabaEste) {
+
+        vistaPrevia.pause();
+
+        return;
+    }
+
+    vistaPrevia.src = url;
+
+    vistaPrevia.play().then(function() {
+
+        boton.textContent = "Parar";
+
+    }).catch(function(error) {
+
+        if (error.name !== "AbortError") {
+
+            mostrarAviso("No se pudo reproducir la vista previa");
+
+        }
+
+    });
+
+}
+
+
+function restablecerBotonesEscuchar() {
+
+    selectorLista
+        .querySelectorAll(".boton-escuchar")
+        .forEach(function(boton) {
+
+            boton.textContent = "Escuchar";
+
+        });
+
+}
+
+
+vistaPrevia.addEventListener("ended", restablecerBotonesEscuchar);
+
+
+selectorForm.addEventListener("submit", function(evento) {
+
+    evento.preventDefault();
+
+    buscarEnSelector();
+
+});
+
+
+selectorAleatorio.addEventListener("click", function() {
+
+    quitarFijado(selectorActual);
+
+    mostrarAviso(
+        selectorActual.opcion.nombre + ": vuelve a elegir al azar"
+    );
+
+    selector.close();
+
+});
+
+
+selectorCerrar.addEventListener("click", function() {
+
+    selector.close();
+
+});
+
+
+// Se cierra con el botón, con Escape o al elegir:
+// siempre se corta la vista previa
+selector.addEventListener("close", function() {
+
+    vistaPrevia.pause();
+
+    numeroBusquedaSelector++;
+
+    selectorActual = null;
+
+});
+
+
+// "Parar todo" también corta la vista previa
+botonPararTodo.addEventListener("click", function() {
+
+    vistaPrevia.pause();
+
+    restablecerBotonesEscuchar();
+
+});
+
+
+aplicarEleccionesGuardadas();
 
 
 // ==========================================
