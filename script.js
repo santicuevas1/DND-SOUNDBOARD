@@ -2004,44 +2004,272 @@ function reproducirEfecto(rutaOpcion, opcion) {
 
 
 // ==========================================
-// REPRODUCTOR Y PLAYLISTS (todavía sin música)
+// REPRODUCTOR DE MÚSICA
 // ==========================================
 
-[
-    "#anterior-musica",
-    "#reproducir-musica",
-    "#siguiente-musica"
-].forEach(function(selector) {
+const playlists = {
 
-    document.querySelector(selector)
-        .addEventListener(
-            "click",
-            function() {
+    exploracion: {
+        nombre: "🌲 Exploración",
+        canciones: [
+            { titulo: "Bosque", ruta: "sounds/bosque.mp3" }
+        ]
+    },
 
-                mostrarAviso(
-                    "El reproductor todavía no tiene música"
-                );
+    combate:   { nombre: "⚔️ Combate",   canciones: [] },
+    mazmorras: { nombre: "🏰 Mazmorras", canciones: [] },
 
-            }
-        );
+    tabernas: {
+        nombre: "🍺 Tabernas",
+        canciones: [
+            { titulo: "Taberna 1", ruta: "sounds/taberna/taberna-01.mp3" },
+            { titulo: "Taberna 2", ruta: "sounds/taberna/taberna-02.mp3" },
+            { titulo: "Taberna 3", ruta: "sounds/taberna/taberna-03.mp3" }
+        ]
+    },
 
-});
+    terror:   { nombre: "👻 Terror",   canciones: [] },
+    fantasia: { nombre: "✨ Fantasía", canciones: [] },
+    jefes:    { nombre: "👑 Jefes",    canciones: [] }
+
+};
+
+const musica = new Audio();
+
+let playlistActual = null;
+let indiceActual = -1;
+
+const tituloCancion =
+    document.getElementById("cancion-actual");
+
+const barraProgreso =
+    document.getElementById("progreso-musica");
+
+const botonPlay =
+    document.getElementById("reproducir-musica");
+
+const botonAnterior =
+    document.getElementById("anterior-musica");
+
+const botonSiguiente =
+    document.getElementById("siguiente-musica");
+
+const listaPlaylist =
+    document.getElementById("lista-playlist");
+
+const sliderMusica =
+    document.getElementById("volumen-musica");
 
 
-botonesPlaylist.forEach(function(boton) {
+function actualizarBotonPlay() {
 
-    boton.addEventListener(
-        "click",
-        function() {
+    botonPlay.textContent =
+        musica.paused ? "▶️" : "⏸️";
 
-            mostrarAviso(
-                "Las playlists todavía no tienen música"
-            );
-
-        }
+    botonPlay.setAttribute(
+        "aria-label",
+        musica.paused ? "Reproducir" : "Pausar"
     );
 
+}
+
+
+function reproducirCancion(indice) {
+
+    if (!playlistActual) {
+        return;
+    }
+
+    const canciones =
+        playlists[playlistActual].canciones;
+
+    if (canciones.length === 0) {
+        return;
+    }
+
+    indiceActual =
+        (indice + canciones.length) % canciones.length;
+
+    const cancion = canciones[indiceActual];
+
+    musica.src = cancion.ruta;
+
+    tituloCancion.textContent = cancion.titulo;
+
+    musica.play().catch(function(error) {
+
+        console.log(
+            "No se pudo reproducir la canción:",
+            error
+        );
+
+    });
+
+    marcarCancionActiva();
+
+}
+
+
+function marcarCancionActiva() {
+
+    listaPlaylist
+        .querySelectorAll(".boton-submenu")
+        .forEach(function(boton, i) {
+
+            boton.style.borderColor =
+                i === indiceActual ? "#e0b15a" : "";
+
+        });
+
+}
+
+
+function mostrarPlaylist(clave) {
+
+    const playlist = playlists[clave];
+
+    if (!playlist) {
+        return;
+    }
+
+    playlistActual = clave;
+
+    listaPlaylist.innerHTML = "";
+
+    const titulo = document.createElement("h3");
+
+    titulo.textContent = playlist.nombre;
+
+    listaPlaylist.appendChild(titulo);
+
+    if (playlist.canciones.length === 0) {
+
+        const aviso = document.createElement("p");
+
+        aviso.textContent =
+            "Esta playlist aún no tiene canciones";
+
+        listaPlaylist.appendChild(aviso);
+
+        return;
+    }
+
+    const contenedor = document.createElement("div");
+
+    contenedor.className = "botones-submenu";
+
+    playlist.canciones.forEach(function(cancion, i) {
+
+        const boton = document.createElement("button");
+
+        boton.type = "button";
+
+        boton.className = "boton-submenu";
+
+        boton.textContent = cancion.titulo;
+
+        boton.addEventListener("click", function() {
+
+            reproducirCancion(i);
+
+        });
+
+        contenedor.appendChild(boton);
+
+    });
+
+    listaPlaylist.appendChild(contenedor);
+
+    marcarCancionActiva();
+
+}
+
+
+document
+    .querySelectorAll(".boton-playlist")
+    .forEach(function(boton) {
+
+        boton.addEventListener("click", function() {
+
+            mostrarPlaylist(boton.dataset.playlist);
+
+        });
+
+    });
+
+
+botonPlay.addEventListener("click", function() {
+
+    if (!musica.src) {
+
+        // Sin canción cargada: empezar la playlist elegida.
+        reproducirCancion(0);
+
+        return;
+    }
+
+    if (musica.paused) {
+
+        musica.play();
+
+    } else {
+
+        musica.pause();
+
+    }
+
 });
+
+botonAnterior.addEventListener("click", function() {
+
+    reproducirCancion(indiceActual - 1);
+
+});
+
+botonSiguiente.addEventListener("click", function() {
+
+    reproducirCancion(indiceActual + 1);
+
+});
+
+musica.addEventListener("play", actualizarBotonPlay);
+musica.addEventListener("pause", actualizarBotonPlay);
+
+musica.addEventListener("ended", function() {
+
+    reproducirCancion(indiceActual + 1);
+
+});
+
+musica.addEventListener("timeupdate", function() {
+
+    if (musica.duration) {
+
+        barraProgreso.value =
+            (musica.currentTime / musica.duration) * 100;
+
+    }
+
+});
+
+barraProgreso.addEventListener("input", function() {
+
+    if (musica.duration) {
+
+        musica.currentTime =
+            (barraProgreso.value / 100) * musica.duration;
+
+    }
+
+});
+
+sliderMusica.addEventListener("input", function() {
+
+    musica.volume = sliderMusica.value / 100;
+
+});
+
+musica.volume = sliderMusica.value / 100;
 
 
 // ==========================================
@@ -2077,7 +2305,11 @@ function pararTodo() {
     });
 
 
-    // 4. Que los efectos que aún cargan no suenen después
+    // 4. Música
+    musica.pause();
+
+
+    // 5. Que los efectos que aún cargan no suenen después
     numeroParada++;
 
 
