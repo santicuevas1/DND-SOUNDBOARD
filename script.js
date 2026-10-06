@@ -41,52 +41,52 @@ const bibliotecas = {
 const subambientes = {
 
     bosque: [
-        "😌 Tranquilo",
-        "🕵️ Misterioso",
-        "🌑 Oscuro",
-        "☠️ Peligroso"
+        "Tranquilo",
+        "Misterioso",
+        "Oscuro",
+        "Peligroso"
     ],
 
     taberna: [
-        "😊 Alegre",
-        "🍻 Animada",
-        "😔 Triste",
-        "⚔️ Pelea"
+        "Alegre",
+        "Animada",
+        "Triste",
+        "Pelea"
     ],
 
     mazmorra: [
-        "🌑 Oscura",
-        "👻 Misteriosa",
-        "☠️ Peligrosa",
-        "👹 Terrorífica"
+        "Oscura",
+        "Misteriosa",
+        "Peligrosa",
+        "Terrorífica"
     ],
 
     ciudad: [
-        "🌞 Día",
-        "🌙 Noche",
-        "🏪 Mercado",
-        "🏰 Palacio"
+        "Día",
+        "Noche",
+        "Mercado",
+        "Palacio"
     ],
 
     costa: [
-        "🌅 Tranquila",
-        "🌊 Oleaje",
-        "⛈️ Tormenta",
-        "🏴‍☠️ Puerto"
+        "Tranquila",
+        "Oleaje",
+        "Tormenta",
+        "Puerto"
     ],
 
     montaña: [
-        "🏔️ Tranquila",
-        "💨 Ventosa",
-        "❄️ Nevada",
-        "⛰️ Peligrosa"
+        "Tranquila",
+        "Ventosa",
+        "Nevada",
+        "Peligrosa"
     ],
 
     batalla: [
-        "⚔️ Batalla",
-        "🩸 Batalla intensa",
-        "🏹 Asedio",
-        "👑 Batalla contra jefe"
+        "Batalla",
+        "Batalla intensa",
+        "Asedio",
+        "Batalla contra jefe"
     ]
 
 };
@@ -106,28 +106,28 @@ const capas = {
 
     clima: {
 
-        nombre: "🌧️ Clima",
+        nombre: "Clima",
 
         opciones: {
 
             lluvia: {
 
-                nombre: "🌧️ Lluvia",
+                nombre: "Lluvia",
 
                 opciones: {
 
                     ligera: {
-                        nombre: "🌦️ Lluvia ligera",
+                        nombre: "Lluvia ligera",
                         busqueda: "light rain"
                     },
 
                     normal: {
-                        nombre: "🌧️ Lluvia normal",
+                        nombre: "Lluvia normal",
                         busqueda: "rain"
                     },
 
                     intensa: {
-                        nombre: "🌧️ Lluvia intensa",
+                        nombre: "Lluvia intensa",
                         busqueda: "heavy rain"
                     }
 
@@ -138,22 +138,22 @@ const capas = {
 
             tormenta: {
 
-                nombre: "⛈️ Tormenta",
+                nombre: "Tormenta",
 
                 opciones: {
 
                     truenos: {
-                        nombre: "⚡ Truenos",
+                        nombre: "Truenos",
                         busqueda: "thunder"
                     },
 
                     ligera: {
-                        nombre: "⛈️ Tormenta ligera",
+                        nombre: "Tormenta ligera",
                         busqueda: "distant thunderstorm"
                     },
 
                     intensa: {
-                        nombre: "🌩️ Tormenta intensa",
+                        nombre: "Tormenta intensa",
                         busqueda: "heavy thunderstorm"
                     }
 
@@ -164,22 +164,22 @@ const capas = {
 
             viento: {
 
-                nombre: "💨 Viento",
+                nombre: "Viento",
 
                 opciones: {
 
                     brisa: {
-                        nombre: "🍃 Brisa",
+                        nombre: "Brisa",
                         busqueda: "breeze"
                     },
 
                     normal: {
-                        nombre: "💨 Viento normal",
+                        nombre: "Viento normal",
                         busqueda: "wind"
                     },
 
                     fuerte: {
-                        nombre: "🌪️ Viento fuerte",
+                        nombre: "Viento fuerte",
                         busqueda: "strong wind"
                     }
 
@@ -190,22 +190,22 @@ const capas = {
 
             nieve: {
 
-                nombre: "❄️ Nieve",
+                nombre: "Nieve",
 
                 opciones: {
 
                     ligera: {
-                        nombre: "❄️ Nevada ligera",
+                        nombre: "Nevada ligera",
                         busqueda: "snow ambience"
                     },
 
                     normal: {
-                        nombre: "🌨️ Nevada normal",
+                        nombre: "Nevada normal",
                         busqueda: "winter wind"
                     },
 
                     ventisca: {
-                        nombre: "🌨️ Ventisca",
+                        nombre: "Ventisca",
                         busqueda: "blizzard"
                     }
 
@@ -216,22 +216,22 @@ const capas = {
 
             niebla: {
 
-                nombre: "🌫️ Niebla",
+                nombre: "Niebla",
 
                 opciones: {
 
                     ligera: {
-                        nombre: "🌫️ Niebla ligera",
+                        nombre: "Niebla ligera",
                         busqueda: "eerie ambience"
                     },
 
                     densa: {
-                        nombre: "🌫️ Niebla densa",
+                        nombre: "Niebla densa",
                         busqueda: "dark ambience"
                     },
 
                     sobrenatural: {
-                        nombre: "👻 Niebla sobrenatural",
+                        nombre: "Niebla sobrenatural",
                         busqueda: "ghostly ambience"
                     }
 
@@ -250,28 +250,28 @@ const capas = {
 
     naturaleza: {
 
-        nombre: "🌿 Naturaleza",
+        nombre: "Naturaleza",
 
         opciones: {
 
             bosque: {
 
-                nombre: "🌳 Bosque",
+                nombre: "Bosque",
 
                 opciones: {
 
                     hojas: {
-                        nombre: "🍃 Hojas y vegetación",
+                        nombre: "Hojas y vegetación",
                         busqueda: "leaves rustling"
                     },
 
                     vientoArboles: {
-                        nombre: "🌲 Viento entre árboles",
+                        nombre: "Viento entre árboles",
                         busqueda: "wind trees"
                     },
 
                     naturaleza: {
-                        nombre: "🌿 Naturaleza",
+                        nombre: "Naturaleza",
                         busqueda: "forest ambience"
                     }
 
@@ -282,27 +282,27 @@ const capas = {
 
             agua: {
 
-                nombre: "🌊 Agua",
+                nombre: "Agua",
 
                 opciones: {
 
                     goteo: {
-                        nombre: "💧 Goteo",
+                        nombre: "Goteo",
                         busqueda: "water drip cave"
                     },
 
                     rio: {
-                        nombre: "🌊 Río",
+                        nombre: "Río",
                         busqueda: "river"
                     },
 
                     cascada: {
-                        nombre: "🏞️ Cascada",
+                        nombre: "Cascada",
                         busqueda: "waterfall"
                     },
 
                     mar: {
-                        nombre: "🌊 Mar",
+                        nombre: "Mar",
                         busqueda: "ocean waves"
                     }
 
@@ -313,22 +313,22 @@ const capas = {
 
             rocas: {
 
-                nombre: "🪨 Rocas",
+                nombre: "Rocas",
 
                 opciones: {
 
                     piedras: {
-                        nombre: "🪨 Piedras",
+                        nombre: "Piedras",
                         busqueda: "rocks stones"
                     },
 
                     derrumbe: {
-                        nombre: "⛰️ Derrumbe",
+                        nombre: "Derrumbe",
                         busqueda: "rockfall"
                     },
 
                     rocasCayendo: {
-                        nombre: "🪨 Rocas cayendo",
+                        nombre: "Rocas cayendo",
                         busqueda: "falling rocks"
                     }
 
@@ -347,23 +347,23 @@ const capas = {
 
     animales: {
 
-        nombre: "🐺 Animales",
+        nombre: "Animales",
 
         opciones: {
 
             lobos: {
 
-                nombre: "🐺 Lobos",
+                nombre: "Lobos",
 
                 opciones: {
 
                     lobo: {
-                        nombre: "🐺 Lobo",
+                        nombre: "Lobo",
                         busqueda: "wolf howl"
                     },
 
                     manada: {
-                        nombre: "🐺 Manada",
+                        nombre: "Manada",
                         busqueda: "wolves howling"
                     }
 
@@ -374,17 +374,17 @@ const capas = {
 
             aves: {
 
-                nombre: "🦅 Aves",
+                nombre: "Aves",
 
                 opciones: {
 
                     pajaros: {
-                        nombre: "🐦 Pájaros",
+                        nombre: "Pájaros",
                         busqueda: "birds"
                     },
 
                     aveRapaz: {
-                        nombre: "🦅 Ave rapaz",
+                        nombre: "Ave rapaz",
                         busqueda: "hawk"
                     }
 
@@ -395,17 +395,17 @@ const capas = {
 
             caballos: {
 
-                nombre: "🐴 Caballos",
+                nombre: "Caballos",
 
                 opciones: {
 
                     caballo: {
-                        nombre: "🐴 Caballo",
+                        nombre: "Caballo",
                         busqueda: "horse"
                     },
 
                     caballos: {
-                        nombre: "🐎 Caballos",
+                        nombre: "Caballos",
                         busqueda: "horses galloping"
                     }
 
@@ -416,22 +416,22 @@ const capas = {
 
             animalesSalvajes: {
 
-                nombre: "🐻 Animales salvajes",
+                nombre: "Animales salvajes",
 
                 opciones: {
 
                     oso: {
-                        nombre: "🐻 Oso",
+                        nombre: "Oso",
                         busqueda: "bear growl"
                     },
 
                     jabali: {
-                        nombre: "🐗 Jabalí",
+                        nombre: "Jabalí",
                         busqueda: "wild boar"
                     },
 
                     ciervo: {
-                        nombre: "🦌 Ciervo",
+                        nombre: "Ciervo",
                         busqueda: "deer"
                     }
 
@@ -450,28 +450,28 @@ const capas = {
 
     entorno: {
 
-        nombre: "🔥 Entorno",
+        nombre: "Entorno",
 
         opciones: {
 
             fuego: {
 
-                nombre: "🔥 Fuego",
+                nombre: "Fuego",
 
                 opciones: {
 
                     hoguera: {
-                        nombre: "🔥 Hoguera",
+                        nombre: "Hoguera",
                         busqueda: "campfire"
                     },
 
                     fuegoPequeno: {
-                        nombre: "🕯️ Fuego pequeño",
+                        nombre: "Fuego pequeño",
                         busqueda: "fireplace"
                     },
 
                     fuegoGrande: {
-                        nombre: "🔥 Fuego grande",
+                        nombre: "Fuego grande",
                         busqueda: "large fire burning"
                     }
 
@@ -482,22 +482,22 @@ const capas = {
 
             puertas: {
 
-                nombre: "🚪 Puertas",
+                nombre: "Puertas",
 
                 opciones: {
 
                     madera: {
-                        nombre: "🚪 Puerta de madera",
+                        nombre: "Puerta de madera",
                         busqueda: "wooden door"
                     },
 
                     pesada: {
-                        nombre: "🚪 Puerta pesada",
+                        nombre: "Puerta pesada",
                         busqueda: "heavy door"
                     },
 
                     metalica: {
-                        nombre: "🔒 Puerta metálica",
+                        nombre: "Puerta metálica",
                         busqueda: "metal door"
                     }
 
@@ -508,17 +508,17 @@ const capas = {
 
             campanas: {
 
-                nombre: "🔔 Campanas",
+                nombre: "Campanas",
 
                 opciones: {
 
                     pequena: {
-                        nombre: "🔔 Campana pequeña",
+                        nombre: "Campana pequeña",
                         busqueda: "small bell"
                     },
 
                     grande: {
-                        nombre: "🔔 Campana grande",
+                        nombre: "Campana grande",
                         busqueda: "church bell"
                     }
 
@@ -529,17 +529,17 @@ const capas = {
 
             cadenas: {
 
-                nombre: "⛓️ Cadenas",
+                nombre: "Cadenas",
 
                 opciones: {
 
                     moviendose: {
-                        nombre: "⛓️ Cadenas moviéndose",
+                        nombre: "Cadenas moviéndose",
                         busqueda: "chains"
                     },
 
                     pesadas: {
-                        nombre: "⛓️ Cadenas pesadas",
+                        nombre: "Cadenas pesadas",
                         busqueda: "heavy chains"
                     }
 
@@ -550,22 +550,22 @@ const capas = {
 
             multitud: {
 
-                nombre: "👥 Multitud",
+                nombre: "Multitud",
 
                 opciones: {
 
                     ciudad: {
-                        nombre: "🏙️ Multitud ciudad",
+                        nombre: "Multitud ciudad",
                         busqueda: "crowd market"
                     },
 
                     taberna: {
-                        nombre: "🍺 Multitud taberna",
+                        nombre: "Multitud taberna",
                         busqueda: "tavern crowd"
                     },
 
                     gritando: {
-                        nombre: "📣 Multitud gritando",
+                        nombre: "Multitud gritando",
                         busqueda: "crowd shouting"
                     }
 
@@ -588,32 +588,32 @@ const efectos = {
 
     combate: {
 
-        nombre: "⚔️ Combate",
+        nombre: "Combate",
 
         opciones: {
 
             espadas: {
-                nombre: "🗡️ Espadas",
+                nombre: "Espadas",
 
                 opciones: {
 
                     espadazo: {
-                        nombre: "⚔️ Espadazo",
+                        nombre: "Espadazo",
                         busqueda: "sword swing"
                     },
 
                     corte: {
-                        nombre: "🗡️ Corte",
+                        nombre: "Corte",
                         busqueda: "sword slash"
                     },
 
                     estocada: {
-                        nombre: "🔱 Estocada",
+                        nombre: "Estocada",
                         busqueda: "sword stab"
                     },
 
                     choque: {
-                        nombre: "⚔️ Choque de espadas",
+                        nombre: "Choque de espadas",
                         busqueda: "sword clash"
                     }
 
@@ -621,22 +621,22 @@ const efectos = {
             },
 
             mazas: {
-                nombre: "🔨 Mazas y martillos",
+                nombre: "Mazas y martillos",
 
                 opciones: {
 
                     mazazo: {
-                        nombre: "🔨 Mazazo",
+                        nombre: "Mazazo",
                         busqueda: "blunt hit"
                     },
 
                     golpe_martillo: {
-                        nombre: "🔨 Golpe de martillo",
+                        nombre: "Golpe de martillo",
                         busqueda: "hammer hit"
                     },
 
                     golpe_pesado: {
-                        nombre: "💥 Golpe pesado",
+                        nombre: "Golpe pesado",
                         busqueda: "heavy impact"
                     }
 
@@ -644,22 +644,22 @@ const efectos = {
             },
 
             escudos: {
-                nombre: "🛡️ Escudos",
+                nombre: "Escudos",
 
                 opciones: {
 
                     golpe_escudo: {
-                        nombre: "🛡️ Golpe al escudo",
+                        nombre: "Golpe al escudo",
                         busqueda: "shield hit"
                     },
 
                     bloqueo: {
-                        nombre: "🛡️ Bloqueo",
+                        nombre: "Bloqueo",
                         busqueda: "shield block"
                     },
 
                     escudo_pesado: {
-                        nombre: "💥 Golpe fuerte al escudo",
+                        nombre: "Golpe fuerte al escudo",
                         busqueda: "shield impact"
                     }
 
@@ -667,27 +667,27 @@ const efectos = {
             },
 
             arcos: {
-                nombre: "🏹 Arcos y ballestas",
+                nombre: "Arcos y ballestas",
 
                 opciones: {
 
                     flechazo: {
-                        nombre: "🏹 Flechazo",
+                        nombre: "Flechazo",
                         busqueda: "arrow impact"
                     },
 
                     disparo_arco: {
-                        nombre: "🏹 Disparo de arco",
+                        nombre: "Disparo de arco",
                         busqueda: "bow shot"
                     },
 
                     ballesta: {
-                        nombre: "🏹 Disparo de ballesta",
+                        nombre: "Disparo de ballesta",
                         busqueda: "crossbow"
                     },
 
                     cuerda: {
-                        nombre: "🏹 Tensar arco",
+                        nombre: "Tensar arco",
                         busqueda: "bow draw"
                     }
 
@@ -695,22 +695,22 @@ const efectos = {
             },
 
             otras_armas: {
-                nombre: "🪓 Otras armas",
+                nombre: "Otras armas",
 
                 opciones: {
 
                     hachazo: {
-                        nombre: "🪓 Hachazo",
+                        nombre: "Hachazo",
                         busqueda: "axe hit"
                     },
 
                     lanza: {
-                        nombre: "🔱 Golpe de lanza",
+                        nombre: "Golpe de lanza",
                         busqueda: "spear"
                     },
 
                     daga: {
-                        nombre: "🔪 Golpe de daga",
+                        nombre: "Golpe de daga",
                         busqueda: "knife stab"
                     }
 
@@ -723,27 +723,27 @@ const efectos = {
 
     magia: {
 
-        nombre: "✨ Magia",
+        nombre: "Magia",
 
         opciones: {
 
             fuego: {
-                nombre: "🔥 Fuego",
+                nombre: "Fuego",
 
                 opciones: {
 
                     fuego_pequeno: {
-                        nombre: "🔥 Fuego pequeño",
+                        nombre: "Fuego pequeño",
                         busqueda: "fire spell"
                     },
 
                     fuego_grande: {
-                        nombre: "🔥 Fuego intenso",
+                        nombre: "Fuego intenso",
                         busqueda: "fireball"
                     },
 
                     explosion: {
-                        nombre: "💥 Explosión",
+                        nombre: "Explosión",
                         busqueda: "explosion"
                     }
 
@@ -751,22 +751,22 @@ const efectos = {
             },
 
             hielo: {
-                nombre: "❄️ Hielo",
+                nombre: "Hielo",
 
                 opciones: {
 
                     hielo: {
-                        nombre: "❄️ Hielo",
+                        nombre: "Hielo",
                         busqueda: "ice spell"
                     },
 
                     congelacion: {
-                        nombre: "🧊 Congelación",
+                        nombre: "Congelación",
                         busqueda: "ice freeze"
                     },
 
                     cristal: {
-                        nombre: "💎 Cristal mágico",
+                        nombre: "Cristal mágico",
                         busqueda: "magic crystal"
                     }
 
@@ -774,22 +774,22 @@ const efectos = {
             },
 
             electricidad: {
-                nombre: "⚡ Electricidad",
+                nombre: "Electricidad",
 
                 opciones: {
 
                     chispa: {
-                        nombre: "⚡ Chispa",
+                        nombre: "Chispa",
                         busqueda: "electric spark"
                     },
 
                     rayo: {
-                        nombre: "⚡ Rayo",
+                        nombre: "Rayo",
                         busqueda: "lightning strike"
                     },
 
                     trueno_magico: {
-                        nombre: "🌩️ Trueno mágico",
+                        nombre: "Trueno mágico",
                         busqueda: "thunder spell"
                     }
 
@@ -797,17 +797,17 @@ const efectos = {
             },
 
             aire: {
-                nombre: "🌪️ Aire",
+                nombre: "Aire",
 
                 opciones: {
 
                     viento_magico: {
-                        nombre: "💨 Viento mágico",
+                        nombre: "Viento mágico",
                         busqueda: "magic wind"
                     },
 
                     rafaga: {
-                        nombre: "🌪️ Ráfaga de aire",
+                        nombre: "Ráfaga de aire",
                         busqueda: "whoosh"
                     }
 
@@ -815,17 +815,17 @@ const efectos = {
             },
 
             agua: {
-                nombre: "🌊 Agua",
+                nombre: "Agua",
 
                 opciones: {
 
                     agua: {
-                        nombre: "💧 Agua mágica",
+                        nombre: "Agua mágica",
                         busqueda: "water magic"
                     },
 
                     oleada: {
-                        nombre: "🌊 Oleada",
+                        nombre: "Oleada",
                         busqueda: "water splash"
                     }
 
@@ -833,22 +833,22 @@ const efectos = {
             },
 
             oscura: {
-                nombre: "🌑 Magia oscura",
+                nombre: "Magia oscura",
 
                 opciones: {
 
                     energia_oscura: {
-                        nombre: "🌑 Energía oscura",
+                        nombre: "Energía oscura",
                         busqueda: "dark magic"
                     },
 
                     maldicion: {
-                        nombre: "☠️ Maldición",
+                        nombre: "Maldición",
                         busqueda: "curse spell"
                     },
 
                     invocacion: {
-                        nombre: "👹 Invocación",
+                        nombre: "Invocación",
                         busqueda: "summon spell"
                     }
 
@@ -1452,7 +1452,7 @@ function mostrarMenu(tipo, ruta) {
         obtenerNivel(datos, ruta);
 
 
-    // Título con el camino: "🌧️ Clima → 🌧️ Lluvia"
+    // Título con el camino: "Clima → Lluvia"
     const nombres = [];
 
     for (let i = 1; i <= ruta.length; i++) {
@@ -2010,17 +2010,17 @@ function reproducirEfecto(rutaOpcion, opcion) {
 const playlists = {
 
     exploracion: {
-        nombre: "🌲 Exploración",
+        nombre: "Exploración",
         canciones: [
             { titulo: "Bosque", ruta: "sounds/bosque.mp3" }
         ]
     },
 
-    combate:   { nombre: "⚔️ Combate",   canciones: [] },
-    mazmorras: { nombre: "🏰 Mazmorras", canciones: [] },
+    combate:   { nombre: "Combate",   canciones: [] },
+    mazmorras: { nombre: "Mazmorras", canciones: [] },
 
     tabernas: {
-        nombre: "🍺 Tabernas",
+        nombre: "Tabernas",
         canciones: [
             { titulo: "Taberna 1", ruta: "sounds/taberna/taberna-01.mp3" },
             { titulo: "Taberna 2", ruta: "sounds/taberna/taberna-02.mp3" },
@@ -2028,9 +2028,9 @@ const playlists = {
         ]
     },
 
-    terror:   { nombre: "👻 Terror",   canciones: [] },
-    fantasia: { nombre: "✨ Fantasía", canciones: [] },
-    jefes:    { nombre: "👑 Jefes",    canciones: [] }
+    terror:   { nombre: "Terror",   canciones: [] },
+    fantasia: { nombre: "Fantasía", canciones: [] },
+    jefes:    { nombre: "Jefes",    canciones: [] }
 
 };
 
@@ -2064,7 +2064,7 @@ const sliderMusica =
 function actualizarBotonPlay() {
 
     botonPlay.textContent =
-        musica.paused ? "▶️" : "⏸️";
+        musica.paused ? "Reproducir" : "Pausar";
 
     botonPlay.setAttribute(
         "aria-label",
@@ -2116,8 +2116,10 @@ function marcarCancionActiva() {
         .querySelectorAll(".boton-submenu")
         .forEach(function(boton, i) {
 
-            boton.style.borderColor =
-                i === indiceActual ? "#e0b15a" : "";
+            boton.classList.toggle(
+                "activo",
+                i === indiceActual
+            );
 
         });
 

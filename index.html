@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 
     <title>D&D Soundboard</title>
@@ -35,7 +39,7 @@
 
     <button id="parar-todo">
 
-        ⏹️ Parar todo
+        Parar todo
 
     </button>
 
@@ -47,13 +51,35 @@
     <p id="aviso" hidden></p>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="mesa">
+
+    <aside class="lateral">
+
     <!-- ==========================================
          REPRODUCTOR
     =========================================== -->
 
     <section class="panel reproductor">
 
-        <h2>🎵 Reproductor</h2>
+        <h2>Reproductor</h2>
 
         <div class="reproductor-contenido">
 
@@ -75,15 +101,15 @@
             <div class="controles-musica">
 
                 <button id="anterior-musica">
-                    ⏮️
+                    Anterior
                 </button>
 
                 <button id="reproducir-musica">
-                    ▶️
+                    Reproducir
                 </button>
 
                 <button id="siguiente-musica">
-                    ⏭️
+                    Siguiente
                 </button>
 
             </div>
@@ -92,6 +118,166 @@
 
     </section>
 
+    <!-- ==========================================
+         MEZCLADOR
+    =========================================== -->
+
+    <section class="panel mezclador-panel">
+
+        <h2>Mezclador</h2>
+
+        <div class="mezclador">
+
+            <!-- MÚSICA -->
+
+            <div class="canal">
+
+                <label for="volumen-musica">
+                    Música
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-musica"
+                    min="0"
+                    max="100"
+                    value="40">
+
+            </div>
+
+
+            <!-- AMBIENTE -->
+
+            <div class="canal">
+
+                <label for="volumen-ambiente">
+                    Ambiente
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-ambiente"
+                    min="0"
+                    max="100"
+                    value="70">
+
+            </div>
+
+
+            <!-- CLIMA -->
+
+            <div class="canal">
+
+                <label for="volumen-clima">
+                    Clima
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-clima"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- NATURALEZA -->
+
+            <div class="canal">
+
+                <label for="volumen-naturaleza">
+                    Naturaleza
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-naturaleza"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- ANIMALES -->
+
+            <div class="canal">
+
+                <label for="volumen-animales">
+                    Animales
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-animales"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- ENTORNO -->
+
+            <div class="canal">
+
+                <label for="volumen-entorno">
+                    Entorno
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-entorno"
+                    min="0"
+                    max="100"
+                    value="50">
+
+            </div>
+
+
+            <!-- COMBATE -->
+
+            <div class="canal">
+
+                <label for="volumen-combate">
+                    Combate
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-combate"
+                    min="0"
+                    max="100"
+                    value="70">
+
+            </div>
+
+
+            <!-- MAGIA -->
+
+            <div class="canal">
+
+                <label for="volumen-magia">
+                    Magia
+                </label>
+
+                <input
+                    type="range"
+                    id="volumen-magia"
+                    min="0"
+                    max="100"
+                    value="70">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    </aside>
+
+    <main class="principal">
 
     <!-- ==========================================
          PLAYLISTS
@@ -99,36 +285,36 @@
 
     <section class="panel playlists">
 
-        <h2>🎵 Playlists</h2>
+        <h2>Música</h2>
 
         <div class="botones-playlist">
 
             <button class="boton-playlist" data-playlist="exploracion">
-                🌲 Exploración
+                Exploración
             </button>
 
             <button class="boton-playlist" data-playlist="combate">
-                ⚔️ Combate
+                Combate
             </button>
 
             <button class="boton-playlist" data-playlist="mazmorras">
-                🏰 Mazmorras
+                Mazmorras
             </button>
 
             <button class="boton-playlist" data-playlist="tabernas">
-                🍺 Tabernas
+                Tabernas
             </button>
 
             <button class="boton-playlist" data-playlist="terror">
-                👻 Terror
+                Terror
             </button>
 
             <button class="boton-playlist" data-playlist="fantasia">
-                ✨ Fantasía
+                Fantasía
             </button>
 
             <button class="boton-playlist" data-playlist="jefes">
-                👑 Jefes
+                Jefes
             </button>
 
         </div>
@@ -143,14 +329,13 @@
 
     </section>
 
-
     <!-- ==========================================
          AMBIENTES
     =========================================== -->
 
     <section class="panel ambientes">
 
-        <h2>🌍 Ambientes</h2>
+        <h2>Ambientes</h2>
 
         <div class="botones-ambientes">
 
@@ -158,7 +343,7 @@
                 class="boton-ambiente"
                 data-ambiente="bosque">
 
-                🌲 Bosque
+                Bosque
 
             </button>
 
@@ -166,7 +351,7 @@
                 class="boton-ambiente"
                 data-ambiente="taberna">
 
-                🍺 Taberna
+                Taberna
 
             </button>
 
@@ -174,7 +359,7 @@
                 class="boton-ambiente"
                 data-ambiente="mazmorra">
 
-                🏰 Mazmorra
+                Mazmorra
 
             </button>
 
@@ -182,7 +367,7 @@
                 class="boton-ambiente"
                 data-ambiente="ciudad">
 
-                🏙️ Ciudad
+                Ciudad
 
             </button>
 
@@ -190,7 +375,7 @@
                 class="boton-ambiente"
                 data-ambiente="costa">
 
-                🌊 Costa
+                Costa
 
             </button>
 
@@ -198,7 +383,7 @@
                 class="boton-ambiente"
                 data-ambiente="montaña">
 
-                🏔️ Montaña
+                Montaña
 
             </button>
 
@@ -206,7 +391,7 @@
                 class="boton-ambiente"
                 data-ambiente="batalla">
 
-                ⚔️ Campo de batalla
+                Campo de batalla
 
             </button>
 
@@ -233,7 +418,7 @@
 
             <button id="parar-ambiente">
 
-                ⏹️ Parar ambiente
+                Parar ambiente
 
             </button>
 
@@ -241,31 +426,30 @@
 
     </section>
 
-
     <!-- ==========================================
          CAPAS AMBIENTALES
     =========================================== -->
 
     <section class="panel capas">
 
-        <h2>🌦️ Capas</h2>
+        <h2>Capas</h2>
 
         <div class="botones-capas">
 
             <button class="boton-capa" data-capa="clima">
-                🌧️ Clima
+                Clima
             </button>
 
             <button class="boton-capa" data-capa="naturaleza">
-                🌿 Naturaleza
+                Naturaleza
             </button>
 
             <button class="boton-capa" data-capa="animales">
-                🐺 Animales
+                Animales
             </button>
 
             <button class="boton-capa" data-capa="entorno">
-                🔥 Entorno
+                Entorno
             </button>
 
         </div>
@@ -278,23 +462,22 @@
 
     </section>
 
-
     <!-- ==========================================
          EFECTOS
     =========================================== -->
 
     <section class="panel efectos">
 
-        <h2>⚔️ Efectos</h2>
+        <h2>Efectos</h2>
 
         <div class="botones-efectos">
 
             <button class="boton-efecto" data-efecto="combate">
-                ⚔️ Combate
+                Combate
             </button>
 
             <button class="boton-efecto" data-efecto="magia">
-                ✨ Magia
+                Magia
             </button>
 
         </div>
@@ -307,165 +490,9 @@
 
     </section>
 
+    </main>
 
-    <!-- ==========================================
-         MEZCLADOR
-    =========================================== -->
-
-    <section class="panel">
-
-        <h2>
-            🎚️ Mezclador
-        </h2>
-
-        <div class="mezclador">
-
-            <!-- MÚSICA -->
-
-            <div class="canal">
-
-                <label for="volumen-musica">
-                    🎵 Música
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-musica"
-                    min="0"
-                    max="100"
-                    value="40">
-
-            </div>
-
-
-            <!-- AMBIENTE -->
-
-            <div class="canal">
-
-                <label for="volumen-ambiente">
-                    🌍 Ambiente
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-ambiente"
-                    min="0"
-                    max="100"
-                    value="70">
-
-            </div>
-
-
-            <!-- CLIMA -->
-
-            <div class="canal">
-
-                <label for="volumen-clima">
-                    🌦️ Clima
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-clima"
-                    min="0"
-                    max="100"
-                    value="50">
-
-            </div>
-
-
-            <!-- NATURALEZA -->
-
-            <div class="canal">
-
-                <label for="volumen-naturaleza">
-                    🌿 Naturaleza
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-naturaleza"
-                    min="0"
-                    max="100"
-                    value="50">
-
-            </div>
-
-
-            <!-- ANIMALES -->
-
-            <div class="canal">
-
-                <label for="volumen-animales">
-                    🐺 Animales
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-animales"
-                    min="0"
-                    max="100"
-                    value="50">
-
-            </div>
-
-
-            <!-- ENTORNO -->
-
-            <div class="canal">
-
-                <label for="volumen-entorno">
-                    🔥 Entorno
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-entorno"
-                    min="0"
-                    max="100"
-                    value="50">
-
-            </div>
-
-
-            <!-- COMBATE -->
-
-            <div class="canal">
-
-                <label for="volumen-combate">
-                    ⚔️ Combate
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-combate"
-                    min="0"
-                    max="100"
-                    value="70">
-
-            </div>
-
-
-            <!-- MAGIA -->
-
-            <div class="canal">
-
-                <label for="volumen-magia">
-                    ✨ Magia
-                </label>
-
-                <input
-                    type="range"
-                    id="volumen-magia"
-                    min="0"
-                    max="100"
-                    value="70">
-
-            </div>
-
-        </div>
-
-    </section>
+    </div>
 
 
     <!-- ==========================================

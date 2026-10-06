@@ -1,36 +1,58 @@
 /* ==========================================
-   CUERPO
+   VARIABLES
 ========================================== */
 
-body {
-    background-image: url("../images/tavern.png");
+:root {
+    --tinta: #120d09;
+    --papel: #efe2c6;
+    --papel-suave: #b8a98a;
+    --brasa: #e07b2e;
+    --laton: #b58a4a;
+    --sangre: #7a2a1f;
 
-    background-size: cover;
+    --linea: rgba(214, 178, 120, 0.22);
+    --relleno: rgba(255, 236, 200, 0.05);
 
-    background-position: center;
-
-    background-attachment: fixed;
-
-    color: #f5e6c8;
-
-    font-family: Georgia, serif;
+    --titulos: "IM Fell English SC", Georgia, serif;
+    --texto: "Alegreya Sans", system-ui, sans-serif;
 }
 
 
 /* ==========================================
-   CAPA OSCURA SOBRE EL FONDO
+   BASE
 ========================================== */
 
-body::before {
-    content: "";
+* {
+    box-sizing: border-box;
+}
 
-    position: fixed;
+body {
+    margin: 0;
 
-    inset: 0;
+    min-height: 100vh;
 
-    background-color: rgba(0, 0, 0, 0.45);
+    font-family: var(--texto);
+    font-size: 1.05rem;
+    line-height: 1.4;
 
-    z-index: -1;
+    color: var(--papel);
+
+    background:
+        linear-gradient(
+            rgba(10, 6, 3, 0.55),
+            rgba(10, 6, 3, 0.85)
+        ),
+        url("../images/tavern.png") center / cover fixed;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--brasa);
+    outline-offset: 2px;
 }
 
 
@@ -39,51 +61,76 @@ body::before {
 ========================================== */
 
 .cabecera {
-    text-align: center;
+    max-width: 1180px;
 
-    margin-bottom: 30px;
+    margin: 0 auto;
+
+    padding: 48px 24px 28px;
 }
 
 .titulo {
-    text-align: center;
+    margin: 0;
 
-    font-size: 3rem;
+    font-family: var(--titulos);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
 
-    color: #f5e6c8;
-
-    text-shadow:
-        2px 2px 5px black;
-}
-
-.titulo::before,
-.titulo::after {
-    content: "";
-
-    display: inline-block;
-
-    width: 80px;
-
-    height: 2px;
-
-    background-color: #b88645;
-
-    vertical-align: middle;
-
-    margin: 0 20px;
-
-    box-shadow:
-        0 0 6px rgba(224, 177, 90, 0.5);
+    color: var(--papel);
 }
 
 .cabecera p {
-    margin-top: -15px;
+    margin: 10px 0 0;
 
-    font-size: 1.1rem;
+    color: var(--papel-suave);
 
-    color: #d8c3a5;
+    font-style: italic;
+}
 
-    text-shadow:
-        2px 2px 4px black;
+
+/* ==========================================
+   DISTRIBUCIÓN: LATERAL + CONTENIDO
+========================================== */
+
+.mesa {
+    display: grid;
+
+    grid-template-columns: 340px 1fr;
+
+    gap: 24px;
+
+    align-items: start;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding: 0 24px 80px;
+}
+
+/* La mesa de control se queda a la vista al bajar */
+.lateral {
+    position: sticky;
+
+    top: 16px;
+
+    display: grid;
+
+    gap: 24px;
+}
+
+.lateral,
+.principal {
+    min-width: 0;
+}
+
+.principal {
+    display: grid;
+
+    gap: 24px;
+
+    counter-reset: seccion;
 }
 
 
@@ -92,72 +139,92 @@ body::before {
 ========================================== */
 
 .panel {
-    background-color: rgba(20, 15, 10, 0.85);
+    padding: 20px 22px 24px;
 
-    padding: 20px;
+    background: rgba(18, 13, 9, 0.8);
 
-    margin: 30px auto;
+    border: 1px solid var(--linea);
 
-    max-width: 900px;
+    border-radius: 3px;
 
-    border: 2px solid #b88645;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 0 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
 }
 
 .panel h2 {
-    color: #e0b15a;
+    display: flex;
 
-    text-align: center;
+    align-items: baseline;
 
-    margin-top: 0;
+    gap: 12px;
 
-    text-shadow:
-        2px 2px 4px black;
+    margin: 0 0 16px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid var(--linea);
+
+    font-family: var(--titulos);
+    font-weight: 400;
+    font-size: 1.5rem;
+
+    color: var(--papel);
+}
+
+/* Numeración romana de las secciones del contenido */
+.principal .panel h2::before {
+    counter-increment: seccion;
+
+    content: counter(seccion, upper-roman);
+
+    min-width: 1.8em;
+
+    font-size: 0.9rem;
+
+    color: var(--brasa);
 }
 
 .panel h3 {
-    color: #d8c3a5;
+    margin: 18px 0 10px;
 
-    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 
-    margin-top: 25px;
+    color: var(--laton);
+}
 
-    margin-bottom: 10px;
+.panel p {
+    margin: 0;
+
+    color: var(--papel-suave);
+
+    font-style: italic;
 }
 
 
 /* ==========================================
-   CONTENEDORES DE BOTONES
+   GRUPOS DE BOTONES
 ========================================== */
 
-.botones,
 .botones-playlist,
 .botones-ambientes,
 .botones-capas,
 .botones-efectos,
 .botones-submenu {
+    display: grid;
 
-    display: flex;
+    grid-template-columns:
+        repeat(auto-fill, minmax(150px, 1fr));
 
-    flex-wrap: wrap;
+    gap: 8px;
+}
 
-    justify-content: center;
-
-    align-items: center;
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    margin-left: auto;
-
-    margin-right: auto;
-
-    text-align: center;
+/* Capas y efectos tienen pocas opciones: más anchas */
+.botones-capas,
+.botones-efectos {
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
 }
 
 
@@ -165,214 +232,148 @@ body::before {
    SUBMENÚS
 ========================================== */
 
-.submenu,
+.submenu-ambiente,
 .submenu-capas,
 .submenu-efectos,
-.submenu-ambiente {
+.lista-playlist {
+    margin-top: 18px;
 
-    width: 100%;
+    padding-top: 14px;
 
-    box-sizing: border-box;
-
-    margin-top: 20px;
-
-    padding: 15px;
-
-    background-color: rgba(10, 8, 5, 0.65);
-
-    border: 1px solid #8f6938;
-
-    border-radius: 8px;
-
-    text-align: center;
+    border-top: 1px dashed var(--linea);
 }
 
 
 /* ==========================================
-   CONTENIDO DE LOS SUBMENÚS
+   BOTONES
 ========================================== */
 
-.submenu > div,
-.submenu-capas > div,
-.submenu-efectos > div,
-.submenu-ambiente > div {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    align-items: center;
-
-    width: 100%;
-
-    box-sizing: border-box;
-}
-
-
-/* ==========================================
-   BOTONES DEL SOUNDBOARD
-========================================== */
-
-.boton-sonido,
 .boton-ambiente,
 .boton-capa,
 .boton-efecto,
 .boton-playlist,
-.boton-submenu,
-.boton-volver,
-#parar-ambiente,
-#parar-todo {
+.boton-submenu {
+    padding: 11px 14px;
 
-    background-image: url("../images/mug.png");
+    min-height: 48px;
 
-    background-size: cover;
+    text-align: left;
 
-    background-position: center;
+    background: var(--relleno);
 
-    color: #f5e6c8;
+    border: 1px solid var(--linea);
 
-    border: 2px solid #b88645;
+    border-left: 3px solid var(--laton);
 
-    padding: 20px 10px;
-
-    margin: 8px;
-
-    border-radius: 8px;
-
-    font-family: Georgia, serif;
-
-    font-size: 1.1rem;
-
-    font-weight: bold;
+    border-radius: 2px;
 
     cursor: pointer;
 
-    width: 180px;
-
-    height: 80px;
-
-    box-sizing: border-box;
-
-    white-space: nowrap;
-
-    text-shadow:
-        2px 2px 3px black;
-
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.4);
-
     transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        border-color 0.2s,
-        filter 0.2s;
+        background-color 0.15s,
+        border-color 0.15s;
 }
 
-
-/* ==========================================
-   EFECTO HOVER
-========================================== */
-
-.boton-sonido:hover,
 .boton-ambiente:hover,
 .boton-capa:hover,
 .boton-efecto:hover,
 .boton-playlist:hover,
-.boton-submenu:hover,
-.boton-volver:hover,
-#parar-ambiente:hover,
-#parar-todo:hover {
+.boton-submenu:hover {
+    background: rgba(255, 236, 200, 0.12);
 
-    border-color: #e0b15a;
-
-    transform: scale(1.05);
-
-    box-shadow:
-        0 0 15px rgba(224, 177, 90, 0.6);
-
-    filter: brightness(1.15);
+    border-left-color: var(--brasa);
 }
 
-
-/* ==========================================
-   BOTONES DE LOS SUBMENÚS
-========================================== */
-
-/* Nombres largos ("Golpe fuerte al escudo"): que pasen
-   a dos líneas en vez de salirse del botón */
-.boton-submenu {
-
-    white-space: normal;
-
-    height: auto;
-
-    min-height: 80px;
-
-    padding: 10px;
+.boton-ambiente:active,
+.boton-capa:active,
+.boton-efecto:active,
+.boton-playlist:active,
+.boton-submenu:active {
+    background: rgba(224, 123, 46, 0.25);
 }
 
-
-/* ==========================================
-   BOTÓN VOLVER
-========================================== */
-
-.boton-volver {
-
-    background-image: none;
-
-    background-color: rgba(80, 25, 20, 0.85);
-
-    width: 180px;
-
-    height: 60px;
-}
-
-
-/* ==========================================
-   BOTÓN PARAR
-========================================== */
-
-#parar-ambiente,
-#parar-todo {
-
-    width: auto;
-
-    min-width: 180px;
-
-    background-image: none;
-
-    background-color: rgba(80, 25, 20, 0.85);
-}
-
-/* Parar todo: centrado y fijo arriba al hacer scroll */
-#parar-todo {
-
-    display: block;
-
-    margin: 0 auto;
-
-    position: sticky;
-
-    top: 10px;
-
-    z-index: 10;
-}
-
-
-/* ==========================================
-   BOTONES ACTIVOS (lo que está sonando)
-========================================== */
-
+/* Lo que está sonando */
 .boton-ambiente.activo,
 .boton-capa.activo,
 .boton-submenu.activo {
+    background: rgba(224, 123, 46, 0.2);
 
-    border-color: #e0b15a;
+    border-color: var(--brasa);
+}
 
-    box-shadow:
-        0 0 15px rgba(224, 177, 90, 0.8);
+
+/* Volver: un enlace, no otro botón más */
+.boton-volver {
+    margin-top: 14px;
+
+    padding: 4px 0;
+
+    background: none;
+
+    border: 0;
+
+    color: var(--papel-suave);
+
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    cursor: pointer;
+}
+
+.boton-volver:hover {
+    color: var(--brasa);
+}
+
+
+/* Parar */
+#parar-ambiente {
+    margin-top: 16px;
+
+    padding: 8px 14px;
+
+    background: none;
+
+    border: 1px solid var(--sangre);
+
+    border-radius: 2px;
+
+    color: #e9a595;
+
+    cursor: pointer;
+}
+
+#parar-ambiente:hover {
+    background: var(--sangre);
+
+    color: var(--papel);
+}
+
+#parar-todo {
+    position: fixed;
+
+    top: 16px;
+
+    right: 16px;
+
+    z-index: 10;
+
+    padding: 9px 16px;
+
+    background: var(--sangre);
+
+    border: 1px solid #a8442f;
+
+    border-radius: 2px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#parar-todo:hover {
+    background: #93361f;
 }
 
 
@@ -380,9 +381,7 @@ body::before {
    AVISOS
 ========================================== */
 
-/* Fijo abajo en el centro, por encima de todo */
 #aviso {
-
     position: fixed;
 
     bottom: 20px;
@@ -393,24 +392,89 @@ body::before {
 
     z-index: 20;
 
-    margin: 0;
-
-    padding: 12px 20px;
-
     max-width: 90%;
 
-    background-color: rgba(80, 25, 20, 0.95);
+    margin: 0;
 
-    border: 2px solid #b88645;
+    padding: 10px 18px;
 
-    border-radius: 8px;
+    background: var(--tinta);
 
-    color: #f5e6c8;
+    border: 1px solid var(--brasa);
 
-    text-align: center;
+    border-radius: 2px;
 
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.6);
+    color: var(--papel);
+
+    font-style: normal;
+}
+
+#aviso[hidden] {
+    display: none;
+}
+
+
+/* ==========================================
+   REPRODUCTOR
+========================================== */
+
+#cancion-actual {
+    margin: 0 0 14px;
+
+    font-family: var(--titulos);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+
+    color: var(--papel);
+}
+
+.barra-progreso input,
+.canal input {
+    width: 100%;
+
+    margin: 0;
+
+    accent-color: var(--brasa);
+
+    cursor: pointer;
+}
+
+.controles-musica {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+.controles-musica button {
+    flex: 1;
+
+    padding: 8px 0;
+
+    background: var(--relleno);
+
+    border: 1px solid var(--linea);
+
+    border-radius: 2px;
+
+    font-size: 1.15rem;
+
+    cursor: pointer;
+}
+
+.controles-musica button:hover {
+    background: rgba(255, 236, 200, 0.12);
+}
+
+#reproducir-musica {
+    flex: 1.6;
+
+    background: rgba(224, 123, 46, 0.22);
+
+    border-color: var(--brasa);
 }
 
 
@@ -419,378 +483,23 @@ body::before {
 ========================================== */
 
 .mezclador {
+    display: grid;
 
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-
-    max-width: 700px;
-
-    margin: 0 auto;
+    gap: 10px;
 }
 
 .canal {
-
     display: grid;
 
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 110px 1fr;
 
     align-items: center;
 
-    gap: 20px;
-
-    width: 100%;
+    gap: 12px;
 }
 
 .canal label {
-
-    font-weight: bold;
-
-    color: #f5e6c8;
-
-    text-shadow:
-        2px 2px 3px black;
-}
-
-
-/* ==========================================
-   SLIDERS DEL MEZCLADOR
-========================================== */
-
-.canal input[type="range"] {
-
-    width: 100%;
-
-    height: 8px;
-
-    margin: 0;
-
-    appearance: none;
-
-    -webkit-appearance: none;
-
-    background: #4a4a4a;
-
-    border-radius: 10px;
-
-    outline: none;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
-   TRACK CHROME / EDGE
-========================================== */
-
-.canal input[type="range"]::-webkit-slider-runnable-track {
-
-    height: 8px;
-
-    background: #4a4a4a;
-
-    border-radius: 10px;
-}
-
-
-/* ==========================================
-   THUMB CHROME / EDGE
-========================================== */
-
-.canal input[type="range"]::-webkit-slider-thumb {
-
-    -webkit-appearance: none;
-
-    appearance: none;
-
-    width: 18px;
-
-    height: 18px;
-
-    margin-top: -5px;
-
-    background: #b88645;
-
-    border: 2px solid #e0b15a;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 5px rgba(0, 0, 0, 0.6);
-}
-
-
-/* ==========================================
-   FIREFOX
-========================================== */
-
-.canal input[type="range"]::-moz-range-track {
-
-    height: 8px;
-
-    background: #4a4a4a;
-
-    border-radius: 10px;
-}
-
-.canal input[type="range"]::-moz-range-progress {
-
-    height: 8px;
-
-    background: #b88645;
-
-    border-radius: 10px;
-}
-
-.canal input[type="range"]::-moz-range-thumb {
-
-    width: 18px;
-
-    height: 18px;
-
-    background: #b88645;
-
-    border: 2px solid #e0b15a;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
-   REPRODUCTOR
-========================================== */
-
-.reproductor-contenido {
-
-    max-width: 700px;
-
-    margin: 0 auto;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-}
-
-
-/* ==========================================
-   CANCIÓN ACTUAL
-========================================== */
-
-#cancion-actual {
-
-    margin: 0;
-
-    color: #f5e6c8;
-
-    text-align: center;
-
-    font-size: 1.2rem;
-
-    text-shadow:
-        2px 2px 3px black;
-}
-
-
-/* ==========================================
-   BARRA DE PROGRESO
-========================================== */
-
-.barra-progreso {
-
-    width: 100%;
-}
-
-.barra-progreso input[type="range"] {
-
-    width: 100%;
-
-    height: 8px;
-
-    margin: 0;
-
-    appearance: none;
-
-    -webkit-appearance: none;
-
-    background: #4a4a4a;
-
-    border-radius: 10px;
-
-    outline: none;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
-   TRACK CHROME / EDGE
-========================================== */
-
-.barra-progreso input[type="range"]::-webkit-slider-runnable-track {
-
-    height: 8px;
-
-    background: #4a4a4a;
-
-    border-radius: 10px;
-}
-
-
-/* ==========================================
-   THUMB CHROME / EDGE
-========================================== */
-
-.barra-progreso input[type="range"]::-webkit-slider-thumb {
-
-    -webkit-appearance: none;
-
-    appearance: none;
-
-    width: 18px;
-
-    height: 18px;
-
-    margin-top: -5px;
-
-    background: #b88645;
-
-    border: 2px solid #e0b15a;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 5px rgba(0, 0, 0, 0.6);
-}
-
-
-/* ==========================================
-   FIREFOX
-========================================== */
-
-.barra-progreso input[type="range"]::-moz-range-track {
-
-    height: 8px;
-
-    background: #4a4a4a;
-
-    border-radius: 10px;
-}
-
-.barra-progreso input[type="range"]::-moz-range-progress {
-
-    height: 8px;
-
-    background: #b88645;
-
-    border-radius: 10px;
-}
-
-.barra-progreso input[type="range"]::-moz-range-thumb {
-
-    width: 18px;
-
-    height: 18px;
-
-    background: #b88645;
-
-    border: 2px solid #e0b15a;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
-   CONTROLES DEL REPRODUCTOR
-========================================== */
-
-.controles-musica {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 15px;
-}
-
-
-/* ==========================================
-   BOTONES DEL REPRODUCTOR
-========================================== */
-
-.controles-musica button {
-
-    width: 55px;
-
-    height: 55px;
-
-    margin: 0;
-
-    padding: 0;
-
-    background-color: rgba(20, 15, 10, 0.85);
-
-    background-image: none;
-
-    color: #f5e6c8;
-
-    border: 2px solid #b88645;
-
-    border-radius: 50%;
-
-    font-size: 1.3rem;
-
-    cursor: pointer;
-
-    text-shadow:
-        2px 2px 3px black;
-
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.4);
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        border-color 0.2s;
-}
-
-.controles-musica button:hover {
-
-    border-color: #e0b15a;
-
-    transform: scale(1.08);
-
-    box-shadow:
-        0 0 15px rgba(224, 177, 90, 0.6);
-}
-
-
-/* ==========================================
-   BOTÓN PRINCIPAL DEL REPRODUCTOR
-========================================== */
-
-#reproducir-musica {
-
-    width: 65px;
-
-    height: 65px;
-
-    font-size: 1.5rem;
-
-    background-color: rgba(184, 134, 69, 0.25);
+    font-size: 0.95rem;
 }
 
 
@@ -798,47 +507,46 @@ body::before {
    RESPONSIVE
 ========================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 
-    .titulo {
-
-        font-size: 2rem;
+    .mesa {
+        grid-template-columns: minmax(0, 1fr);
     }
 
-    .titulo::before,
-    .titulo::after {
+    .lateral {
+        position: static;
+    }
 
-        width: 30px;
+    #parar-todo {
+        top: 10px;
+        right: 10px;
+    }
+}
 
-        margin: 0 8px;
+@media (max-width: 480px) {
+
+    .cabecera {
+        padding: 56px 16px 20px;
+    }
+
+    .mesa {
+        padding: 0 12px 60px;
     }
 
     .panel {
-
-        margin: 20px 10px;
-
-        padding: 15px;
+        padding: 16px;
     }
 
-    .boton-sonido,
-    .boton-ambiente,
-    .boton-capa,
-    .boton-efecto,
-    .boton-playlist,
-    .boton-submenu {
-
-        width: 150px;
-
-        height: 70px;
-
-        font-size: 1rem;
+    .botones-playlist,
+    .botones-ambientes,
+    .botones-submenu {
+        grid-template-columns: 1fr 1fr;
     }
+}
 
-    .canal {
+@media (prefers-reduced-motion: reduce) {
 
-        grid-template-columns: 1fr;
-
-        gap: 5px;
+    * {
+        transition: none !important;
     }
-
 }
