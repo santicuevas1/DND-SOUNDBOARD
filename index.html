@@ -490,6 +490,61 @@
 
     </section>
 
+    <!-- ==========================================
+         MIS SONIDOS
+    =========================================== -->
+
+    <section class="panel propios">
+
+        <h2>Mis sonidos</h2>
+
+        <p>
+            Sube un audio, ponle nombre y elige dónde aparece su botón.
+            Se guarda en este navegador.
+        </p>
+
+        <form id="form-propio" class="form-propio">
+
+            <label class="campo">
+                <span>Archivo de audio</span>
+                <input type="file" id="propio-archivo" accept="audio/*" required>
+            </label>
+
+            <label class="campo">
+                <span>Nombre del botón</span>
+                <input type="text" id="propio-nombre" maxlength="40" required>
+            </label>
+
+            <label class="campo">
+                <span>Tipo</span>
+                <select id="propio-tipo">
+                    <option value="musica">Música</option>
+                    <option value="ambiente">Ambiente</option>
+                    <option value="capa">Capa</option>
+                    <option value="efecto">Efecto</option>
+                </select>
+            </label>
+
+            <label class="campo" id="campo-destino1">
+                <span>Playlist</span>
+                <select id="propio-destino1"></select>
+            </label>
+
+            <label class="campo" id="campo-destino2" hidden>
+                <span>Grupo</span>
+                <select id="propio-destino2"></select>
+            </label>
+
+            <button type="submit" class="boton-enviar">Añadir sonido</button>
+
+        </form>
+
+        <h3>Sonidos añadidos</h3>
+
+        <div id="lista-propios" class="lista-propios"></div>
+
+    </section>
+
     </main>
 
     </div>

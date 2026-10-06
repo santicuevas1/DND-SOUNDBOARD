@@ -1347,6 +1347,25 @@ function mostrarAmbiente(boton) {
             "click",
             function() {
 
+                const propio =
+                    sonidosPropiosAmbiente[ambiente + "|" + variante];
+
+                // Sonido subido por el usuario: suena ese, en bucle
+                if (propio) {
+
+                    reproducirBiblioteca(
+                        {
+                            nombre: variante,
+                            carpeta: "",
+                            archivos: [propio.url]
+                        },
+                        variante,
+                        ruta
+                    );
+
+                    return;
+                }
+
                 const biblioteca =
                     bibliotecas[ambiente];
 
@@ -1735,6 +1754,25 @@ function buscarEnFreesound(busqueda, tipo) {
 }
 
 
+// Un sonido subido por el usuario tiene "url": se usa tal cual,
+// con la misma forma que devuelve Freesound.
+// Si no, se busca en Freesound.
+function obtenerResultados(opcion, tipo) {
+
+    if (opcion.url) {
+
+        return Promise.resolve([{
+            name: opcion.nombre,
+            previews: { "preview-hq-mp3": opcion.url }
+        }]);
+
+    }
+
+    return buscarEnFreesound(opcion.busqueda, tipo);
+
+}
+
+
 function elegirAlAzar(lista) {
 
     return lista[
@@ -1808,7 +1846,7 @@ function alternarCapa(rutaOpcion, opcion) {
     );
 
 
-    buscarEnFreesound(opcion.busqueda, "capa")
+    obtenerResultados(opcion, "capa")
 
     .then(function(resultados) {
 
@@ -1930,7 +1968,7 @@ function reproducirEfecto(rutaOpcion, opcion) {
     );
 
 
-    buscarEnFreesound(opcion.busqueda, "efecto")
+    obtenerResultados(opcion, "efecto")
 
     .then(function(resultados) {
 
@@ -2330,6 +2368,679 @@ botonPararTodo.addEventListener(
 
     }
 );
+
+
+// ==========================================
+// MIS SONIDOS (los añade el usuario desde la web)
+// ==========================================
+// Los archivos se guardan en el navegador (IndexedDB), así que
+// no hace falta servidor, pero solo existen en este navegador.
+// Al cargar la página se vuelven a meter en playlists,
+// subambientes, capas y efectos para que tengan su botón.
+
+const BD_NOMBRE = "dnd-soundboard";
+
+const BD_ALMACEN = "sonidos";
+
+const TAMANO_MAXIMO_MB = 50;
+
+// Sonidos propios cargados ahora mismo en la página
+const propios = [];
+
+// "ambiente|nombre del botón" → registro del sonido
+const sonidosPropiosAmbiente = {};
+
+const formPropio =
+    document.getElementById("form-propio");
+
+const campoArchivo =
+    document.getElementById("propio-archivo");
+
+const campoNombre =
+    document.getElementById("propio-nombre");
+
+const selectTipo =
+    document.getElementById("propio-tipo");
+
+const selectDestino1 =
+    document.getElementById("propio-destino1");
+
+const selectDestino2 =
+    document.getElementById("propio-destino2");
+
+const campoDestino1 =
+    document.getElementById("campo-destino1");
+
+const campoDestino2 =
+    document.getElementById("campo-destino2");
+
+const listaPropios =
+    document.getElementById("lista-propios");
+
+
+// ==========================================
+// BASE DE DATOS
+// ==========================================
+
+let promesaBD = null;
+
+function abrirBD() {
+
+    if (!promesaBD) {
+
+        promesaBD = new Promise(function(resolver, rechazar) {
+
+            const peticion =
+                indexedDB.open(BD_NOMBRE, 1);
+
+            peticion.onupgradeneeded = function() {
+
+                peticion.result.createObjectStore(
+                    BD_ALMACEN,
+                    { keyPath: "id", autoIncrement: true }
+                );
+
+            };
+
+            peticion.onsuccess = function() {
+                resolver(peticion.result);
+            };
+
+            peticion.onerror = function() {
+                rechazar(peticion.error);
+            };
+
+        });
+
+    }
+
+    return promesaBD;
+
+}
+
+
+function operacionBD(modo, operacion) {
+
+    return abrirBD().then(function(bd) {
+
+        return new Promise(function(resolver, rechazar) {
+
+            const transaccion =
+                bd.transaction(BD_ALMACEN, modo);
+
+            const peticion =
+                operacion(transaccion.objectStore(BD_ALMACEN));
+
+            transaccion.oncomplete = function() {
+                resolver(peticion.result);
+            };
+
+            transaccion.onerror = function() {
+                rechazar(transaccion.error);
+            };
+
+            transaccion.onabort = function() {
+                rechazar(transaccion.error);
+            };
+
+        });
+
+    });
+
+}
+
+
+// ==========================================
+// DATOS SEGÚN EL TIPO
+// ==========================================
+
+function datosDe(tipo) {
+
+    return tipo === "capa" ? capas : efectos;
+
+}
+
+
+function nombreAmbiente(clave) {
+
+    for (const boton of botonesAmbiente) {
+
+        if (boton.dataset.ambiente === clave) {
+
+            return boton.textContent.trim();
+
+        }
+
+    }
+
+    return clave;
+
+}
+
+
+// Texto que se ve en la lista: "Capa · Clima › Lluvia"
+function describirDestino(registro) {
+
+    const d = registro.destino;
+
+    if (registro.tipo === "musica") {
+
+        return "Música · " + playlists[d[0]].nombre;
+
+    }
+
+    if (registro.tipo === "ambiente") {
+
+        return "Ambiente · " + nombreAmbiente(d[0]);
+
+    }
+
+    const datos = datosDe(registro.tipo);
+
+    return (registro.tipo === "capa" ? "Capa" : "Efecto") +
+        " · " + datos[d[0]].nombre +
+        " › " + datos[d[0]].opciones[d[1]].nombre;
+
+}
+
+
+// ==========================================
+// METER / QUITAR UN SONIDO EN LA PÁGINA
+// ==========================================
+
+function aplicarPropio(registro) {
+
+    const d = registro.destino;
+
+    registro.url =
+        URL.createObjectURL(registro.archivo);
+
+    if (registro.tipo === "musica") {
+
+        playlists[d[0]].canciones.push({
+            titulo: registro.nombre,
+            ruta: registro.url,
+            idPropio: registro.id
+        });
+
+    } else if (registro.tipo === "ambiente") {
+
+        subambientes[d[0]].push(registro.nombre);
+
+        sonidosPropiosAmbiente[d[0] + "|" + registro.nombre] =
+            registro;
+
+    } else {
+
+        datosDe(registro.tipo)[d[0]].opciones[d[1]]
+            .opciones["propio" + registro.id] = {
+                nombre: registro.nombre,
+                url: registro.url,
+                idPropio: registro.id
+            };
+
+    }
+
+    propios.push(registro);
+
+}
+
+
+function quitarPropioDePagina(registro) {
+
+    const d = registro.destino;
+
+    if (registro.tipo === "musica") {
+
+        const lista = playlists[d[0]].canciones;
+
+        lista.splice(
+            lista.findIndex(function(c) {
+                return c.idPropio === registro.id;
+            }),
+            1
+        );
+
+    } else if (registro.tipo === "ambiente") {
+
+        const lista = subambientes[d[0]];
+
+        lista.splice(lista.indexOf(registro.nombre), 1);
+
+        delete sonidosPropiosAmbiente[
+            d[0] + "|" + registro.nombre
+        ];
+
+    } else {
+
+        delete datosDe(registro.tipo)[d[0]].opciones[d[1]]
+            .opciones["propio" + registro.id];
+
+    }
+
+    URL.revokeObjectURL(registro.url);
+
+    propios.splice(propios.indexOf(registro), 1);
+
+}
+
+
+// Los menús abiertos ya no están al día: se vuelven al inicio
+function reiniciarMenu(tipo) {
+
+    if (tipo === "ambiente") {
+
+        submenuAmbiente.innerHTML =
+            "<p>Selecciona un ambiente</p>";
+
+    } else if (tipo === "capa") {
+
+        submenuCapas.innerHTML =
+            "<p>Selecciona una capa</p>";
+
+    } else if (tipo === "efecto") {
+
+        submenuEfectos.innerHTML =
+            "<p>Selecciona un tipo de efecto</p>";
+
+    } else if (playlistActual) {
+
+        mostrarPlaylist(playlistActual);
+
+    }
+
+}
+
+
+// ==========================================
+// FORMULARIO
+// ==========================================
+
+function llenarSelect(select, opciones) {
+
+    select.innerHTML = "";
+
+    opciones.forEach(function(opcion) {
+
+        const elemento =
+            document.createElement("option");
+
+        elemento.value = opcion[0];
+
+        elemento.textContent = opcion[1];
+
+        select.appendChild(elemento);
+
+    });
+
+}
+
+
+function opcionesDe(objeto) {
+
+    return Object.keys(objeto).map(function(clave) {
+
+        return [clave, objeto[clave].nombre];
+
+    });
+
+}
+
+
+function actualizarGrupos() {
+
+    const datos = datosDe(selectTipo.value);
+
+    llenarSelect(
+        selectDestino2,
+        opcionesDe(datos[selectDestino1.value].opciones)
+    );
+
+}
+
+
+function actualizarDestinos() {
+
+    const tipo = selectTipo.value;
+
+    const etiqueta1 =
+        campoDestino1.querySelector("span");
+
+    campoDestino2.hidden = true;
+
+
+    if (tipo === "musica") {
+
+        etiqueta1.textContent = "Playlist";
+
+        llenarSelect(selectDestino1, opcionesDe(playlists));
+
+    } else if (tipo === "ambiente") {
+
+        etiqueta1.textContent = "Ambiente";
+
+        llenarSelect(
+            selectDestino1,
+            Array.from(botonesAmbiente).map(function(boton) {
+
+                return [
+                    boton.dataset.ambiente,
+                    boton.textContent.trim()
+                ];
+
+            })
+        );
+
+    } else {
+
+        etiqueta1.textContent = "Categoría";
+
+        llenarSelect(
+            selectDestino1,
+            opcionesDe(datosDe(tipo))
+        );
+
+        campoDestino2.hidden = false;
+
+        actualizarGrupos();
+
+    }
+
+}
+
+
+selectTipo.addEventListener("change", actualizarDestinos);
+
+selectDestino1.addEventListener("change", function() {
+
+    if (selectTipo.value === "capa" || selectTipo.value === "efecto") {
+
+        actualizarGrupos();
+
+    }
+
+});
+
+
+// Si no se ha escrito nombre, se propone el del archivo
+campoArchivo.addEventListener("change", function() {
+
+    const archivo = campoArchivo.files[0];
+
+    if (archivo && !campoNombre.value.trim()) {
+
+        campoNombre.value =
+            archivo.name.replace(/\.[^.]+$/, "");
+
+    }
+
+});
+
+
+formPropio.addEventListener("submit", function(evento) {
+
+    evento.preventDefault();
+
+    const archivo = campoArchivo.files[0];
+
+    const nombre = campoNombre.value.trim();
+
+    const tipo = selectTipo.value;
+
+
+    if (!archivo || !nombre) {
+        return;
+    }
+
+    if (archivo.type.indexOf("audio/") !== 0) {
+
+        mostrarAviso("El archivo tiene que ser de audio");
+
+        return;
+    }
+
+    if (archivo.size > TAMANO_MAXIMO_MB * 1024 * 1024) {
+
+        mostrarAviso(
+            "El archivo pesa más de " + TAMANO_MAXIMO_MB + " MB"
+        );
+
+        return;
+    }
+
+
+    const destino = [selectDestino1.value];
+
+    if (tipo === "capa" || tipo === "efecto") {
+
+        destino.push(selectDestino2.value);
+
+    }
+
+    if (
+        tipo === "ambiente" &&
+        subambientes[destino[0]].indexOf(nombre) !== -1
+    ) {
+
+        mostrarAviso(
+            "Ese ambiente ya tiene un botón con ese nombre"
+        );
+
+        return;
+    }
+
+
+    const registro = {
+        nombre: nombre,
+        tipo: tipo,
+        destino: destino,
+        archivo: archivo
+    };
+
+
+    operacionBD("readwrite", function(almacen) {
+
+        return almacen.add(registro);
+
+    })
+
+    .then(function(id) {
+
+        registro.id = id;
+
+        aplicarPropio(registro);
+
+        reiniciarMenu(tipo);
+
+        mostrarListaPropios();
+
+        formPropio.reset();
+
+        actualizarDestinos();
+
+        mostrarAviso(
+            "Añadido: " + nombre + " (" +
+            describirDestino(registro) + ")"
+        );
+
+    })
+
+    .catch(function(error) {
+
+        console.log("No se pudo guardar el sonido:", error);
+
+        mostrarAviso(
+            "No se pudo guardar el sonido en el navegador"
+        );
+
+    });
+
+});
+
+
+// ==========================================
+// LISTA DE SONIDOS AÑADIDOS
+// ==========================================
+
+function mostrarListaPropios() {
+
+    listaPropios.innerHTML = "";
+
+    if (propios.length === 0) {
+
+        const vacio = document.createElement("p");
+
+        vacio.textContent = "Todavía no has añadido sonidos";
+
+        listaPropios.appendChild(vacio);
+
+        return;
+    }
+
+
+    propios.forEach(function(registro) {
+
+        const fila = document.createElement("div");
+
+        fila.className = "fila-propio";
+
+
+        const texto = document.createElement("span");
+
+        const nombre = document.createElement("strong");
+
+        nombre.textContent = registro.nombre;
+
+        const donde = document.createElement("small");
+
+        donde.textContent = describirDestino(registro);
+
+        texto.appendChild(nombre);
+
+        texto.appendChild(donde);
+
+
+        const quitar = document.createElement("button");
+
+        quitar.type = "button";
+
+        quitar.className = "boton-volver";
+
+        quitar.textContent = "Quitar";
+
+        quitar.addEventListener("click", function() {
+
+            // Evita que siga sonando algo que se va a borrar
+            pararTodo();
+
+            operacionBD("readwrite", function(almacen) {
+
+                return almacen.delete(registro.id);
+
+            })
+
+            .then(function() {
+
+                quitarPropioDePagina(registro);
+
+                if (registro.tipo === "musica") {
+
+                    musica.removeAttribute("src");
+
+                    indiceActual = -1;
+
+                    tituloCancion.textContent =
+                        "Ninguna canción seleccionada";
+
+                    actualizarBotonPlay();
+
+                }
+
+                reiniciarMenu(registro.tipo);
+
+                mostrarListaPropios();
+
+            })
+
+            .catch(function(error) {
+
+                console.log("No se pudo quitar el sonido:", error);
+
+                mostrarAviso("No se pudo quitar el sonido");
+
+            });
+
+        });
+
+
+        fila.appendChild(texto);
+
+        fila.appendChild(quitar);
+
+        listaPropios.appendChild(fila);
+
+    });
+
+}
+
+
+// ==========================================
+// CARGAR LOS SONIDOS GUARDADOS
+// ==========================================
+
+actualizarDestinos();
+
+mostrarListaPropios();
+
+if (window.indexedDB) {
+
+    operacionBD("readonly", function(almacen) {
+
+        return almacen.getAll();
+
+    })
+
+    .then(function(guardados) {
+
+        guardados.forEach(function(registro) {
+
+            try {
+
+                aplicarPropio(registro);
+
+            } catch (error) {
+
+                // El destino ya no existe: se ignora ese sonido
+                console.log("Sonido ignorado:", registro.nombre);
+
+            }
+
+        });
+
+        mostrarListaPropios();
+
+        // Pide al navegador que no borre los archivos solo
+        if (navigator.storage && navigator.storage.persist) {
+
+            navigator.storage.persist();
+
+        }
+
+    })
+
+    .catch(function(error) {
+
+        console.log("No se pudo leer la base de datos:", error);
+
+    });
+
+} else {
+
+    mostrarAviso(
+        "Este navegador no permite guardar sonidos propios"
+    );
+
+}
 
 
 // ==========================================

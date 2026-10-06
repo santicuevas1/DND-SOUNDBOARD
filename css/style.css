@@ -544,6 +544,132 @@ button {
     }
 }
 
+/* ==========================================
+   MIS SONIDOS
+========================================== */
+
+.form-propio {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 14px 16px;
+
+    margin-top: 14px;
+}
+
+.campo {
+    display: grid;
+
+    gap: 5px;
+
+    font-size: 0.95rem;
+}
+
+.campo[hidden] {
+    display: none;
+}
+
+.campo span {
+    color: var(--papel-suave);
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+
+    padding: 8px 10px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border: 1px solid var(--linea);
+
+    border-radius: 2px;
+
+    color: var(--papel);
+
+    font: inherit;
+}
+
+.campo input[type="file"] {
+    padding: 6px;
+}
+
+.campo select option {
+    background: var(--tinta);
+}
+
+.boton-enviar {
+    grid-column: 1 / -1;
+
+    justify-self: start;
+
+    padding: 10px 22px;
+
+    background: rgba(224, 123, 46, 0.22);
+
+    border: 1px solid var(--brasa);
+
+    border-radius: 2px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.boton-enviar:hover {
+    background: rgba(224, 123, 46, 0.4);
+}
+
+.lista-propios {
+    display: grid;
+}
+
+.fila-propio {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid var(--linea);
+}
+
+.fila-propio span {
+    display: grid;
+
+    min-width: 0;
+}
+
+.fila-propio strong,
+.fila-propio small {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.fila-propio small {
+    color: var(--papel-suave);
+}
+
+.fila-propio .boton-volver {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+
+    .form-propio {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
 
     * {
