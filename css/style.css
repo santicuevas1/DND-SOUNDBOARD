@@ -441,6 +441,20 @@ button {
     cursor: pointer;
 }
 
+.tiempos-musica {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 4px;
+
+    color: var(--papel-suave);
+
+    font-size: 0.8rem;
+
+    font-variant-numeric: tabular-nums;
+}
+
 .controles-musica {
     display: flex;
 
@@ -671,187 +685,126 @@ button {
 
 
 /* ==========================================
-   BOTÓN "CAMBIAR" Y SONIDO FIJADO
+   SPOTIFY
 ========================================== */
 
-/* Un sonido final = botón + "Cambiar" en una misma fila */
-.botones-submenu:has(.celda) {
-    grid-template-columns:
-        repeat(auto-fill, minmax(230px, 1fr));
+.bloque-spotify {
+    margin-bottom: 14px;
 }
 
-.celda {
-    display: flex;
-}
+/* Lista de canciones, al estilo de Spotify */
+.lista-canciones {
+    max-height: 380px;
 
-.celda .boton-submenu {
-    flex: 1;
-
-    min-width: 0;
-}
-
-.boton-cambiar {
-    padding: 0 12px;
-
-    background: var(--relleno);
+    overflow-y: auto;
 
     border: 1px solid var(--linea);
 
-    border-left: 0;
+    border-radius: 2px;
+}
 
-    border-radius: 0 2px 2px 0;
+/* Barras de desplazamiento (página y listas), en tonos de la página */
+::-webkit-scrollbar {
+    width: 10px;
 
+    height: 10px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--laton);
+
+    border-radius: 5px;
+
+    /* Un borde del color del carril la hace parecer más fina */
+    border: 2px solid rgba(0, 0, 0, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brasa);
+}
+
+/* Firefox no usa las reglas anteriores */
+@supports not selector(::-webkit-scrollbar) {
+    * {
+        scrollbar-width: thin;
+
+        scrollbar-color: var(--laton) rgba(0, 0, 0, 0.35);
+    }
+}
+
+.fila-cancion {
+    display: grid;
+
+    grid-template-columns: 36px 1fr auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    padding: 8px 14px 8px 8px;
+
+    background: transparent;
+
+    border: 0;
+
+    border-bottom: 1px solid var(--linea);
+
+    border-left: 3px solid transparent;
+
+    color: var(--papel);
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.fila-cancion:last-child {
+    border-bottom: 0;
+}
+
+.fila-cancion:hover {
+    background: rgba(255, 236, 200, 0.08);
+}
+
+.fila-cancion.activo {
+    background: rgba(224, 123, 46, 0.2);
+
+    border-left-color: var(--brasa);
+}
+
+.cancion-numero,
+.cancion-duracion {
     color: var(--papel-suave);
 
     font-size: 0.85rem;
 
-    cursor: pointer;
+    font-variant-numeric: tabular-nums;
 }
 
-.boton-cambiar:hover {
-    background: rgba(255, 236, 200, 0.12);
-
-    color: var(--papel);
+.cancion-numero {
+    text-align: right;
 }
 
-/* Sonido elegido a mano: un cuadradito dorado en la esquina */
-.boton-submenu.fijado {
-    position: relative;
-}
-
-.boton-submenu.fijado::after {
-    content: "";
-
-    position: absolute;
-
-    top: 6px;
-
-    right: 6px;
-
-    width: 6px;
-
-    height: 6px;
-
-    background: var(--laton);
-}
-
-
-/* ==========================================
-   SELECTOR DE SONIDO
-========================================== */
-
-.selector {
-    width: min(640px, calc(100% - 24px));
-
-    max-height: 85vh;
-
-    padding: 22px;
-
-    background: var(--tinta);
-
-    border: 1px solid var(--linea);
-
-    border-radius: 3px;
-
-    color: var(--papel);
-}
-
-.selector::backdrop {
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.selector h2 {
-    margin: 0 0 6px;
-
-    font-family: var(--titulos);
-    font-weight: 400;
-    font-size: 1.5rem;
-}
-
-.selector p {
-    margin: 0 0 14px;
-
-    color: var(--papel-suave);
-
-    font-style: italic;
-}
-
-.selector-form {
+.cancion-texto {
     display: flex;
 
-    gap: 8px;
-}
-
-.selector-form input {
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 8px 10px;
-
-    background: rgba(0, 0, 0, 0.35);
-
-    border: 1px solid var(--linea);
-
-    border-radius: 2px;
-
-    color: var(--papel);
-
-    font: inherit;
-}
-
-.selector-form button {
-    padding: 8px 16px;
-
-    background: rgba(224, 123, 46, 0.22);
-
-    border: 1px solid var(--brasa);
-
-    border-radius: 2px;
-
-    cursor: pointer;
-}
-
-.selector p.selector-estado {
-    margin: 12px 0 6px;
-
-    font-size: 0.9rem;
-}
-
-.selector-lista {
-    margin: 0;
-
-    padding: 0;
-
-    list-style: none;
-
-    max-height: 45vh;
-
-    overflow-y: auto;
-}
-
-.fila-resultado {
-    display: grid;
-
-    grid-template-columns: 1fr auto auto;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 8px 0;
-
-    border-bottom: 1px solid var(--linea);
-}
-
-.fila-resultado span {
-    display: grid;
+    flex-direction: column;
 
     min-width: 0;
 }
 
-.fila-resultado strong,
-.fila-resultado small {
+.cancion-texto strong,
+.cancion-texto small {
     overflow: hidden;
 
     text-overflow: ellipsis;
@@ -859,56 +812,12 @@ button {
     white-space: nowrap;
 }
 
-.fila-resultado small {
+.cancion-texto small {
     color: var(--papel-suave);
 }
 
-.boton-escuchar,
-.boton-usar {
-    padding: 6px 12px;
-
-    background: var(--relleno);
-
-    border: 1px solid var(--linea);
-
-    border-radius: 2px;
-
-    cursor: pointer;
-}
-
-.boton-usar {
-    border-color: var(--brasa);
-}
-
-.boton-usar:disabled {
-    border-color: var(--linea);
-
-    color: var(--papel-suave);
-
-    cursor: default;
-}
-
-.boton-escuchar:hover,
-.boton-usar:not(:disabled):hover {
-    background: rgba(255, 236, 200, 0.12);
-}
-
-.selector-pie {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    margin-top: 14px;
-}
-
-.selector-pie .boton-volver {
-    margin: 0;
-}
-
-.selector-pie [hidden] {
-    display: none;
+.fila-cancion.activo .cancion-texto strong {
+    color: var(--laton);
 }
 
 

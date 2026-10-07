@@ -6,32 +6,10 @@ console.log("El Soundboard está funcionando");
 // ==========================================
 
 // Cada clave coincide con el data-ambiente del HTML.
-// Para que un ambiente suene, basta con añadirlo aquí.
-const bibliotecas = {
-
-    bosque: {
-        nombre: "Bosque",
-        carpeta: "sounds/bosque/",
-        archivos: [
-            "bosque-01.wav",
-            "bosque-02.wav",
-            "bosque-03.wav",
-            "bosque-04.wav",
-            "bosque-05.wav"
-        ]
-    },
-
-    taberna: {
-        nombre: "Taberna",
-        carpeta: "sounds/taberna/",
-        archivos: [
-            "taberna-01.mp3",
-            "taberna-02.mp3",
-            "taberna-03.mp3"
-        ]
-    }
-
-};
+// Para que un ambiente suene, añade aquí su carpeta y sus archivos:
+//   bosque: { nombre: "Bosque", carpeta: "sounds/ambientes/bosque/",
+//             archivos: ["bosque-01.mp3"] }
+const bibliotecas = {};
 
 
 // ==========================================
@@ -95,8 +73,7 @@ const subambientes = {
 // ==========================================
 // ESTRUCTURA DE CAPAS
 // ==========================================
-// Cada sonido final tiene "busqueda": lo que se
-// busca en Freesound (en inglés, da más resultados).
+// Cada sonido final es una opción sin "opciones" dentro.
 
 const capas = {
 
@@ -117,18 +94,15 @@ const capas = {
                 opciones: {
 
                     ligera: {
-                        nombre: "Lluvia ligera",
-                        busqueda: "light rain"
+                        nombre: "Lluvia ligera"
                     },
 
                     normal: {
-                        nombre: "Lluvia normal",
-                        busqueda: "rain"
+                        nombre: "Lluvia normal"
                     },
 
                     intensa: {
-                        nombre: "Lluvia intensa",
-                        busqueda: "heavy rain"
+                        nombre: "Lluvia intensa"
                     }
 
                 }
@@ -143,18 +117,15 @@ const capas = {
                 opciones: {
 
                     truenos: {
-                        nombre: "Truenos",
-                        busqueda: "thunder"
+                        nombre: "Truenos"
                     },
 
                     ligera: {
-                        nombre: "Tormenta ligera",
-                        busqueda: "distant thunderstorm"
+                        nombre: "Tormenta ligera"
                     },
 
                     intensa: {
-                        nombre: "Tormenta intensa",
-                        busqueda: "heavy thunderstorm"
+                        nombre: "Tormenta intensa"
                     }
 
                 }
@@ -169,18 +140,15 @@ const capas = {
                 opciones: {
 
                     brisa: {
-                        nombre: "Brisa",
-                        busqueda: "gentle wind"
+                        nombre: "Brisa"
                     },
 
                     normal: {
-                        nombre: "Viento normal",
-                        busqueda: "wind"
+                        nombre: "Viento normal"
                     },
 
                     fuerte: {
-                        nombre: "Viento fuerte",
-                        busqueda: "strong wind"
+                        nombre: "Viento fuerte"
                     }
 
                 }
@@ -195,18 +163,15 @@ const capas = {
                 opciones: {
 
                     ligera: {
-                        nombre: "Nevada ligera",
-                        busqueda: "snow ambience"
+                        nombre: "Nevada ligera"
                     },
 
                     normal: {
-                        nombre: "Nevada normal",
-                        busqueda: "winter wind"
+                        nombre: "Nevada normal"
                     },
 
                     ventisca: {
-                        nombre: "Ventisca",
-                        busqueda: "blizzard"
+                        nombre: "Ventisca"
                     }
 
                 }
@@ -221,18 +186,15 @@ const capas = {
                 opciones: {
 
                     ligera: {
-                        nombre: "Niebla ligera",
-                        busqueda: "eerie ambience"
+                        nombre: "Niebla ligera"
                     },
 
                     densa: {
-                        nombre: "Niebla densa",
-                        busqueda: "dark ambience"
+                        nombre: "Niebla densa"
                     },
 
                     sobrenatural: {
-                        nombre: "Niebla sobrenatural",
-                        busqueda: "ghostly ambience"
+                        nombre: "Niebla sobrenatural"
                     }
 
                 }
@@ -261,18 +223,15 @@ const capas = {
                 opciones: {
 
                     hojas: {
-                        nombre: "Hojas y vegetación",
-                        busqueda: "leaves rustling"
+                        nombre: "Hojas y vegetación"
                     },
 
                     vientoArboles: {
-                        nombre: "Viento entre árboles",
-                        busqueda: "wind trees"
+                        nombre: "Viento entre árboles"
                     },
 
                     naturaleza: {
-                        nombre: "Naturaleza",
-                        busqueda: "forest ambience"
+                        nombre: "Naturaleza"
                     }
 
                 }
@@ -287,23 +246,19 @@ const capas = {
                 opciones: {
 
                     goteo: {
-                        nombre: "Goteo",
-                        busqueda: "water drip cave"
+                        nombre: "Goteo"
                     },
 
                     rio: {
-                        nombre: "Río",
-                        busqueda: "river"
+                        nombre: "Río"
                     },
 
                     cascada: {
-                        nombre: "Cascada",
-                        busqueda: "waterfall"
+                        nombre: "Cascada"
                     },
 
                     mar: {
-                        nombre: "Mar",
-                        busqueda: "ocean waves"
+                        nombre: "Mar"
                     }
 
                 }
@@ -318,18 +273,15 @@ const capas = {
                 opciones: {
 
                     piedras: {
-                        nombre: "Piedras",
-                        busqueda: "rocks stones"
+                        nombre: "Piedras"
                     },
 
                     derrumbe: {
-                        nombre: "Derrumbe",
-                        busqueda: "rockfall"
+                        nombre: "Derrumbe"
                     },
 
                     rocasCayendo: {
-                        nombre: "Rocas cayendo",
-                        busqueda: "falling rocks"
+                        nombre: "Rocas cayendo"
                     }
 
                 }
@@ -358,13 +310,11 @@ const capas = {
                 opciones: {
 
                     lobo: {
-                        nombre: "Lobo",
-                        busqueda: "wolf howl"
+                        nombre: "Lobo"
                     },
 
                     manada: {
-                        nombre: "Manada",
-                        busqueda: "wolves howling"
+                        nombre: "Manada"
                     }
 
                 }
@@ -379,13 +329,11 @@ const capas = {
                 opciones: {
 
                     pajaros: {
-                        nombre: "Pájaros",
-                        busqueda: "birds"
+                        nombre: "Pájaros"
                     },
 
                     aveRapaz: {
-                        nombre: "Ave rapaz",
-                        busqueda: "hawk screech"
+                        nombre: "Ave rapaz"
                     }
 
                 }
@@ -400,13 +348,11 @@ const capas = {
                 opciones: {
 
                     caballo: {
-                        nombre: "Caballo",
-                        busqueda: "horse"
+                        nombre: "Caballo"
                     },
 
                     caballos: {
-                        nombre: "Caballos",
-                        busqueda: "horses galloping"
+                        nombre: "Caballos"
                     }
 
                 }
@@ -421,18 +367,15 @@ const capas = {
                 opciones: {
 
                     oso: {
-                        nombre: "Oso",
-                        busqueda: "grizzly growl"
+                        nombre: "Oso"
                     },
 
                     jabali: {
-                        nombre: "Jabalí",
-                        busqueda: "wild boar"
+                        nombre: "Jabalí"
                     },
 
                     ciervo: {
-                        nombre: "Ciervo",
-                        busqueda: "deer"
+                        nombre: "Ciervo"
                     }
 
                 }
@@ -461,18 +404,15 @@ const capas = {
                 opciones: {
 
                     hoguera: {
-                        nombre: "Hoguera",
-                        busqueda: "campfire crackling"
+                        nombre: "Hoguera"
                     },
 
                     fuegoPequeno: {
-                        nombre: "Fuego pequeño",
-                        busqueda: "fireplace"
+                        nombre: "Fuego pequeño"
                     },
 
                     fuegoGrande: {
-                        nombre: "Fuego grande",
-                        busqueda: "large fire burning"
+                        nombre: "Fuego grande"
                     }
 
                 }
@@ -487,18 +427,15 @@ const capas = {
                 opciones: {
 
                     madera: {
-                        nombre: "Puerta de madera",
-                        busqueda: "wooden door"
+                        nombre: "Puerta de madera"
                     },
 
                     pesada: {
-                        nombre: "Puerta pesada",
-                        busqueda: "heavy door"
+                        nombre: "Puerta pesada"
                     },
 
                     metalica: {
-                        nombre: "Puerta metálica",
-                        busqueda: "metal door"
+                        nombre: "Puerta metálica"
                     }
 
                 }
@@ -513,13 +450,11 @@ const capas = {
                 opciones: {
 
                     pequena: {
-                        nombre: "Campana pequeña",
-                        busqueda: "small bell"
+                        nombre: "Campana pequeña"
                     },
 
                     grande: {
-                        nombre: "Campana grande",
-                        busqueda: "church bell"
+                        nombre: "Campana grande"
                     }
 
                 }
@@ -534,13 +469,11 @@ const capas = {
                 opciones: {
 
                     moviendose: {
-                        nombre: "Cadenas moviéndose",
-                        busqueda: "chains"
+                        nombre: "Cadenas moviéndose"
                     },
 
                     pesadas: {
-                        nombre: "Cadenas pesadas",
-                        busqueda: "chains dragging"
+                        nombre: "Cadenas pesadas"
                     }
 
                 }
@@ -555,18 +488,15 @@ const capas = {
                 opciones: {
 
                     ciudad: {
-                        nombre: "Multitud ciudad",
-                        busqueda: "crowd market"
+                        nombre: "Multitud ciudad"
                     },
 
                     taberna: {
-                        nombre: "Multitud taberna",
-                        busqueda: "tavern crowd"
+                        nombre: "Multitud taberna"
                     },
 
                     gritando: {
-                        nombre: "Multitud gritando",
-                        busqueda: "crowd shouting"
+                        nombre: "Multitud gritando"
                     }
 
                 }
@@ -598,23 +528,19 @@ const efectos = {
                 opciones: {
 
                     espadazo: {
-                        nombre: "Espadazo",
-                        busqueda: "sword swing"
+                        nombre: "Espadazo"
                     },
 
                     corte: {
-                        nombre: "Corte",
-                        busqueda: "sword slash"
+                        nombre: "Corte"
                     },
 
                     estocada: {
-                        nombre: "Estocada",
-                        busqueda: "sword stab"
+                        nombre: "Estocada"
                     },
 
                     choque: {
-                        nombre: "Choque de espadas",
-                        busqueda: "sword clash"
+                        nombre: "Choque de espadas"
                     }
 
                 }
@@ -626,18 +552,15 @@ const efectos = {
                 opciones: {
 
                     mazazo: {
-                        nombre: "Mazazo",
-                        busqueda: "blunt hit"
+                        nombre: "Mazazo"
                     },
 
                     golpe_martillo: {
-                        nombre: "Golpe de martillo",
-                        busqueda: "hammer hit"
+                        nombre: "Golpe de martillo"
                     },
 
                     golpe_pesado: {
-                        nombre: "Golpe pesado",
-                        busqueda: "heavy impact"
+                        nombre: "Golpe pesado"
                     }
 
                 }
@@ -649,18 +572,15 @@ const efectos = {
                 opciones: {
 
                     golpe_escudo: {
-                        nombre: "Golpe al escudo",
-                        busqueda: "shield hit"
+                        nombre: "Golpe al escudo"
                     },
 
                     bloqueo: {
-                        nombre: "Bloqueo",
-                        busqueda: "shield block"
+                        nombre: "Bloqueo"
                     },
 
                     escudo_pesado: {
-                        nombre: "Golpe fuerte al escudo",
-                        busqueda: "shield impact"
+                        nombre: "Golpe fuerte al escudo"
                     }
 
                 }
@@ -672,23 +592,19 @@ const efectos = {
                 opciones: {
 
                     flechazo: {
-                        nombre: "Flechazo",
-                        busqueda: "arrow impact"
+                        nombre: "Flechazo"
                     },
 
                     disparo_arco: {
-                        nombre: "Disparo de arco",
-                        busqueda: "bow shot"
+                        nombre: "Disparo de arco"
                     },
 
                     ballesta: {
-                        nombre: "Disparo de ballesta",
-                        busqueda: "crossbow"
+                        nombre: "Disparo de ballesta"
                     },
 
                     cuerda: {
-                        nombre: "Tensar arco",
-                        busqueda: "bow draw"
+                        nombre: "Tensar arco"
                     }
 
                 }
@@ -700,18 +616,15 @@ const efectos = {
                 opciones: {
 
                     hachazo: {
-                        nombre: "Hachazo",
-                        busqueda: "axe hit"
+                        nombre: "Hachazo"
                     },
 
                     lanza: {
-                        nombre: "Golpe de lanza",
-                        busqueda: "spear"
+                        nombre: "Golpe de lanza"
                     },
 
                     daga: {
-                        nombre: "Golpe de daga",
-                        busqueda: "knife stab"
+                        nombre: "Golpe de daga"
                     }
 
                 }
@@ -733,18 +646,15 @@ const efectos = {
                 opciones: {
 
                     fuego_pequeno: {
-                        nombre: "Fuego pequeño",
-                        busqueda: "fire spell"
+                        nombre: "Fuego pequeño"
                     },
 
                     fuego_grande: {
-                        nombre: "Fuego intenso",
-                        busqueda: "fireball"
+                        nombre: "Fuego intenso"
                     },
 
                     explosion: {
-                        nombre: "Explosión",
-                        busqueda: "explosion"
+                        nombre: "Explosión"
                     }
 
                 }
@@ -756,18 +666,15 @@ const efectos = {
                 opciones: {
 
                     hielo: {
-                        nombre: "Hielo",
-                        busqueda: "ice spell"
+                        nombre: "Hielo"
                     },
 
                     congelacion: {
-                        nombre: "Congelación",
-                        busqueda: "ice freeze"
+                        nombre: "Congelación"
                     },
 
                     cristal: {
-                        nombre: "Cristal mágico",
-                        busqueda: "magic chime"
+                        nombre: "Cristal mágico"
                     }
 
                 }
@@ -779,18 +686,15 @@ const efectos = {
                 opciones: {
 
                     chispa: {
-                        nombre: "Chispa",
-                        busqueda: "electric spark"
+                        nombre: "Chispa"
                     },
 
                     rayo: {
-                        nombre: "Rayo",
-                        busqueda: "lightning crack"
+                        nombre: "Rayo"
                     },
 
                     trueno_magico: {
-                        nombre: "Trueno mágico",
-                        busqueda: "lightning spell"
+                        nombre: "Trueno mágico"
                     }
 
                 }
@@ -802,13 +706,11 @@ const efectos = {
                 opciones: {
 
                     viento_magico: {
-                        nombre: "Viento mágico",
-                        busqueda: "wind spell"
+                        nombre: "Viento mágico"
                     },
 
                     rafaga: {
-                        nombre: "Ráfaga de aire",
-                        busqueda: "whoosh"
+                        nombre: "Ráfaga de aire"
                     }
 
                 }
@@ -820,13 +722,11 @@ const efectos = {
                 opciones: {
 
                     agua: {
-                        nombre: "Agua mágica",
-                        busqueda: "water spell"
+                        nombre: "Agua mágica"
                     },
 
                     oleada: {
-                        nombre: "Oleada",
-                        busqueda: "water splash"
+                        nombre: "Oleada"
                     }
 
                 }
@@ -838,18 +738,15 @@ const efectos = {
                 opciones: {
 
                     energia_oscura: {
-                        nombre: "Energía oscura",
-                        busqueda: "dark magic"
+                        nombre: "Energía oscura"
                     },
 
                     maldicion: {
-                        nombre: "Maldición",
-                        busqueda: "curse spell"
+                        nombre: "Maldición"
                     },
 
                     invocacion: {
-                        nombre: "Invocación",
-                        busqueda: "summon spell"
+                        nombre: "Invocación"
                     }
 
                 }
@@ -1543,23 +1440,7 @@ function mostrarMenu(tipo, ruta) {
             }
         );
 
-        // Los sonidos finales llevan un botón para elegir su sonido
-        if (opcion.opciones || opcion.idPropio) {
-
-            contenedor.appendChild(boton);
-
-        } else {
-
-            contenedor.appendChild(
-                crearCeldaConSelector(
-                    tipo,
-                    rutaOpcion,
-                    opcion,
-                    boton
-                )
-            );
-
-        }
+        contenedor.appendChild(boton);
 
     });
 
@@ -1634,212 +1515,21 @@ botonesEfecto.forEach(function(boton) {
 });
 
 
-// ==========================================
-// BUSCAR EN FREESOUND (con resultados guardados)
-// ==========================================
-
-// Duración según el tipo: las capas son sonidos largos para
-// poner en bucle y los efectos son cortos y suenan una vez.
-const duraciones = {
-    capa: "duration:[30 TO 600]",
-    efecto: "duration:[0 TO 10]"
-};
-
-// Etiquetas que casi siempre son música o sonidos sintéticos
-// y no encajan en una partida de rol.
-const etiquetasExcluidas =
-    "-tag:music -tag:synth -tag:electronic -tag:electro -tag:beat -tag:vocal";
-
-// Con "-tag:" delante, Freesound deja fuera lo que lleve esa etiqueta.
-const calidadMinima =
-    "avg_rating:[3.5 TO *] num_ratings:[3 TO *]";
-
-
-// Filtros de más a menos exigentes. Se prueba el primero y, si no
-// da ningún resultado, el siguiente, para que un botón nunca se
-// quede sin sonido.
-function filtrosPara(busqueda, tipo) {
-
-    // Cada palabra de la búsqueda tiene que estar en el nombre
-    // o en las etiquetas del sonido: "wolf howl" ya no devuelve
-    // casas encantadas ni perros de trineo.
-    // Se quitan los símbolos para que no rompan el filtro de Freesound
-    const palabras =
-        busqueda
-            .replace(/[^\p{L}\p{N}\s]/gu, " ")
-            .split(/\s+/)
-            .filter(Boolean)
-            .map(function(palabra) {
-
-                return "(tag:" + palabra + " OR name:" + palabra + ")";
-
-            }).join(" ");
-
-    const duracion =
-        duraciones[tipo];
-
-    return [
-
-        // 1. Bien valorado, sin música y con las palabras exactas
-        [duracion, calidadMinima, palabras, etiquetasExcluidas]
-            .join(" "),
-
-        // 2. Bien valorado y sin música, con cualquier coincidencia
-        [duracion, calidadMinima, etiquetasExcluidas].join(" "),
-
-        // 3. Solo la duración
-        duracion
-
-    ];
-
-}
-
-
-// Resultados de cada búsqueda ya hecha (clave: tipo + búsqueda).
-// Así solo se pide a Freesound la primera vez.
-const resultadosGuardados = {};
-
-
-function pedirAFreesound(busqueda, filtro, cantidad) {
-
-    return fetch(
-        "https://freesound.org/apiv2/search/?query="
-        + encodeURIComponent(busqueda)
-        + "&fields=id,name,previews,duration,avg_rating"
-        + "&filter="
-        + encodeURIComponent(filtro)
-        + "&page_size=" + cantidad,
-        {
-            headers: {
-                "Authorization":
-                    "Token " + FREESOUND_API_KEY
-            }
-        }
-    )
-
-    .then(function(respuesta) {
-
-        // ok es false si Freesound responde con error
-        // (clave mal, cuota agotada, servidor caído...)
-        if (!respuesta.ok) {
-
-            throw new Error(
-                "Freesound respondió con el error " +
-                respuesta.status
-            );
-
-        }
-
-        return respuesta.json();
-
-    })
-
-    .then(function(datos) {
-
-        return datos.results;
-
-    });
-
-}
-
-
-// Prueba cada filtro en orden hasta que uno dé resultados
-function buscarConRespaldo(busqueda, tipo, cantidad) {
-
-    const filtros =
-        filtrosPara(busqueda, tipo);
-
-    function probar(posicion) {
-
-        return pedirAFreesound(
-            busqueda,
-            filtros[posicion],
-            cantidad
-        )
-
-        .then(function(resultados) {
-
-            if (
-                resultados.length > 0 ||
-                posicion === filtros.length - 1
-            ) {
-                return resultados;
-            }
-
-            return probar(posicion + 1);
-
-        });
-
-    }
-
-    return probar(0);
-
-}
-
-
-function buscarEnFreesound(busqueda, tipo) {
-
-    const clave =
-        tipo + ":" + busqueda;
-
-
-    // Ya buscado antes: se devuelve lo guardado sin pedir nada.
-    // Promise.resolve crea una promesa ya cumplida, para que
-    // quien llame pueda usar .then() igual que con fetch.
-    if (resultadosGuardados[clave]) {
-
-        return Promise.resolve(
-            resultadosGuardados[clave]
-        );
-
-    }
-
-
-    // Sin config.js la clave no existe
-    if (typeof FREESOUND_API_KEY === "undefined") {
-
-        return Promise.reject(
-            new Error("falta config.js con la clave")
-        );
-
-    }
-
-
-    return buscarConRespaldo(busqueda, tipo, 10)
-
-    .then(function(resultados) {
-
-        resultadosGuardados[clave] =
-            resultados;
-
-        return resultados;
-
-    });
-
-}
-
-
-// Un sonido subido por el usuario o fijado en el selector se usa
-// tal cual, con la misma forma que devuelve Freesound.
-// Si no, se busca en Freesound.
-function obtenerResultados(opcion, tipo) {
-
-    // Subido por el usuario ("url") o fijado en el selector ("elegido")
-    const fijado =
-        opcion.url
-            ? { nombre: opcion.nombre, url: opcion.url }
-            : opcion.elegido;
-
-    if (fijado) {
+// Un sonido subido por el usuario ("url") se usa tal cual.
+// Devuelve una lista con la misma forma de siempre; vacía si
+// el botón todavía no tiene sonido asignado.
+function obtenerResultados(opcion) {
+
+    if (opcion.url) {
 
         return Promise.resolve([{
-            name: fijado.nombre,
-            previews: { "preview-hq-mp3": fijado.url }
+            name: opcion.nombre,
+            previews: { "preview-hq-mp3": opcion.url }
         }]);
 
     }
 
-    return buscarEnFreesound(opcion.busqueda, tipo);
+    return Promise.resolve([]);
 
 }
 
@@ -1911,12 +1601,6 @@ function alternarCapa(rutaOpcion, opcion) {
     actualizarBotones();
 
 
-    console.log(
-        "Buscando en Freesound:",
-        opcion.busqueda
-    );
-
-
     obtenerResultados(opcion, "capa")
 
     .then(function(resultados) {
@@ -1934,7 +1618,7 @@ function alternarCapa(rutaOpcion, opcion) {
         if (resultados.length === 0) {
 
             mostrarAviso(
-                "No se encontraron sonidos para " +
+                "Aún no hay sonido asignado a " +
                 opcion.nombre
             );
 
@@ -2002,12 +1686,12 @@ function alternarCapa(rutaOpcion, opcion) {
     .catch(function(error) {
 
         console.log(
-            "Error al consultar Freesound:",
+            "Error al cargar el sonido:",
             error
         );
 
         mostrarAviso(
-            "No se pudo conectar con Freesound (" +
+            "No se pudo cargar el sonido (" +
             error.message + ")"
         );
 
@@ -2052,7 +1736,7 @@ function reproducirEfecto(rutaOpcion, opcion) {
         if (resultados.length === 0) {
 
             mostrarAviso(
-                "No se encontraron sonidos para " +
+                "Aún no hay sonido asignado a " +
                 opcion.nombre
             );
 
@@ -2098,12 +1782,12 @@ function reproducirEfecto(rutaOpcion, opcion) {
     .catch(function(error) {
 
         console.log(
-            "Error al consultar Freesound:",
+            "Error al cargar el sonido:",
             error
         );
 
         mostrarAviso(
-            "No se pudo conectar con Freesound (" +
+            "No se pudo cargar el sonido (" +
             error.message + ")"
         );
 
@@ -2118,28 +1802,14 @@ function reproducirEfecto(rutaOpcion, opcion) {
 
 const playlists = {
 
-    exploracion: {
-        nombre: "Exploración",
-        canciones: [
-            { titulo: "Bosque", ruta: "sounds/bosque.mp3" }
-        ]
-    },
+    exploracion: { nombre: "Exploración", canciones: [], spotify: "" },
+    combate:     { nombre: "Combate",     canciones: [], spotify: "" },
+    mazmorras:   { nombre: "Mazmorras",   canciones: [], spotify: "" },
+    tabernas:    { nombre: "Tabernas",    canciones: [], spotify: "" },
 
-    combate:   { nombre: "Combate",   canciones: [] },
-    mazmorras: { nombre: "Mazmorras", canciones: [] },
-
-    tabernas: {
-        nombre: "Tabernas",
-        canciones: [
-            { titulo: "Taberna 1", ruta: "sounds/taberna/taberna-01.mp3" },
-            { titulo: "Taberna 2", ruta: "sounds/taberna/taberna-02.mp3" },
-            { titulo: "Taberna 3", ruta: "sounds/taberna/taberna-03.mp3" }
-        ]
-    },
-
-    terror:   { nombre: "Terror",   canciones: [] },
-    fantasia: { nombre: "Fantasía", canciones: [] },
-    jefes:    { nombre: "Jefes",    canciones: [] }
+    terror:   { nombre: "Terror",   canciones: [], spotify: "" },
+    fantasia: { nombre: "Fantasía", canciones: [], spotify: "" },
+    jefes:    { nombre: "Jefes",    canciones: [], spotify: "" }
 
 };
 
@@ -2148,11 +1818,25 @@ const musica = new Audio();
 let playlistActual = null;
 let indiceActual = -1;
 
+// true mientras la música suena desde Spotify y no desde un MP3
+let usandoSpotify = false;
+
+let spotifyPausado = true;
+
+// Duración de la canción de Spotify (ms), para la barra
+let spotifyDuracion = 0;
+
 const tituloCancion =
     document.getElementById("cancion-actual");
 
 const barraProgreso =
     document.getElementById("progreso-musica");
+
+const tiempoTranscurrido =
+    document.getElementById("tiempo-transcurrido");
+
+const tiempoRestante =
+    document.getElementById("tiempo-restante");
 
 const botonPlay =
     document.getElementById("reproducir-musica");
@@ -2170,17 +1854,94 @@ const sliderMusica =
     document.getElementById("volumen-musica");
 
 
+// ==========================================
+// PLAYLISTS DE SPOTIFY
+// ==========================================
+// Cada playlist de la web apunta a una playlist de Spotify.
+// Se definen en config.js (SPOTIFY_PLAYLISTS), así que son
+// las mismas para todo el que abra la página.
+
+Object.keys(playlists).forEach(function(clave) {
+
+    const uri = musicaSpotify.leerEnlace(
+        SPOTIFY_PLAYLISTS[clave] || ""
+    );
+
+    playlists[clave].spotify = uri || "";
+
+});
+
+
+// ==========================================
+// BOTONES DEL REPRODUCTOR
+// ==========================================
+
+// Escribe el tiempo transcurrido y el que falta (en ms)
+function mostrarTiempos(posicion, duracion) {
+
+    tiempoTranscurrido.textContent =
+        formatoDuracion(posicion);
+
+    tiempoRestante.textContent =
+        "-" + formatoDuracion(Math.max(duracion - posicion, 0));
+
+}
+
+
 function actualizarBotonPlay() {
 
+    const pausado =
+        usandoSpotify ? spotifyPausado : musica.paused;
+
     botonPlay.textContent =
-        musica.paused ? "Reproducir" : "Pausar";
+        pausado ? "Reproducir" : "Pausar";
 
     botonPlay.setAttribute(
         "aria-label",
-        musica.paused ? "Reproducir" : "Pausar"
+        pausado ? "Reproducir" : "Pausar"
     );
 
 }
+
+
+musicaSpotify.alAviso = mostrarAviso;
+
+musicaSpotify.alCambiarEstado = function(estado) {
+
+    if (!usandoSpotify) {
+        return;
+    }
+
+    spotifyPausado = estado.pausado;
+
+    spotifyDuracion = estado.duracion;
+
+    marcarCancionDeSpotify(estado.uri);
+
+    tituloCancion.textContent = estado.titulo;
+
+    barraProgreso.value =
+        estado.duracion
+            ? (estado.posicion / estado.duracion) * 100
+            : 0;
+
+    mostrarTiempos(estado.posicion, estado.duracion);
+
+    actualizarBotonPlay();
+
+};
+
+musicaSpotify.alCambiarConexion = function() {
+
+    musicaSpotify.volumen(sliderMusica.value / 100);
+
+    if (playlistActual) {
+
+        mostrarPlaylist(playlistActual);
+
+    }
+
+};
 
 
 function reproducirCancion(indice) {
@@ -2194,6 +1955,15 @@ function reproducirCancion(indice) {
 
     if (canciones.length === 0) {
         return;
+    }
+
+    // Una canción local corta la de Spotify
+    if (usandoSpotify) {
+
+        musicaSpotify.pausar();
+
+        usandoSpotify = false;
+
     }
 
     indiceActual =
@@ -2219,6 +1989,183 @@ function reproducirCancion(indice) {
 }
 
 
+function reproducirEnSpotify(clave, cancion) {
+
+    const uri = playlists[clave].spotify;
+
+    if (!uri || !musicaSpotify.conectado) {
+        return;
+    }
+
+    // Una playlist de Spotify corta la música local
+    musica.pause();
+
+    usandoSpotify = true;
+
+    spotifyPausado = false;
+
+    indiceActual = -1;
+
+    tituloCancion.textContent = playlists[clave].nombre;
+
+    actualizarBotonPlay();
+
+    musicaSpotify.reproducir(uri, cancion).catch(function(error) {
+
+        console.log("No se pudo reproducir en Spotify:", error);
+
+        usandoSpotify = false;
+
+        spotifyPausado = true;
+
+        actualizarBotonPlay();
+
+        mostrarAviso(
+            "No se pudo reproducir la playlist (" +
+            error.message + ")"
+        );
+
+    });
+
+}
+
+
+// 215000 ms → "3:35"
+function formatoDuracion(milisegundos) {
+
+    const segundos = Math.round(milisegundos / 1000);
+
+    return Math.floor(segundos / 60) + ":" +
+        String(segundos % 60).padStart(2, "0");
+
+}
+
+
+function marcarCancionDeSpotify(uri) {
+
+    listaPlaylist
+        .querySelectorAll("[data-uri]")
+        .forEach(function(boton) {
+
+            boton.classList.toggle(
+                "activo",
+                boton.dataset.uri === uri
+            );
+
+        });
+
+}
+
+
+// Lista de canciones de la playlist de Spotify, para elegir una
+function mostrarCancionesDeSpotify(clave) {
+
+    const contenedor = document.createElement("div");
+
+    contenedor.className = "lista-canciones";
+
+    const estado = document.createElement("p");
+
+    estado.textContent = "Cargando canciones...";
+
+    listaPlaylist.appendChild(estado);
+
+    musicaSpotify.canciones(playlists[clave].spotify)
+
+    .then(function(canciones) {
+
+        // Se eligió otra playlist mientras cargaba
+        if (playlistActual !== clave) {
+            return;
+        }
+
+        if (canciones.length === 0) {
+
+            estado.textContent = "La playlist está vacía";
+
+            return;
+        }
+
+        estado.remove();
+
+        canciones.forEach(function(cancion, i) {
+
+            const fila = document.createElement("button");
+
+            fila.type = "button";
+
+            fila.className = "fila-cancion";
+
+            fila.dataset.uri = cancion.uri;
+
+            const numero = document.createElement("span");
+
+            numero.className = "cancion-numero";
+
+            numero.textContent = i + 1;
+
+            const texto = document.createElement("span");
+
+            texto.className = "cancion-texto";
+
+            const titulo = document.createElement("strong");
+
+            titulo.textContent = cancion.titulo;
+
+            const artistas = document.createElement("small");
+
+            artistas.textContent = cancion.artistas;
+
+            texto.appendChild(titulo);
+
+            texto.appendChild(artistas);
+
+            const duracion = document.createElement("span");
+
+            duracion.className = "cancion-duracion";
+
+            duracion.textContent = formatoDuracion(cancion.duracion);
+
+            fila.appendChild(numero);
+
+            fila.appendChild(texto);
+
+            fila.appendChild(duracion);
+
+            fila.addEventListener("click", function() {
+
+                reproducirEnSpotify(clave, cancion.uri);
+
+            });
+
+            contenedor.appendChild(fila);
+
+        });
+
+        listaPlaylist.appendChild(contenedor);
+
+    })
+
+    .catch(function(error) {
+
+        if (playlistActual !== clave) {
+            return;
+        }
+
+        console.log("No se pudo cargar la lista:", error);
+
+        estado.textContent =
+            error.message.indexOf("403") !== -1
+                ? "Spotify solo deja ver las canciones de playlists " +
+                  "propias. La playlist suena igual con su botón."
+                : "No se pudo cargar la lista de canciones (" +
+                  error.message + ")";
+
+    });
+
+}
+
+
 function marcarCancionActiva() {
 
     listaPlaylist
@@ -2231,6 +2178,60 @@ function marcarCancionActiva() {
             );
 
         });
+
+}
+
+
+// Bloque de Spotify de la playlist: botón para conectar la cuenta
+function crearBloqueSpotify() {
+
+    const bloque = document.createElement("div");
+
+    bloque.className = "bloque-spotify";
+
+    if (!SPOTIFY_CLIENT_ID) {
+
+        const aviso = document.createElement("p");
+
+        aviso.textContent =
+            "Para usar Spotify, pon tu Client ID en config.js";
+
+        bloque.appendChild(aviso);
+
+        return bloque;
+    }
+
+    if (musicaSpotify.conectado) {
+
+        return bloque;
+    }
+
+    const conectar = document.createElement("button");
+
+    conectar.type = "button";
+
+    conectar.className = "boton-volver";
+
+    // Con sesión guardada, la conexión se hace sola al cargar
+    const hayCredencial =
+        !!localStorage.getItem(CLAVE_SPOTIFY_TOKEN);
+
+    conectar.textContent =
+        hayCredencial
+            ? "Conectando con Spotify..."
+            : "Conectar con Spotify";
+
+    conectar.disabled = hayCredencial;
+
+    conectar.addEventListener("click", function() {
+
+        musicaSpotify.conectar();
+
+    });
+
+    bloque.appendChild(conectar);
+
+    return bloque;
 
 }
 
@@ -2253,14 +2254,27 @@ function mostrarPlaylist(clave) {
 
     listaPlaylist.appendChild(titulo);
 
+    listaPlaylist.appendChild(crearBloqueSpotify());
+
+    if (playlist.spotify && musicaSpotify.conectado) {
+
+        mostrarCancionesDeSpotify(clave);
+
+        return;
+    }
+
     if (playlist.canciones.length === 0) {
 
-        const aviso = document.createElement("p");
+        if (!playlist.spotify) {
 
-        aviso.textContent =
-            "Esta playlist aún no tiene canciones";
+            const aviso = document.createElement("p");
 
-        listaPlaylist.appendChild(aviso);
+            aviso.textContent =
+                "Esta playlist aún no tiene canciones";
+
+            listaPlaylist.appendChild(aviso);
+
+        }
 
         return;
     }
@@ -2304,12 +2318,33 @@ document
 
             mostrarPlaylist(boton.dataset.playlist);
 
+            // Con una playlist de Spotify guardada, suena al elegirla
+            reproducirEnSpotify(boton.dataset.playlist);
+
         });
 
     });
 
 
 botonPlay.addEventListener("click", function() {
+
+    if (usandoSpotify) {
+
+        musicaSpotify.alternar();
+
+        return;
+    }
+
+    if (
+        playlistActual &&
+        playlists[playlistActual].spotify &&
+        musicaSpotify.conectado
+    ) {
+
+        reproducirEnSpotify(playlistActual);
+
+        return;
+    }
 
     if (!musica.src) {
 
@@ -2333,11 +2368,25 @@ botonPlay.addEventListener("click", function() {
 
 botonAnterior.addEventListener("click", function() {
 
+    if (usandoSpotify) {
+
+        musicaSpotify.anterior();
+
+        return;
+    }
+
     reproducirCancion(indiceActual - 1);
 
 });
 
 botonSiguiente.addEventListener("click", function() {
+
+    if (usandoSpotify) {
+
+        musicaSpotify.siguiente();
+
+        return;
+    }
 
     reproducirCancion(indiceActual + 1);
 
@@ -2359,11 +2408,25 @@ musica.addEventListener("timeupdate", function() {
         barraProgreso.value =
             (musica.currentTime / musica.duration) * 100;
 
+        mostrarTiempos(
+            musica.currentTime * 1000,
+            musica.duration * 1000
+        );
+
     }
 
 });
 
 barraProgreso.addEventListener("input", function() {
+
+    if (usandoSpotify) {
+
+        musicaSpotify.buscar(
+            (barraProgreso.value / 100) * spotifyDuracion
+        );
+
+        return;
+    }
 
     if (musica.duration) {
 
@@ -2377,6 +2440,8 @@ barraProgreso.addEventListener("input", function() {
 sliderMusica.addEventListener("input", function() {
 
     musica.volume = sliderMusica.value / 100;
+
+    musicaSpotify.volumen(sliderMusica.value / 100);
 
 });
 
@@ -2416,8 +2481,10 @@ function pararTodo() {
     });
 
 
-    // 4. Música
+    // 4. Música (local y Spotify)
     musica.pause();
+
+    musicaSpotify.pausar();
 
 
     // 5. Que los efectos que aún cargan no suenen después
@@ -3112,484 +3179,6 @@ if (window.indexedDB) {
     );
 
 }
-
-
-// ==========================================
-// SELECTOR DE SONIDO (elegir el sonido de un botón)
-// ==========================================
-// Cada botón de capa o efecto busca en Freesound y elige uno al
-// azar. Con "Cambiar" se ven los resultados, se escuchan y se
-// fija el que se quiera: ese botón sonará siempre igual.
-// La elección se guarda en este navegador (localStorage).
-
-const CLAVE_ELECCIONES = "dnd-soundboard-elecciones";
-
-const selector =
-    document.getElementById("selector-sonido");
-
-const selectorTitulo =
-    document.getElementById("selector-titulo");
-
-const selectorForm =
-    document.getElementById("selector-form");
-
-const selectorBusqueda =
-    document.getElementById("selector-busqueda");
-
-const selectorEstado =
-    document.getElementById("selector-estado");
-
-const selectorLista =
-    document.getElementById("selector-lista");
-
-const selectorAleatorio =
-    document.getElementById("selector-aleatorio");
-
-const selectorCerrar =
-    document.getElementById("selector-cerrar");
-
-// Audio de la vista previa (uno solo: al escuchar otro, se corta)
-const vistaPrevia = new Audio();
-
-vistaPrevia.volume = 0.7;
-
-// Botón de capa o efecto que se está editando
-let selectorActual = null;
-
-// Para ignorar búsquedas antiguas si se lanza otra enseguida
-let numeroBusquedaSelector = 0;
-
-
-// ==========================================
-// ELECCIONES GUARDADAS
-// ==========================================
-
-function leerElecciones() {
-
-    try {
-
-        return JSON.parse(
-            localStorage.getItem(CLAVE_ELECCIONES)
-        ) || {};
-
-    } catch (error) {
-
-        return {};
-
-    }
-
-}
-
-
-function guardarElecciones(elecciones) {
-
-    try {
-
-        localStorage.setItem(
-            CLAVE_ELECCIONES,
-            JSON.stringify(elecciones)
-        );
-
-    } catch (error) {
-
-        mostrarAviso(
-            "No se pudo guardar la elección en el navegador"
-        );
-
-    }
-
-}
-
-
-// Marca (o desmarca) el botón según tenga un sonido fijado
-function marcarFijado(boton, opcion) {
-
-    boton.classList.toggle("fijado", !!opcion.elegido);
-
-    boton.title =
-        opcion.elegido
-            ? "Sonido fijado: " + opcion.elegido.nombre
-            : "";
-
-}
-
-
-function fijarSonido(selectorInfo, resultado) {
-
-    const opcion = selectorInfo.opcion;
-
-    opcion.elegido = {
-        nombre: resultado.name,
-        url: resultado.previews["preview-hq-mp3"]
-    };
-
-    const elecciones = leerElecciones();
-
-    elecciones[selectorInfo.ruta] = opcion.elegido;
-
-    guardarElecciones(elecciones);
-
-    marcarFijado(selectorInfo.boton, opcion);
-
-}
-
-
-function quitarFijado(selectorInfo) {
-
-    delete selectorInfo.opcion.elegido;
-
-    const elecciones = leerElecciones();
-
-    delete elecciones[selectorInfo.ruta];
-
-    guardarElecciones(elecciones);
-
-    marcarFijado(selectorInfo.boton, selectorInfo.opcion);
-
-}
-
-
-// Al cargar la página: devolver cada elección a su botón
-function aplicarEleccionesGuardadas() {
-
-    const elecciones = leerElecciones();
-
-    Object.keys(elecciones).forEach(function(ruta) {
-
-        const partes = ruta.split("/");
-
-        try {
-
-            const opcion =
-                obtenerNivel(datosDe(partes[0]), partes.slice(1));
-
-            if (opcion && !opcion.opciones) {
-
-                opcion.elegido = elecciones[ruta];
-
-            }
-
-        } catch (error) {
-
-            // El botón ya no existe: se ignora esa elección
-            console.log("Elección ignorada:", ruta);
-
-        }
-
-    });
-
-}
-
-
-// ==========================================
-// BOTÓN "CAMBIAR" JUNTO A CADA SONIDO
-// ==========================================
-
-function crearCeldaConSelector(tipo, rutaOpcion, opcion, boton) {
-
-    const celda = document.createElement("div");
-
-    celda.className = "celda";
-
-    const cambiar = document.createElement("button");
-
-    cambiar.type = "button";
-
-    cambiar.className = "boton-cambiar";
-
-    cambiar.textContent = "Cambiar";
-
-    cambiar.title = "Elegir qué sonido usa este botón";
-
-    cambiar.addEventListener("click", function() {
-
-        abrirSelector({
-            tipo: tipo,
-            ruta: tipo + "/" + rutaOpcion.join("/"),
-            opcion: opcion,
-            boton: boton
-        });
-
-    });
-
-    marcarFijado(boton, opcion);
-
-    celda.appendChild(boton);
-
-    celda.appendChild(cambiar);
-
-    return celda;
-
-}
-
-
-// ==========================================
-// VENTANA DEL SELECTOR
-// ==========================================
-
-function abrirSelector(info) {
-
-    selectorActual = info;
-
-    selectorTitulo.textContent = info.opcion.nombre;
-
-    selectorBusqueda.value = info.opcion.busqueda;
-
-    selectorAleatorio.hidden = !info.opcion.elegido;
-
-    selector.showModal();
-
-    buscarEnSelector();
-
-}
-
-
-function buscarEnSelector() {
-
-    const texto = selectorBusqueda.value.trim();
-
-    if (!texto || !selectorActual) {
-        return;
-    }
-
-    const numero = ++numeroBusquedaSelector;
-
-    selectorLista.innerHTML = "";
-
-    selectorEstado.textContent = "Buscando...";
-
-    if (typeof FREESOUND_API_KEY === "undefined") {
-
-        selectorEstado.textContent =
-            "Falta config.js con la clave de Freesound";
-
-        return;
-    }
-
-
-    buscarConRespaldo(texto, selectorActual.tipo, 15)
-
-    .then(function(resultados) {
-
-        // Se lanzó otra búsqueda o se cerró la ventana
-        if (numero !== numeroBusquedaSelector) {
-            return;
-        }
-
-        if (resultados.length === 0) {
-
-            selectorEstado.textContent =
-                "No hay resultados. Prueba con otras palabras (en inglés)";
-
-            return;
-        }
-
-        selectorEstado.textContent =
-            resultados.length + " resultados";
-
-        resultados.forEach(mostrarResultadoSelector);
-
-    })
-
-    .catch(function(error) {
-
-        if (numero !== numeroBusquedaSelector) {
-            return;
-        }
-
-        selectorEstado.textContent =
-            "No se pudo conectar con Freesound (" +
-            error.message + ")";
-
-    });
-
-}
-
-
-function mostrarResultadoSelector(resultado) {
-
-    const url = resultado.previews["preview-hq-mp3"];
-
-    const elegido =
-        selectorActual.opcion.elegido &&
-        selectorActual.opcion.elegido.url === url;
-
-
-    const fila = document.createElement("li");
-
-    fila.className = "fila-resultado";
-
-
-    const texto = document.createElement("span");
-
-    const nombre = document.createElement("strong");
-
-    nombre.textContent = resultado.name;
-
-    const datos = document.createElement("small");
-
-    datos.textContent =
-        Math.round(resultado.duration) + " s" +
-        " · valoración " +
-        (resultado.avg_rating || 0).toFixed(1);
-
-    texto.appendChild(nombre);
-
-    texto.appendChild(datos);
-
-
-    const escuchar = document.createElement("button");
-
-    escuchar.type = "button";
-
-    escuchar.className = "boton-escuchar";
-
-    escuchar.textContent = "Escuchar";
-
-    escuchar.addEventListener("click", function() {
-
-        escucharVistaPrevia(url, escuchar);
-
-    });
-
-
-    const usar = document.createElement("button");
-
-    usar.type = "button";
-
-    usar.className = "boton-usar";
-
-    usar.textContent = elegido ? "Elegido" : "Usar este";
-
-    usar.disabled = elegido;
-
-    usar.addEventListener("click", function() {
-
-        fijarSonido(selectorActual, resultado);
-
-        mostrarAviso(
-            "Sonido fijado en " + selectorActual.opcion.nombre
-        );
-
-        selector.close();
-
-    });
-
-
-    fila.appendChild(texto);
-
-    fila.appendChild(escuchar);
-
-    fila.appendChild(usar);
-
-    selectorLista.appendChild(fila);
-
-}
-
-
-// Escuchar / parar la vista previa de un resultado
-function escucharVistaPrevia(url, boton) {
-
-    const sonabaEste =
-        !vistaPrevia.paused && vistaPrevia.src === url;
-
-    restablecerBotonesEscuchar();
-
-    if (sonabaEste) {
-
-        vistaPrevia.pause();
-
-        return;
-    }
-
-    vistaPrevia.src = url;
-
-    vistaPrevia.play().then(function() {
-
-        boton.textContent = "Parar";
-
-    }).catch(function(error) {
-
-        if (error.name !== "AbortError") {
-
-            mostrarAviso("No se pudo reproducir la vista previa");
-
-        }
-
-    });
-
-}
-
-
-function restablecerBotonesEscuchar() {
-
-    selectorLista
-        .querySelectorAll(".boton-escuchar")
-        .forEach(function(boton) {
-
-            boton.textContent = "Escuchar";
-
-        });
-
-}
-
-
-vistaPrevia.addEventListener("ended", restablecerBotonesEscuchar);
-
-
-selectorForm.addEventListener("submit", function(evento) {
-
-    evento.preventDefault();
-
-    buscarEnSelector();
-
-});
-
-
-selectorAleatorio.addEventListener("click", function() {
-
-    quitarFijado(selectorActual);
-
-    mostrarAviso(
-        selectorActual.opcion.nombre + ": vuelve a elegir al azar"
-    );
-
-    selector.close();
-
-});
-
-
-selectorCerrar.addEventListener("click", function() {
-
-    selector.close();
-
-});
-
-
-// Se cierra con el botón, con Escape o al elegir:
-// siempre se corta la vista previa
-selector.addEventListener("close", function() {
-
-    vistaPrevia.pause();
-
-    numeroBusquedaSelector++;
-
-    selectorActual = null;
-
-});
-
-
-// "Parar todo" también corta la vista previa
-botonPararTodo.addEventListener("click", function() {
-
-    vistaPrevia.pause();
-
-    restablecerBotonesEscuchar();
-
-});
-
-
-aplicarEleccionesGuardadas();
 
 
 // ==========================================
