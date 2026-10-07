@@ -2210,7 +2210,7 @@ function crearBloqueSpotify() {
 
     conectar.type = "button";
 
-    conectar.className = "boton-volver";
+    conectar.className = "boton-spotify";
 
     // Con sesión guardada, la conexión se hace sola al cargar
     const hayCredencial =

@@ -692,6 +692,34 @@ button {
     margin-bottom: 14px;
 }
 
+.boton-spotify {
+    padding: 11px 18px;
+
+    background: rgba(224, 123, 46, 0.2);
+
+    border: 1px solid var(--brasa);
+
+    border-radius: 2px;
+
+    color: var(--papel);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s;
+}
+
+.boton-spotify:hover:not(:disabled) {
+    background: rgba(224, 123, 46, 0.35);
+}
+
+.boton-spotify:disabled {
+    opacity: 0.6;
+
+    cursor: default;
+}
+
 /* Lista de canciones, al estilo de Spotify */
 .lista-canciones {
     max-height: 380px;
