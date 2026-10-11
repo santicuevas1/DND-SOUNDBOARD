@@ -209,6 +209,17 @@ function crearSonidoYouTube(id) {
 
                     destruir();
 
+                    console.log("YouTube:", error);
+
+                    if (
+                        error.name !== "AbortError" &&
+                        typeof mostrarAviso === "function"
+                    ) {
+
+                        mostrarAviso("YouTube: " + error.message);
+
+                    }
+
                     rechazar(error);
 
                 }
@@ -228,6 +239,8 @@ function crearSonidoYouTube(id) {
 
                     reproductor = new YT.Player(hueco, {
                         videoId: id,
+                        width: 200,
+                        height: 200,
                         playerVars: {
                             autoplay: 1,
                             controls: 0,
