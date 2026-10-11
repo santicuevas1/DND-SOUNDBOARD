@@ -515,7 +515,12 @@
 
             <label class="campo">
                 <span>Archivo de audio</span>
-                <input type="file" id="propio-archivo" accept="audio/*" required>
+                <input type="file" id="propio-archivo" accept="audio/*">
+            </label>
+
+            <label class="campo">
+                <span>o enlace de YouTube (solo suena el audio)</span>
+                <input type="url" id="propio-youtube" placeholder="https://www.youtube.com/watch?v=...">
             </label>
 
             <label class="campo">
@@ -562,8 +567,14 @@
          JAVASCRIPT
     =========================================== -->
 
+    <!-- Reproductor invisible: de YouTube solo se usa el sonido -->
+    <div id="youtube-oculto" aria-hidden="true"
+         style="position:fixed;left:-10px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none"></div>
+
     <script src="config.js"></script>
     <script src="spotify.js"></script>
+    <script src="youtube.js"></script>
+    <script src="sonidos.js"></script>
     <script src="script.js"></script>
 
 </body>

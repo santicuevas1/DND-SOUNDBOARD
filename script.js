@@ -1136,7 +1136,7 @@ function reproducirBiblioteca(
 
 
     const sonido =
-        new Audio(
+        crearAudioDe(
             biblioteca.carpeta + archivos[indice]
         );
 
@@ -1255,6 +1255,27 @@ function mostrarAmbiente(boton) {
                             nombre: variante,
                             carpeta: "",
                             archivos: [propio.url]
+                        },
+                        variante,
+                        ruta
+                    );
+
+                    return;
+                }
+
+                const integrados =
+                    sonidosIntegradosDe(
+                        "ambiente|" + ambiente + "|" + variante
+                    );
+
+                // Sonido de YouTube asignado en sonidos.js
+                if (integrados.length > 0) {
+
+                    reproducirBiblioteca(
+                        {
+                            nombre: variante,
+                            carpeta: "",
+                            archivos: integrados
                         },
                         variante,
                         ruta
@@ -1638,7 +1659,7 @@ function alternarCapa(rutaOpcion, opcion) {
 
 
         const sonido =
-            new Audio(
+            crearAudioDe(
                 resultado.previews["preview-hq-mp3"]
             );
 
@@ -1745,7 +1766,7 @@ function reproducirEfecto(rutaOpcion, opcion) {
 
 
         const sonido =
-            new Audio(
+            crearAudioDe(
                 elegirAlAzar(resultados).previews["preview-hq-mp3"]
             );
 
@@ -2537,6 +2558,9 @@ const campoArchivo =
 const campoNombre =
     document.getElementById("propio-nombre");
 
+const campoYouTube =
+    document.getElementById("propio-youtube");
+
 const selectTipo =
     document.getElementById("propio-tipo");
 
@@ -2690,8 +2714,9 @@ function aplicarPropio(registro) {
 
     const d = registro.destino;
 
-    registro.url =
-        URL.createObjectURL(registro.archivo);
+    registro.url = registro.youtube
+        ? PREFIJO_YOUTUBE + registro.youtube
+        : URL.createObjectURL(registro.archivo);
 
     if (registro.tipo === "musica") {
 
@@ -2756,7 +2781,11 @@ function quitarPropioDePagina(registro) {
 
     }
 
-    URL.revokeObjectURL(registro.url);
+    if (!registro.youtube) {
+
+        URL.revokeObjectURL(registro.url);
+
+    }
 
     propios.splice(propios.indexOf(registro), 1);
 
@@ -2915,35 +2944,89 @@ campoArchivo.addEventListener("change", function() {
 });
 
 
+// Si no se ha escrito nombre, se propone el título del vídeo
+campoYouTube.addEventListener("change", function() {
+
+    const id = idDeYouTube(campoYouTube.value);
+
+    if (id && !campoNombre.value.trim()) {
+
+        tituloDeYouTube(id).then(function(titulo) {
+
+            if (titulo && !campoNombre.value.trim()) {
+
+                campoNombre.value = titulo.slice(0, 40);
+
+            }
+
+        });
+
+    }
+
+});
+
+
 formPropio.addEventListener("submit", function(evento) {
 
     evento.preventDefault();
 
     const archivo = campoArchivo.files[0];
 
+    const enlace = campoYouTube.value.trim();
+
+    const idYouTube = enlace ? idDeYouTube(enlace) : null;
+
     const nombre = campoNombre.value.trim();
 
     const tipo = selectTipo.value;
 
 
-    if (!archivo || !nombre) {
+    if (!nombre) {
         return;
     }
 
-    if (archivo.type.indexOf("audio/") !== 0) {
+    if (!archivo && !enlace) {
 
-        mostrarAviso("El archivo tiene que ser de audio");
+        mostrarAviso("Sube un audio o pega un enlace de YouTube");
 
         return;
     }
 
-    if (archivo.size > TAMANO_MAXIMO_MB * 1024 * 1024) {
+    if (enlace && !idYouTube) {
+
+        mostrarAviso("Ese enlace de YouTube no es válido");
+
+        return;
+    }
+
+    if (idYouTube && tipo === "musica") {
 
         mostrarAviso(
-            "El archivo pesa más de " + TAMANO_MAXIMO_MB + " MB"
+            "Los enlaces de YouTube sirven para ambientes, " +
+            "capas y efectos, no para música"
         );
 
         return;
+    }
+
+    if (!idYouTube) {
+
+        if (archivo.type.indexOf("audio/") !== 0) {
+
+            mostrarAviso("El archivo tiene que ser de audio");
+
+            return;
+        }
+
+        if (archivo.size > TAMANO_MAXIMO_MB * 1024 * 1024) {
+
+            mostrarAviso(
+                "El archivo pesa más de " + TAMANO_MAXIMO_MB + " MB"
+            );
+
+            return;
+        }
+
     }
 
 
@@ -2971,9 +3054,19 @@ formPropio.addEventListener("submit", function(evento) {
     const registro = {
         nombre: nombre,
         tipo: tipo,
-        destino: destino,
-        archivo: archivo
+        destino: destino
     };
+
+    // Con enlace de YouTube se guarda solo el ID, sin archivo
+    if (idYouTube) {
+
+        registro.youtube = idYouTube;
+
+    } else {
+
+        registro.archivo = archivo;
+
+    }
 
 
     operacionBD("readwrite", function(almacen) {
