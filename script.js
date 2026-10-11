@@ -108,7 +108,6 @@ const capas = {
 
             },
 
-
             tormenta: {
 
                 nombre: "Tormenta",
@@ -119,10 +118,6 @@ const capas = {
                         nombre: "Truenos"
                     },
 
-                    ligera: {
-                        nombre: "Tormenta ligera"
-                    },
-
                     intensa: {
                         nombre: "Tormenta intensa"
                     }
@@ -130,7 +125,6 @@ const capas = {
                 }
 
             },
-
 
             viento: {
 
@@ -142,10 +136,6 @@ const capas = {
                         nombre: "Brisa"
                     },
 
-                    normal: {
-                        nombre: "Viento normal"
-                    },
-
                     fuerte: {
                         nombre: "Viento fuerte"
                     }
@@ -153,7 +143,6 @@ const capas = {
                 }
 
             },
-
 
             nieve: {
 
@@ -165,35 +154,8 @@ const capas = {
                         nombre: "Nevada ligera"
                     },
 
-                    normal: {
-                        nombre: "Nevada normal"
-                    },
-
                     ventisca: {
                         nombre: "Ventisca"
-                    }
-
-                }
-
-            },
-
-
-            niebla: {
-
-                nombre: "Niebla",
-
-                opciones: {
-
-                    ligera: {
-                        nombre: "Niebla ligera"
-                    },
-
-                    densa: {
-                        nombre: "Niebla densa"
-                    },
-
-                    sobrenatural: {
-                        nombre: "Niebla sobrenatural"
                     }
 
                 }
@@ -203,7 +165,6 @@ const capas = {
         }
 
     },
-
 
     // ==========================================
     // NATURALEZA
@@ -237,7 +198,6 @@ const capas = {
 
             },
 
-
             agua: {
 
                 nombre: "Agua",
@@ -264,7 +224,6 @@ const capas = {
 
             },
 
-
             rocas: {
 
                 nombre: "Rocas",
@@ -290,7 +249,6 @@ const capas = {
         }
 
     },
-
 
     // ==========================================
     // ANIMALES
@@ -320,7 +278,6 @@ const capas = {
 
             },
 
-
             aves: {
 
                 nombre: "Aves",
@@ -339,7 +296,6 @@ const capas = {
 
             },
 
-
             caballos: {
 
                 nombre: "Caballos",
@@ -357,7 +313,6 @@ const capas = {
                 }
 
             },
-
 
             animalesSalvajes: {
 
@@ -385,7 +340,6 @@ const capas = {
 
     },
 
-
     // ==========================================
     // ENTORNO
     // ==========================================
@@ -406,10 +360,6 @@ const capas = {
                         nombre: "Hoguera"
                     },
 
-                    fuegoPequeno: {
-                        nombre: "Fuego pequeño"
-                    },
-
                     fuegoGrande: {
                         nombre: "Fuego grande"
                     }
@@ -417,7 +367,6 @@ const capas = {
                 }
 
             },
-
 
             puertas: {
 
@@ -431,16 +380,11 @@ const capas = {
 
                     pesada: {
                         nombre: "Puerta pesada"
-                    },
-
-                    metalica: {
-                        nombre: "Puerta metálica"
                     }
 
                 }
 
             },
-
 
             campanas: {
 
@@ -460,7 +404,6 @@ const capas = {
 
             },
 
-
             cadenas: {
 
                 nombre: "Cadenas",
@@ -477,29 +420,6 @@ const capas = {
 
                 }
 
-            },
-
-
-            multitud: {
-
-                nombre: "Multitud",
-
-                opciones: {
-
-                    ciudad: {
-                        nombre: "Multitud ciudad"
-                    },
-
-                    taberna: {
-                        nombre: "Multitud taberna"
-                    },
-
-                    gritando: {
-                        nombre: "Multitud gritando"
-                    }
-
-                }
-
             }
 
         }
@@ -507,7 +427,6 @@ const capas = {
     }
 
 };
-
 
 // ==========================================
 // ESTRUCTURA DE EFECTOS
@@ -526,20 +445,16 @@ const efectos = {
 
                 opciones: {
 
-                    espadazo: {
-                        nombre: "Espadazo"
+                    golpeo: {
+                        nombre: "Golpeo"
                     },
 
-                    corte: {
-                        nombre: "Corte"
+                    fallo: {
+                        nombre: "Fallo"
                     },
 
-                    estocada: {
-                        nombre: "Estocada"
-                    },
-
-                    choque: {
-                        nombre: "Choque de espadas"
+                    bloqueo: {
+                        nombre: "Bloqueo"
                     }
 
                 }
@@ -550,16 +465,16 @@ const efectos = {
 
                 opciones: {
 
-                    mazazo: {
-                        nombre: "Mazazo"
+                    golpeo: {
+                        nombre: "Golpeo"
                     },
 
-                    golpe_martillo: {
-                        nombre: "Golpe de martillo"
+                    fallo: {
+                        nombre: "Fallo"
                     },
 
-                    golpe_pesado: {
-                        nombre: "Golpe pesado"
+                    bloqueo: {
+                        nombre: "Bloqueo"
                     }
 
                 }
@@ -576,10 +491,6 @@ const efectos = {
 
                     bloqueo: {
                         nombre: "Bloqueo"
-                    },
-
-                    escudo_pesado: {
-                        nombre: "Golpe fuerte al escudo"
                     }
 
                 }
@@ -618,10 +529,6 @@ const efectos = {
                         nombre: "Hachazo"
                     },
 
-                    lanza: {
-                        nombre: "Golpe de lanza"
-                    },
-
                     daga: {
                         nombre: "Golpe de daga"
                     }
@@ -631,7 +538,6 @@ const efectos = {
 
         }
     },
-
 
     magia: {
 
@@ -643,10 +549,6 @@ const efectos = {
                 nombre: "Fuego",
 
                 opciones: {
-
-                    fuego_pequeno: {
-                        nombre: "Fuego pequeño"
-                    },
 
                     fuego_grande: {
                         nombre: "Fuego intenso"
@@ -670,10 +572,6 @@ const efectos = {
 
                     congelacion: {
                         nombre: "Congelación"
-                    },
-
-                    cristal: {
-                        nombre: "Cristal mágico"
                     }
 
                 }
@@ -683,10 +581,6 @@ const efectos = {
                 nombre: "Electricidad",
 
                 opciones: {
-
-                    chispa: {
-                        nombre: "Chispa"
-                    },
 
                     rayo: {
                         nombre: "Rayo"
@@ -706,10 +600,6 @@ const efectos = {
 
                     viento_magico: {
                         nombre: "Viento mágico"
-                    },
-
-                    rafaga: {
-                        nombre: "Ráfaga de aire"
                     }
 
                 }
@@ -722,10 +612,6 @@ const efectos = {
 
                     agua: {
                         nombre: "Agua mágica"
-                    },
-
-                    oleada: {
-                        nombre: "Oleada"
                     }
 
                 }
@@ -742,10 +628,6 @@ const efectos = {
 
                     maldicion: {
                         nombre: "Maldición"
-                    },
-
-                    invocacion: {
-                        nombre: "Invocación"
                     }
 
                 }
@@ -755,7 +637,6 @@ const efectos = {
     }
 
 };
-
 
 // ==========================================
 // ELEMENTOS
@@ -791,7 +672,6 @@ const botonPararTodo =
 const aviso =
     document.querySelector("#aviso");
 
-
 // ==========================================
 // SLIDERS
 // ==========================================
@@ -824,7 +704,6 @@ const sliders = {
 
 };
 
-
 // ==========================================
 // VOLUMEN DE CADA CATEGORÍA
 // ==========================================
@@ -849,7 +728,6 @@ const volumenes = {
 
 };
 
-
 // ==========================================
 // SONIDOS ACTIVOS
 // ==========================================
@@ -873,7 +751,6 @@ const sonidosActivos = {
     magia: new Set()
 
 };
-
 
 // ==========================================
 // ESTADO: QUÉ ESTÁ SONANDO

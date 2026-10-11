@@ -116,23 +116,15 @@ const sonidosIntegrados = {
 
     // Tormenta
     "capa|clima|tormenta|truenos": [],   // Truenos
-    "capa|clima|tormenta|ligera": [],   // Tormenta ligera
     "capa|clima|tormenta|intensa": [],   // Tormenta intensa
 
     // Viento
     "capa|clima|viento|brisa": [],   // Brisa
-    "capa|clima|viento|normal": [],   // Viento normal
     "capa|clima|viento|fuerte": [],   // Viento fuerte
 
     // Nieve
     "capa|clima|nieve|ligera": [],   // Nevada ligera
-    "capa|clima|nieve|normal": [],   // Nevada normal
     "capa|clima|nieve|ventisca": [],   // Ventisca
-
-    // Niebla
-    "capa|clima|niebla|ligera": [],   // Niebla ligera
-    "capa|clima|niebla|densa": [],   // Niebla densa
-    "capa|clima|niebla|sobrenatural": [],   // Niebla sobrenatural
 
     // ---------- CAPAS: NATURALEZA ----------
 
@@ -175,13 +167,11 @@ const sonidosIntegrados = {
 
     // Fuego
     "capa|entorno|fuego|hoguera": [],   // Hoguera
-    "capa|entorno|fuego|fuegoPequeno": [],   // Fuego pequeño
     "capa|entorno|fuego|fuegoGrande": [],   // Fuego grande
 
     // Puertas
     "capa|entorno|puertas|madera": [],   // Puerta de madera
     "capa|entorno|puertas|pesada": [],   // Puerta pesada
-    "capa|entorno|puertas|metalica": [],   // Puerta metálica
 
     // Campanas
     "capa|entorno|campanas|pequena": [],   // Campana pequeña
@@ -191,28 +181,21 @@ const sonidosIntegrados = {
     "capa|entorno|cadenas|moviendose": [],   // Cadenas moviéndose
     "capa|entorno|cadenas|pesadas": [],   // Cadenas pesadas
 
-    // Multitud
-    "capa|entorno|multitud|ciudad": [],   // Multitud ciudad
-    "capa|entorno|multitud|taberna": [],   // Multitud taberna
-    "capa|entorno|multitud|gritando": [],   // Multitud gritando
-
     // ---------- EFECTOS: COMBATE ----------
 
     // Espadas
-    "efecto|combate|espadas|espadazo": [],   // Espadazo
-    "efecto|combate|espadas|corte": [],   // Corte
-    "efecto|combate|espadas|estocada": [],   // Estocada
-    "efecto|combate|espadas|choque": [],   // Choque de espadas
+    "efecto|combate|espadas|golpeo": [],   // Golpeo
+    "efecto|combate|espadas|fallo": [],   // Fallo
+    "efecto|combate|espadas|bloqueo": [],   // Bloqueo
 
     // Mazas y martillos
-    "efecto|combate|mazas|mazazo": [],   // Mazazo
-    "efecto|combate|mazas|golpe_martillo": [],   // Golpe de martillo
-    "efecto|combate|mazas|golpe_pesado": [],   // Golpe pesado
+    "efecto|combate|mazas|golpeo": [],   // Golpeo
+    "efecto|combate|mazas|fallo": [],   // Fallo
+    "efecto|combate|mazas|bloqueo": [],   // Bloqueo
 
     // Escudos
     "efecto|combate|escudos|golpe_escudo": [],   // Golpe al escudo
     "efecto|combate|escudos|bloqueo": [],   // Bloqueo
-    "efecto|combate|escudos|escudo_pesado": [],   // Golpe fuerte al escudo
 
     // Arcos y ballestas
     "efecto|combate|arcos|flechazo": [],   // Flechazo
@@ -222,41 +205,33 @@ const sonidosIntegrados = {
 
     // Otras armas
     "efecto|combate|otras_armas|hachazo": [],   // Hachazo
-    "efecto|combate|otras_armas|lanza": [],   // Golpe de lanza
     "efecto|combate|otras_armas|daga": [],   // Golpe de daga
 
     // ---------- EFECTOS: MAGIA ----------
 
     // Fuego
-    "efecto|magia|fuego|fuego_pequeno": [],   // Fuego pequeño
     "efecto|magia|fuego|fuego_grande": [],   // Fuego intenso
     "efecto|magia|fuego|explosion": [],   // Explosión
 
     // Hielo
     "efecto|magia|hielo|hielo": [],   // Hielo
     "efecto|magia|hielo|congelacion": [],   // Congelación
-    "efecto|magia|hielo|cristal": [],   // Cristal mágico
 
     // Electricidad
-    "efecto|magia|electricidad|chispa": [],   // Chispa
     "efecto|magia|electricidad|rayo": [],   // Rayo
     "efecto|magia|electricidad|trueno_magico": [],   // Trueno mágico
 
     // Aire
     "efecto|magia|aire|viento_magico": [],   // Viento mágico
-    "efecto|magia|aire|rafaga": [],   // Ráfaga de aire
 
     // Agua
     "efecto|magia|agua|agua": [],   // Agua mágica
-    "efecto|magia|agua|oleada": [],   // Oleada
 
     // Magia oscura
     "efecto|magia|oscura|energia_oscura": [],   // Energía oscura
-    "efecto|magia|oscura|maldicion": [],   // Maldición
-    "efecto|magia|oscura|invocacion": []   // Invocación
+    "efecto|magia|oscura|maldicion": []   // Maldición
 
 };
-
 
 // Direcciones listas para reproducir ("youtube:ID") de un botón
 function sonidosIntegradosDe(clave) {
