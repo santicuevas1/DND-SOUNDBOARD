@@ -1539,7 +1539,24 @@ botonesEfecto.forEach(function(boton) {
 // Un sonido subido por el usuario ("url") se usa tal cual.
 // Devuelve una lista con la misma forma de siempre; vacía si
 // el botón todavía no tiene sonido asignado.
-function obtenerResultados(opcion) {
+function obtenerResultados(opcion, tipo, rutaOpcion) {
+
+    // Sonidos de YouTube asignados en sonidos.js
+    const integrados =
+        sonidosIntegradosDe(tipo + "|" + rutaOpcion.join("|"));
+
+    if (integrados.length > 0) {
+
+        return Promise.resolve(integrados.map(function(direccion) {
+
+            return {
+                name: opcion.nombre,
+                previews: { "preview-hq-mp3": direccion }
+            };
+
+        }));
+
+    }
 
     if (opcion.url) {
 
@@ -1622,7 +1639,7 @@ function alternarCapa(rutaOpcion, opcion) {
     actualizarBotones();
 
 
-    obtenerResultados(opcion, "capa")
+    obtenerResultados(opcion, "capa", rutaOpcion)
 
     .then(function(resultados) {
 
@@ -1744,7 +1761,7 @@ function reproducirEfecto(rutaOpcion, opcion) {
     );
 
 
-    obtenerResultados(opcion, "efecto")
+    obtenerResultados(opcion, "efecto", rutaOpcion)
 
     .then(function(resultados) {
 
