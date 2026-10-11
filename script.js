@@ -63,8 +63,7 @@ const subambientes = {
     batalla: [
         "Batalla",
         "Batalla intensa",
-        "Asedio",
-        "Batalla contra jefe"
+        "Asedio"
     ]
 
 };

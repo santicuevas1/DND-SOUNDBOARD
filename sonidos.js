@@ -106,9 +106,6 @@ const sonidosIntegrados = {
     "ambiente|batalla|Asedio": [
         "https://www.youtube.com/watch?v=whtz44p9oII"
     ],   // Asedio
-    "ambiente|batalla|Batalla contra jefe": [
-        "https://www.youtube.com/watch?v=hD1m6gaWe5Q"
-    ],   // Batalla contra jefe
 
     // ---------- CAPAS: CLIMA ----------
 
