@@ -43,16 +43,16 @@ const sonidosIntegrados = {
 
     // Mazmorra
     "ambiente|mazmorra|Oscura": [
-        "https://www.youtube.com/watch?v=tzh8jTkL_To"
+        "https://www.youtube.com/watch?v=_IWZyPWsSvQ"
     ],   // Oscura
     "ambiente|mazmorra|Misteriosa": [
-        "https://www.youtube.com/watch?v=VE-sz2EdeCA"
+        "https://www.youtube.com/watch?v=bxoRRobHtGM"
     ],   // Misteriosa
     "ambiente|mazmorra|Peligrosa": [
-        "https://www.youtube.com/watch?v=morqY2DkGuk"
+        "https://www.youtube.com/watch?v=KZNoPUbaVnk"
     ],   // Peligrosa
     "ambiente|mazmorra|Terrorífica": [
-        "https://www.youtube.com/watch?v=CDWtH8eHeEU"
+        "https://www.youtube.com/watch?v=wScEFaoqwPM"
     ],   // Terrorífica
 
     // Ciudad
