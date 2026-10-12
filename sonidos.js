@@ -166,20 +166,36 @@ const sonidosIntegrados = {
     // ---------- CAPAS: ENTORNO ----------
 
     // Fuego
-    "capa|entorno|fuego|hoguera": [],   // Hoguera
-    "capa|entorno|fuego|fuegoGrande": [],   // Fuego grande
+    "capa|entorno|fuego|hoguera": [
+        "https://www.youtube.com/watch?v=mSX3OyW9Rao"
+    ],   // Hoguera
+    "capa|entorno|fuego|fuegoGrande": [
+        "https://www.youtube.com/watch?v=2ya2drfb4rA"
+    ],   // Fuego grande
 
     // Puertas
-    "capa|entorno|puertas|madera": [],   // Puerta de madera
-    "capa|entorno|puertas|pesada": [],   // Puerta pesada
+    "capa|entorno|puertas|madera": [
+        "https://www.youtube.com/watch?v=0Gd6PJw3Yh0"
+    ],   // Puerta de madera
+    "capa|entorno|puertas|pesada": [
+        "https://www.youtube.com/watch?v=R8f18JFWDv4"
+    ],   // Puerta pesada
 
     // Campanas
-    "capa|entorno|campanas|pequena": [],   // Campana pequeña
-    "capa|entorno|campanas|grande": [],   // Campana grande
+    "capa|entorno|campanas|pequena": [
+        "https://www.youtube.com/watch?v=oLWSvP1SN0Y"
+    ],   // Campana pequeña
+    "capa|entorno|campanas|grande": [
+        "https://www.youtube.com/watch?v=WwVSYVUOQ5Y"
+    ],   // Campana grande
 
     // Cadenas
-    "capa|entorno|cadenas|moviendose": [],   // Cadenas moviéndose
-    "capa|entorno|cadenas|pesadas": [],   // Cadenas pesadas
+    "capa|entorno|cadenas|moviendose": [
+        "https://www.youtube.com/watch?v=EJCbzWGYEK8"
+    ],   // Cadenas moviéndose
+    "capa|entorno|cadenas|pesadas": [
+        "https://www.youtube.com/watch?v=TQmI6M1AIws"
+    ],   // Cadenas pesadas
 
     // ---------- EFECTOS: COMBATE ----------
 
