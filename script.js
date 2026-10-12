@@ -1324,13 +1324,18 @@ function mostrarMenu(tipo, ruta) {
 
 
                 // Sonido final
-                if (tipo === "capa") {
+                // El entorno (puertas, campanas...) suena una vez por clic
+                if (tipo === "capa" && rutaOpcion[0] === "entorno") {
+
+                    reproducirEfecto(rutaOpcion, opcion, "capa");
+
+                } else if (tipo === "capa") {
 
                     alternarCapa(rutaOpcion, opcion);
 
                 } else {
 
-                    reproducirEfecto(rutaOpcion, opcion);
+                    reproducirEfecto(rutaOpcion, opcion, "efecto");
 
                 }
 
@@ -1620,7 +1625,7 @@ function alternarCapa(rutaOpcion, opcion) {
 // EFECTOS: SUENAN UNA VEZ
 // ==========================================
 
-function reproducirEfecto(rutaOpcion, opcion) {
+function reproducirEfecto(rutaOpcion, opcion, tipo) {
 
     const categoria =
         rutaOpcion[0];
@@ -1637,7 +1642,7 @@ function reproducirEfecto(rutaOpcion, opcion) {
     );
 
 
-    obtenerResultados(opcion, "efecto", rutaOpcion)
+    obtenerResultados(opcion, tipo, rutaOpcion)
 
     .then(function(resultados) {
 
