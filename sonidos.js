@@ -8,6 +8,7 @@
 // Si hay varios, suena uno al azar; si está vacía ([]), el botón
 // avisa de que aún no tiene sonido.
 //   "efecto|combate|espadas|espadazo": ["https://youtu.be/xxxxxxxxxxx"]
+// También valen archivos propios: ["sounds/efectos/espadas/golpe1.mp3"]
 
 const sonidosIntegrados = {
     // ---------- AMBIENTES ----------
@@ -200,28 +201,56 @@ const sonidosIntegrados = {
     // ---------- EFECTOS: COMBATE ----------
 
     // Espadas
-    "efecto|combate|espadas|golpeo": [],   // Golpeo
-    "efecto|combate|espadas|fallo": [],   // Fallo
-    "efecto|combate|espadas|bloqueo": [],   // Bloqueo
+    "efecto|combate|espadas|golpeo": [
+        "sounds/efectos/combate/espadas/golpeo.mp3"
+    ],   // Golpeo
+    "efecto|combate|espadas|fallo": [
+        "sounds/efectos/combate/espadas/fallo.mp3"
+    ],   // Fallo
+    "efecto|combate|espadas|bloqueo": [
+        "sounds/efectos/combate/espadas/bloqueo.mp3"
+    ],   // Bloqueo
 
     // Mazas y martillos
-    "efecto|combate|mazas|golpeo": [],   // Golpeo
-    "efecto|combate|mazas|fallo": [],   // Fallo
-    "efecto|combate|mazas|bloqueo": [],   // Bloqueo
+    "efecto|combate|mazas|golpeo": [
+        "sounds/efectos/combate/mazas/golpeo.mp3"
+    ],   // Golpeo
+    "efecto|combate|mazas|fallo": [
+        "sounds/efectos/combate/mazas/fallo.mp3"
+    ],   // Fallo
+    "efecto|combate|mazas|bloqueo": [
+        "sounds/efectos/combate/mazas/bloqueo.mp3"
+    ],   // Bloqueo
 
     // Escudos
-    "efecto|combate|escudos|golpe_escudo": [],   // Golpe al escudo
-    "efecto|combate|escudos|bloqueo": [],   // Bloqueo
+    "efecto|combate|escudos|golpe_escudo": [
+        "sounds/efectos/combate/escudos/golpe_escudo.mp3"
+    ],   // Golpe al escudo
+    "efecto|combate|escudos|bloqueo": [
+        "sounds/efectos/combate/escudos/bloqueo.mp3"
+    ],   // Bloqueo
 
     // Arcos y ballestas
-    "efecto|combate|arcos|flechazo": [],   // Flechazo
-    "efecto|combate|arcos|disparo_arco": [],   // Disparo de arco
-    "efecto|combate|arcos|ballesta": [],   // Disparo de ballesta
-    "efecto|combate|arcos|cuerda": [],   // Tensar arco
+    "efecto|combate|arcos|flechazo": [
+        "sounds/efectos/combate/arcos/flechazo.mp3"
+    ],   // Flechazo
+    "efecto|combate|arcos|disparo_arco": [
+        "sounds/efectos/combate/arcos/disparo_arco.mp3"
+    ],   // Disparo de arco
+    "efecto|combate|arcos|ballesta": [
+        "sounds/efectos/combate/arcos/ballesta.mp3"
+    ],   // Disparo de ballesta
+    "efecto|combate|arcos|cuerda": [
+        "sounds/efectos/combate/arcos/cuerda.mp3"
+    ],   // Tensar arco
 
     // Otras armas
-    "efecto|combate|otras_armas|hachazo": [],   // Hachazo
-    "efecto|combate|otras_armas|daga": [],   // Golpe de daga
+    "efecto|combate|otras_armas|hachazo": [
+        "sounds/efectos/combate/otras_armas/hachazo.mp3"
+    ],   // Hachazo
+    "efecto|combate|otras_armas|daga": [
+        "sounds/efectos/combate/otras_armas/daga.mp3"
+    ],   // Golpe de daga
 
     // ---------- EFECTOS: MAGIA ----------
 
@@ -249,19 +278,26 @@ const sonidosIntegrados = {
 
 };
 
-// Direcciones listas para reproducir ("youtube:ID") de un botón
+// Direcciones listas para reproducir de un botón: "youtube:ID" para
+// enlaces de YouTube y la ruta tal cual para archivos mp3 propios
 function sonidosIntegradosDe(clave) {
 
     return (sonidosIntegrados[clave] || [])
 
-        .map(idDeYouTube)
+        .map(function(enlace) {
 
-        .filter(Boolean)
+            if (/\.(mp3|ogg|wav|m4a)$/i.test(enlace.trim())) {
 
-        .map(function(id) {
+                return enlace.trim();
 
-            return PREFIJO_YOUTUBE + id;
+            }
 
-        });
+            const id = idDeYouTube(enlace);
+
+            return id ? PREFIJO_YOUTUBE + id : null;
+
+        })
+
+        .filter(Boolean);
 
 }
