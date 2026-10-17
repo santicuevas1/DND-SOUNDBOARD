@@ -311,6 +311,10 @@ function avisarEstado() {
 }
 
 
+// true durante unos segundos tras empujar a la siguiente canción
+let avanzandoCancion = false;
+
+
 async function iniciarReproductor() {
 
     await cargarSDK();
@@ -346,7 +350,38 @@ async function iniciarReproductor() {
 
     });
 
-    reproductor.addListener("player_state_changed", avisarEstado);
+    reproductor.addListener("player_state_changed", function(estado) {
+
+        // A veces el SDK deja la canción terminada en pausa y en 0:00
+        // en vez de pasar a la siguiente: se le empuja a mano
+        if (estado && !avanzandoCancion) {
+
+            const actual = estado.track_window.current_track;
+
+            const terminada =
+                estado.paused &&
+                estado.position === 0 &&
+                estado.track_window.previous_tracks.some(function(c) {
+                    return c.id === actual.id;
+                });
+
+            if (terminada) {
+
+                avanzandoCancion = true;
+
+                reproductor.nextTrack().catch(function() {});
+
+                setTimeout(function() {
+                    avanzandoCancion = false;
+                }, 2000);
+
+            }
+
+        }
+
+        avisarEstado();
+
+    });
 
     reproductor.addListener("account_error", function() {
 
@@ -432,6 +467,14 @@ musicaSpotify.reproducir = async function(uri, cancion) {
 
     await llamarAPI(
         "/me/player/shuffle" + dispositivo + "&state=true",
+        "PUT"
+    ).catch(function() {});
+
+    // Repetir la playlist entera: si la cuenta se quedó en "repetir
+    // canción", la misma sonaría para siempre; y sin repetición, al
+    // acabar la lista la música se pararía
+    await llamarAPI(
+        "/me/player/repeat" + dispositivo + "&state=context",
         "PUT"
     ).catch(function() {});
 

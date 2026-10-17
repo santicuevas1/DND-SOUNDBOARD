@@ -1854,6 +1854,18 @@ musicaSpotify.alCambiarConexion = function() {
 
     musicaSpotify.volumen(sliderMusica.value / 100);
 
+    // Si Spotify se desconecta, el reproductor no debe quedarse
+    // "reproduciendo" una música que ya no suena
+    if (!musicaSpotify.conectado && usandoSpotify) {
+
+        usandoSpotify = false;
+
+        spotifyPausado = true;
+
+        actualizarBotonPlay();
+
+    }
+
     if (playlistActual) {
 
         mostrarPlaylist(playlistActual);

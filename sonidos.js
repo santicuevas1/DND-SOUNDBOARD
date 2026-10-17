@@ -111,58 +111,114 @@ const sonidosIntegrados = {
     // ---------- CAPAS: CLIMA ----------
 
     // Lluvia
-    "capa|clima|lluvia|ligera": [],   // Lluvia ligera
-    "capa|clima|lluvia|normal": [],   // Lluvia normal
-    "capa|clima|lluvia|intensa": [],   // Lluvia intensa
+    "capa|clima|lluvia|ligera": [
+        "https://www.youtube.com/watch?v=5UCJ8lxzLFk"
+    ],   // Lluvia ligera
+    "capa|clima|lluvia|normal": [
+        "https://www.youtube.com/watch?v=trCxLtxe8oI"
+    ],   // Lluvia normal
+    "capa|clima|lluvia|intensa": [
+        "https://www.youtube.com/watch?v=WV29EJcP21o"
+    ],   // Lluvia intensa
 
     // Tormenta
-    "capa|clima|tormenta|truenos": [],   // Truenos
-    "capa|clima|tormenta|intensa": [],   // Tormenta intensa
+    "capa|clima|tormenta|truenos": [
+        "https://www.youtube.com/watch?v=8ZK9NHwpi7I"
+    ],   // Truenos
+    "capa|clima|tormenta|intensa": [
+        "https://www.youtube.com/watch?v=iFY0zu6OnH8"
+    ],   // Tormenta intensa
 
     // Viento
-    "capa|clima|viento|brisa": [],   // Brisa
-    "capa|clima|viento|fuerte": [],   // Viento fuerte
+    "capa|clima|viento|brisa": [
+        "https://www.youtube.com/watch?v=oxM0u7eYZZ4"
+    ],   // Brisa
+    "capa|clima|viento|fuerte": [
+        "https://www.youtube.com/watch?v=RZSht3nW9lM"
+    ],   // Viento fuerte
 
     // Nieve
-    "capa|clima|nieve|ligera": [],   // Nevada ligera
-    "capa|clima|nieve|ventisca": [],   // Ventisca
+    "capa|clima|nieve|ligera": [
+        "https://www.youtube.com/watch?v=mi6C9rL7aJM"
+    ],   // Nevada ligera
+    "capa|clima|nieve|ventisca": [
+        "https://www.youtube.com/watch?v=OD5worsS-Mg"
+    ],   // Ventisca
 
     // ---------- CAPAS: NATURALEZA ----------
 
     // Bosque
-    "capa|naturaleza|bosque|hojas": [],   // Hojas y vegetación
-    "capa|naturaleza|bosque|vientoArboles": [],   // Viento entre árboles
-    "capa|naturaleza|bosque|naturaleza": [],   // Naturaleza
+    "capa|naturaleza|bosque|hojas": [
+        "https://www.youtube.com/watch?v=EGerKROL0rk"
+    ],   // Hojas y vegetación
+    "capa|naturaleza|bosque|vientoArboles": [
+        "https://www.youtube.com/watch?v=c9zjWnUevQs"
+    ],   // Viento entre árboles
+    "capa|naturaleza|bosque|naturaleza": [
+        "https://www.youtube.com/watch?v=3BssY7xkzDM"
+    ],   // Naturaleza
 
     // Agua
-    "capa|naturaleza|agua|goteo": [],   // Goteo
-    "capa|naturaleza|agua|rio": [],   // Río
-    "capa|naturaleza|agua|cascada": [],   // Cascada
-    "capa|naturaleza|agua|mar": [],   // Mar
+    "capa|naturaleza|agua|goteo": [
+        "https://www.youtube.com/watch?v=HAX242WcjGk"
+    ],   // Goteo
+    "capa|naturaleza|agua|rio": [
+        "https://www.youtube.com/watch?v=E8fiyj1hNwk"
+    ],   // Río
+    "capa|naturaleza|agua|cascada": [
+        "https://www.youtube.com/watch?v=Oox2QjscJUk"
+    ],   // Cascada
+    "capa|naturaleza|agua|mar": [
+        "https://www.youtube.com/watch?v=VJA4xNIm2t0"
+    ],   // Mar
 
     // Rocas
-    "capa|naturaleza|rocas|piedras": [],   // Piedras
-    "capa|naturaleza|rocas|derrumbe": [],   // Derrumbe
-    "capa|naturaleza|rocas|rocasCayendo": [],   // Rocas cayendo
+    "capa|naturaleza|rocas|piedras": [
+        "https://www.youtube.com/watch?v=4IT0FNdOx6Q"
+    ],   // Piedras
+    "capa|naturaleza|rocas|derrumbe": [
+        "https://www.youtube.com/watch?v=GvlJkYIgl3A"
+    ],   // Derrumbe
+    "capa|naturaleza|rocas|rocasCayendo": [
+        "https://www.youtube.com/watch?v=KUWij6pgs9k"
+    ],   // Rocas cayendo
 
     // ---------- CAPAS: ANIMALES ----------
 
     // Lobos
-    "capa|animales|lobos|lobo": [],   // Lobo
-    "capa|animales|lobos|manada": [],   // Manada
+    "capa|animales|lobos|lobo": [
+        "https://www.youtube.com/watch?v=1GAskjxb-hs"
+    ],   // Lobo
+    "capa|animales|lobos|manada": [
+        "https://www.youtube.com/watch?v=wnub43dZ2OQ"
+    ],   // Manada
 
     // Aves
-    "capa|animales|aves|pajaros": [],   // Pájaros
-    "capa|animales|aves|aveRapaz": [],   // Ave rapaz
+    "capa|animales|aves|pajaros": [
+        "https://www.youtube.com/watch?v=lNB8iwiQb9k"
+    ],   // Pájaros
+    "capa|animales|aves|aveRapaz": [
+        "https://www.youtube.com/watch?v=BQod-pAk5-A"
+    ],   // Ave rapaz
 
     // Caballos
-    "capa|animales|caballos|caballo": [],   // Caballo
-    "capa|animales|caballos|caballos": [],   // Caballos
+    "capa|animales|caballos|caballo": [
+        "https://www.youtube.com/watch?v=avcRRcIRnbY"
+    ],   // Caballo
+    "capa|animales|caballos|caballos": [
+        "https://www.youtube.com/watch?v=L1l7GO4d3BA"
+    ],   // Caballos
 
     // Animales salvajes
-    "capa|animales|animalesSalvajes|oso": [],   // Oso
-    "capa|animales|animalesSalvajes|jabali": [],   // Jabalí
-    "capa|animales|animalesSalvajes|ciervo": [],   // Ciervo
+    "capa|animales|animalesSalvajes|oso": [
+        "https://www.youtube.com/watch?v=Pxak_vVybMA"
+    ],   // Oso
+    "capa|animales|animalesSalvajes|jabali": [
+        "https://www.youtube.com/watch?v=t-UcO_hnApE"
+    ],   // Jabalí
+    "capa|animales|animalesSalvajes|ciervo": [
+        "https://www.youtube.com/watch?v=pvVbZxDBFZg"
+    ],   // Ciervo
 
     // ---------- CAPAS: ENTORNO ----------
 
@@ -192,7 +248,7 @@ const sonidosIntegrados = {
 
     // Cadenas
     "capa|entorno|cadenas|moviendose": [
-        "https://www.youtube.com/watch?v=EJCbzWGYEK8"
+        "https://www.youtube.com/watch?v=zmNIVSD0k3k"
     ],   // Cadenas moviéndose
     "capa|entorno|cadenas|pesadas": [
         "https://www.youtube.com/watch?v=TQmI6M1AIws"
@@ -255,26 +311,44 @@ const sonidosIntegrados = {
     // ---------- EFECTOS: MAGIA ----------
 
     // Fuego
-    "efecto|magia|fuego|fuego_grande": [],   // Fuego intenso
-    "efecto|magia|fuego|explosion": [],   // Explosión
+    "efecto|magia|fuego|fuego_grande": [
+        "https://www.youtube.com/watch?v=AHRf27GPhQc"
+    ],   // Fuego intenso
+    "efecto|magia|fuego|explosion": [
+        "https://www.youtube.com/watch?v=o65yh4r4UPY"
+    ],   // Explosión
 
     // Hielo
-    "efecto|magia|hielo|hielo": [],   // Hielo
-    "efecto|magia|hielo|congelacion": [],   // Congelación
+    "efecto|magia|hielo|hielo": [
+        "https://www.youtube.com/watch?v=PGJ-Xdz4QuE"
+    ],   // Hielo
+    "efecto|magia|hielo|congelacion": [
+        "https://www.youtube.com/watch?v=6_E_JZtz98A"
+    ],   // Congelación
 
     // Electricidad
-    "efecto|magia|electricidad|rayo": [],   // Rayo
-    "efecto|magia|electricidad|trueno_magico": [],   // Trueno mágico
+    "efecto|magia|electricidad|rayo": [
+        "https://www.youtube.com/watch?v=ApEdqEoMKM8"
+    ],   // Rayo
+    "efecto|magia|electricidad|trueno_magico": [
+        "https://www.youtube.com/watch?v=ocwftNTlDjY"
+    ],   // Trueno mágico
 
     // Aire
-    "efecto|magia|aire|viento_magico": [],   // Viento mágico
+    "efecto|magia|aire|viento_magico": [
+        "https://www.youtube.com/watch?v=A10PD5Ce83s"
+    ],   // Viento mágico
 
     // Agua
     "efecto|magia|agua|agua": [],   // Agua mágica
 
     // Magia oscura
-    "efecto|magia|oscura|energia_oscura": [],   // Energía oscura
-    "efecto|magia|oscura|maldicion": []   // Maldición
+    "efecto|magia|oscura|energia_oscura": [
+        "https://www.youtube.com/watch?v=N_shO_NMsUg"
+    ],   // Energía oscura
+    "efecto|magia|oscura|maldicion": [
+        "https://www.youtube.com/watch?v=WqB6nPazPYg"
+    ]   // Maldición
 
 };
 

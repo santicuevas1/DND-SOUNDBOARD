@@ -267,6 +267,17 @@ function crearSonidoYouTube(id) {
                                     resolver();
 
                                 } else if (
+                                    evento.data === YT.PlayerState.PAUSED &&
+                                    sonido.loop &&
+                                    !destruido
+                                ) {
+
+                                    // Pararlo de verdad destruye el reproductor,
+                                    // así que una pausa es del navegador: en un
+                                    // bucle se reanuda para que no se corte
+                                    evento.target.playVideo();
+
+                                } else if (
                                     evento.data === YT.PlayerState.ENDED
                                 ) {
 
