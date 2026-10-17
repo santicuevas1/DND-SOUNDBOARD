@@ -340,7 +340,9 @@ const sonidosIntegrados = {
     ],   // Viento mágico
 
     // Agua
-    "efecto|magia|agua|agua": [],   // Agua mágica
+    "efecto|magia|agua|agua": [
+        "https://www.youtube.com/watch?v=FB4dKTSBkPM"
+    ],   // Agua mágica
 
     // Magia oscura
     "efecto|magia|oscura|energia_oscura": [
